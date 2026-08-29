@@ -1,13 +1,13 @@
-# рџЏ—пёЏ STORM DRIVER Architecture Overview
+# 🏗️ Архитектура и оптимизации STORM DRIVER
 
-## 1. Adreno 830 (Snapdragon 8 Elite) Register Calibration
-The Adreno 830 GPU architecture introduces a new register file layout. When compiling complex shaders with high register pressure, standard allocations cause scheduler panics. STORM DRIVER calibrates `reg_size_vec4` to **96**, providing optimal occupancy across all shader units without register spills.
+## 1. Калибровка регистрового файла Adreno 830 (Snapdragon 8 Elite)
+Графический процессор Adreno 830 использует новую архитектуру регистров. При компиляции комплексных шейдеров стандартное распределение вызывало панику планировщика IR3. STORM DRIVER калибрует `reg_size_vec4` на значение **96**, обеспечивая максимальную плотность инструкций без сброса регистров в системную память.
 
-## 2. UBWC 5.0 Lossless Framebuffer Alignment
-Universal Bandwidth Compression (UBWC) 5.0 requires 128-byte pitch alignment on external Android WSI swapchains. Without this, Samsung OneUI and high-refresh-rate displays produce vertical striping. STORM DRIVER dynamically clamps the image layout pitch to 128-byte boundaries.
+## 2. Аппаратное выравнивание UBWC 5.0 для Samsung OneUI
+Universal Bandwidth Compression (UBWC) 5.0 требует строгого выравнивания шага питча по границе 128 байт на внешних кадровых буферах WSI. Без этого на экранах Samsung Galaxy и дисплеях с высокой частотой обновления возникают вертикальные полосы. Патч 0003 принудительно выравнивает питч по 128-байтовым блокам.
 
-## 3. GMEM Binary-Search Tiling Allocator
-Rather than relying on static GMEM bin counts, STORM DRIVER uses a binary-search allocator (`tu_calc_tile_bins_bsearch`) to find the exact rectangular bin aspect ratio that fits entirely within the GPU's on-chip GMEM, eliminating expensive Sysmem fallback passes.
+## 3. Бинарный аллокатор тайлов GMEM
+Вместо статичной сетки тайлов STORM DRIVER использует бинарный поиск (`tu_calc_tile_bins_bsearch`), подбирающий идеальные пропорции прямоугольника тайла для 100% размещения в локальной памяти GMEM чипа, исключая медленные проходы Sysmem.
 
-## 4. PanVK / Mali Geometry Culling
-For ARM Mali devices (MediaTek Dimensity / Samsung Exynos), STORM DRIVER activates Forward Pixel Kill (FPK) and Early Z-Cull, eliminating occluded fragments before pixel shader execution.
+## 4. Отсечение невидимой геометрии PanVK / Mali
+Для графических процессоров ARM Mali (чипсеты MediaTek Dimensity и Samsung Exynos) активируются механизмы Forward Pixel Kill (FPK) и аппаратный Early Z-Cull, сбрасывающие невидимые фрагменты до запуска ресурсоемких пиксельных шейдеров.

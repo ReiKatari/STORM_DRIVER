@@ -1,11 +1,11 @@
-# рџ“Ґ Installation Guide
+# 📥 Руководство по установке
 
 ## STORM EDEN / Eden / Yuzu Android
-1. Download `STORM_DRIVER_0.0.29.zip`.
-2. Open **Settings вћ” GPU Driver Manager**.
-3. Tap **Install** and choose `STORM_DRIVER_0.0.29.zip`.
-4. Tap the radio button to select STORM DRIVER.
+1. Скачайте архив `STORM_DRIVER_0.0.29.zip`.
+2. Перейдите в **Настройки ➔ Менеджер драйверов GPU**.
+3. Нажмите **«Установить»** и выберите `STORM_DRIVER_0.0.29.zip`.
+4. Выберите STORM DRIVER в списке активных драйверов.
 
 ## Winlator / Mobox
-1. Copy `vulkan.freedreno.so` to `/data/data/com.winlator/files/image/opt/turnip/`.
-2. Set `MESA_DRIRC_FILE` environment variable to `drirc.xml`.
+1. Скопируйте `vulkan.freedreno.so` в `/data/data/com.winlator/files/image/opt/turnip/`.
+2. Установите переменную окружения `MESA_DRIRC_FILE` указывающую на `drirc.xml`.
