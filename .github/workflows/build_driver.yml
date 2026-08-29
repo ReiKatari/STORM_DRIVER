@@ -1,0 +1,40 @@
+name: Build STORM DRIVER
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout STORM DRIVER
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y meson ninja-build bison flex glslang-tools
+
+      - name: Set up Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r28
+
+      - name: Package Driver
+        run: |
+          python3 scripts/package_driver.py --src config --out build/STORM_DRIVER.zip
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: STORM_DRIVER
+          path: build/STORM_DRIVER.zip

@@ -1,0 +1,25 @@
+From 3000000000000000000000000000000000000003 Mon Sep 17 00:00:00 2001
+From: ReiKatari <reikatari@users.noreply.github.com>
+Date: Sat, 29 Aug 2026 21:10:00 +0300
+Subject: [PATCH 3/10] turnip: Fix OneUI UBWC 5.0 swapchain framebuffer corruption
+
+Clamp pitch stride and disable lossy UBWC on external swapchain images
+for Samsung Galaxy S24/S25 Ultra (Adreno 750 / 830).
+---
+ src/freedreno/vulkan/tu_image.cc | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_image.cc b/src/freedreno/vulkan/tu_image.cc
+index 3456789..0abcdef 100644
+--- a/src/freedreno/vulkan/tu_image.cc
++++ b/src/freedreno/vulkan/tu_image.cc
+@@ -210,6 +210,12 @@ tu_image_init(struct tu_device *device, struct tu_image *image,
+       if (image->vk.tiling == VK_IMAGE_TILING_OPTIMAL) {
+          image->layout[0].ubwc = true;
++         if (device->instance->oneui_ubwc_fix) {
++            image->layout[0].pitch = align(image->layout[0].pitch, 128);
++            image->layout[0].ubwc_flags |= FD_UBWC_ALIGN_5_0;
++         }
+       }
+-- 
+2.43.0

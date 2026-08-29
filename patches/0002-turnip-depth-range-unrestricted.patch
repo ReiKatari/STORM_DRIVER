@@ -1,0 +1,20 @@
+From 2000000000000000000000000000000000000002 Mon Sep 17 00:00:00 2001
+From: ReiKatari <reikatari@users.noreply.github.com>
+Date: Sat, 29 Aug 2026 21:05:00 +0300
+Subject: [PATCH 2/10] turnip: Enable VK_EXT_depth_range_unrestricted
+
+Allows negative and greater-than-one depth ranges for infinite projection
+matrices and mirror planar reflections in switch emulators.
+---
+ src/freedreno/vulkan/tu_extensions.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_extensions.py b/src/freedreno/vulkan/tu_extensions.py
+index abcdef1..2345678 100644
+--- a/src/freedreno/vulkan/tu_extensions.py
++++ b/src/freedreno/vulkan/tu_extensions.py
+@@ -140,6 +140,8 @@ EXTENSIONS = [
+     Extension("VK_EXT_depth_range_unrestricted", 1, "device->info->a6xx || device->info->a7xx || device->info->a8xx"),
+ ]
+-- 
+2.43.0

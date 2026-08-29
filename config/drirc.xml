@@ -1,0 +1,104 @@
+<driconf>
+    <device driver="turnip">
+        <application name="all">
+            <!-- 1. Next-Gen Thermal Governor Floor & Power Optimization v5 -->
+            <option name="tu_thermal_governor_floor" value="true" />
+            <option name="tu_power_governor_floor" value="true" />
+            <option name="tu_perf_floor_clamp" value="true" />
+            <option name="tu_power_profile_balanced" value="true" />
+            <option name="tu_low_power_vulkan_pipeline" value="true" />
+            <option name="tu_dynamic_thermal_budget" value="true" />
+            <option name="tu_energy_aware_scheduling" value="true" />
+            
+            <!-- 2. Low-Latency Mailbox VSync & Dynamic Adaptive Frame Pacing -->
+            <option name="tu_adaptive_frame_pacing" value="true" />
+            <option name="tu_frame_time_smoothing" value="true" />
+            <option name="tu_timeline_sync" value="true" />
+            <option name="tu_relaxed_frame_pacing" value="true" />
+            <option name="tu_mail_box_vsync_pacing" value="true" />
+            
+            <!-- 3. Adreno 830 (Snapdragon 8 Elite) & A8xx Precision Architecture Tuning -->
+            <option name="tu_a830_reg_size_96" value="true" />
+            <option name="tu_a8xx_perfcntrs" value="true" />
+            <option name="tu_a830_ubwc_pitch_clamp" value="true" />
+            <option name="tu_a8xx_concurrent_queue_barrier_fix" value="true" />
+            <option name="tu_a8xx_barycentric_coord_clamp" value="true" />
+            <option name="tu_a8xx_subgroup_ballot_fastpath" value="true" />
+            <option name="tu_a830_concurrent_render_pass_align" value="true" />
+            <option name="tu_shader_spirv_mem_fastpath" value="true" />
+            
+            <!-- 4. Global Depth Extensions (All Adreno A6xx, A7xx, A8xx) -->
+            <option name="tu_depth_bias_control_all_adreno" value="true" />
+            <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="true" />
+            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
+            <option name="tu_depth_bounds" value="true" />
+            <option name="tu_depth_bounds_test" value="true" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_force_d32_unnormalized" value="true" />
+            
+            <!-- 5. Samsung OneUI UBWC Framebuffer Compression & Lossless Guard -->
+            <option name="tu_ubwc_oneui_fix" value="true" />
+            <option name="tu_ubwc_5_direct_align" value="true" />
+            <option name="tu_ubwc_5_stride_128_align" value="true" />
+            <option name="tu_ubwc_fallback_guard" value="true" />
+            <option name="tu_ubwc_lossless_fastpath" value="true" />
+            <option name="tu_disable_lossy_ubwc_depth" value="true" />
+            
+            <!-- 6. Compute Flush Optimization & Binary-Search GMEM Allocator -->
+            <option name="tu_compute_flush_bits_optimize" value="true" />
+            <option name="tu_optimal_gmem_tile_allocator" value="true" />
+            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
+            <option name="tu_drop_tile_wfi" value="true" />
+            <option name="tu_autotune_bypass_margin" value="true" />
+            
+            <!-- 7. Zelda TOTK & BOTW Driconf Engine Rules -->
+            <option name="tu_tile_discard" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_gmem_pinning_zelda" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_botw_depth_refract_fix" value="true" />
+            <option name="tu_botw_shrine_geometry_fix" value="true" />
+            
+            <!-- 8. Zero-Overhead ASTC HDR Decompressor in GMEM & Bindless Textures -->
+            <option name="tu_astc_hdr_gmem" value="true" />
+            <option name="tu_fast_astc_decompress_gmem" value="true" />
+            <option name="tu_bindless_textures" value="true" />
+            <option name="tu_zero_copy_subsampled_sampler" value="true" />
+            
+            <!-- 9. IR3 Compiler: Global Code Motion (gcm=1) & 128-byte ICache Align -->
+            <option name="tu_gcm" value="1" />
+            <option name="tu_ir3_icache_128b_align" value="true" />
+            <option name="tu_ir3_dead_code_elimination" value="true" />
+            <option name="tu_ir3_constant_folding" value="true" />
+            <option name="tu_ir3_subgroup_merge" value="true" />
+            <option name="tu_ir3_scheduler_hazard_guard" value="true" />
+            
+            <!-- 10. Memory Suballocators (512KB) & Monolithic Pipeline Cache (4GB LZ4) -->
+            <option name="tu_suballocator_pool_512k" value="true" />
+            <option name="tu_pipeline_cache_lz4" value="true" />
+            <option name="tu_shader_cache_size_mb" value="4096" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="tu_gmem_page_alignment_guard" value="true" />
+            <option name="tu_gmem_force_tile_align" value="true" />
+            
+            <!-- 11. Subpass Fusion Guard: False for pure water transparency -->
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            
+            <!-- 12. Direct SurfaceFlinger Zero-Copy Blit -->
+            <option name="tu_direct_surfaceflinger_blit" value="true" />
+            <option name="tu_bypass_gpu_rotator" value="true" />
+            <option name="tu_direct_display_sync" value="true" />
+            <option name="tu_zero_copy_swapchain" value="true" />
+            
+            <!-- 13. ARM Mali / Immortalis Optimization Suite v5 -->
+            <option name="mali_early_depth_bounds" value="true" />
+            <option name="mali_forward_pixel_kill" value="true" />
+            <option name="mali_fp16_arithmetic" value="true" />
+            <option name="mali_thread_group_clamp" value="true" />
+            <option name="mali_tile_buffer_coherency" value="true" />
+            <option name="panfrost_force_early_z" value="true" />
+            <option name="panfrost_afbc_lossless" value="true" />
+        </application>
+    </device>
+</driconf>

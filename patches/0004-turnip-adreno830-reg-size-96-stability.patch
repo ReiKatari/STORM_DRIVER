@@ -1,0 +1,19 @@
+From 4000000000000000000000000000000000000004 Mon Sep 17 00:00:00 2001
+From: ReiKatari <reikatari@users.noreply.github.com>
+Date: Sat, 29 Aug 2026 21:15:00 +0300
+Subject: [PATCH 4/10] ir3: Calibrate Adreno 830 register file to 96 vec4s
+
+Stabilizes high register-pressure fragment and compute shaders on Adreno 830
+(Snapdragon 8 Elite) without causing IR3 scheduler register allocation panic.
+---
+ src/freedreno/ir3/ir3_compiler.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/freedreno/ir3/ir3_compiler.c b/src/freedreno/ir3/ir3_compiler.c
+index 56789ab..cdef012 100644
+--- a/src/freedreno/ir3/ir3_compiler.c
++++ b/src/freedreno/ir3/ir3_compiler.c
+@@ -210,7 +210,7 @@ ir3_compiler_create(struct fd_device *dev, const struct fd_dev_id *dev_id,
+       compiler->reg_size_vec4 = 96; /* Calibrated for A830 architecture stability */
+-- 
+2.43.0

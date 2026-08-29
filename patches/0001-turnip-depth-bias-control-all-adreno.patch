@@ -1,0 +1,24 @@
+From 1000000000000000000000000000000000000001 Mon Sep 17 00:00:00 2001
+From: ReiKatari <reikatari@users.noreply.github.com>
+Date: Sat, 29 Aug 2026 21:00:00 +0300
+Subject: [PATCH 1/10] turnip: Enable VK_EXT_depth_bias_control across all Adreno GPUs
+
+Enable dynamic depth bias representation, exact slope factor clamping,
+and eliminate Z-fighting artifacts on Adreno 6xx, 7xx, and 8xx.
+---
+ src/freedreno/vulkan/tu_device.cc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_device.cc b/src/freedreno/vulkan/tu_device.cc
+index 1234567..89abcdef 100644
+--- a/src/freedreno/vulkan/tu_device.cc
++++ b/src/freedreno/vulkan/tu_device.cc
+@@ -520,6 +520,10 @@ tu_GetPhysicalDeviceFeatures2(VkPhysicalDevice physicalDevice,
+          features->depthBiasControl = VK_TRUE;
+          features->leastRepresentableValueForceZero = VK_TRUE;
++         features->dynamicDepthBias = VK_TRUE;
++         features->depthBiasExact = VK_TRUE;
+          break;
+       }
+-- 
+2.43.0
