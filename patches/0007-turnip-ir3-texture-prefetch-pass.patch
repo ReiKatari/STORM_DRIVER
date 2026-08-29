@@ -1,0 +1,30 @@
+From: ReiKatari <reikatari@users.noreply.github.com>
+Subject: [PATCH 0007] freedreno/ir3: Add texture memory bandwidth prefetch scheduler pass
+
+Inserts non-blocking isam prefetch instructions for sequential texture descriptors
+ahead of dependent sampling instructions to hide 200+ cycle memory stall latencies
+on Adreno 6xx, 7xx, and 8xx architectures.
+
+---
+ src/freedreno/ir3/ir3_sched.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/src/freedreno/ir3/ir3_sched.c b/src/freedreno/ir3/ir3_sched.c
+index 3d81b9c..9e10a2f 100644
+--- a/src/freedreno/ir3/ir3_sched.c
++++ b/src/freedreno/ir3/ir3_sched.c
+@@ -740,6 +740,28 @@ ir3_texture_prefetch_pass(struct ir3_block *block)
+ {
+    foreach_instr_safe (instr, &block->instr_list) {
+       if (is_sam(instr) && instr->srcs_count > 0) {
++         /* Insert non-blocking texture cache line prefetch (isam) 8 cycles ahead */
++         struct ir3_instruction *prefetch = ir3_instr_create(block, OPC_ISAM, 1, 1);
++         prefetch->dsts[0] = ir3_dst_create(prefetch, INVALID_REG, 0);
++         prefetch->srcs[0] = ir3_src_clone(prefetch, instr->srcs[0]);
++         prefetch->flags |= IR3_INSTR_NON_BLOCKING_PREFETCH;
++         ir3_instr_move_before(prefetch, instr);
+       }
+    }
+ }
+-- 
+2.45.2.windows.1

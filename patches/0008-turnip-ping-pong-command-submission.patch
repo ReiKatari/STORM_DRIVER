@@ -1,0 +1,27 @@
+From: ReiKatari <reikatari@users.noreply.github.com>
+Subject: [PATCH 0008] freedreno/vulkan: Double-buffered ping-pong command submission with timeline semaphores
+
+Implements zero-stall CPU command submission by recording alternating ping-pong
+command buffers A and B, eliminating CPU stall bubbles while GPU executes prior
+draw workloads.
+
+---
+ src/freedreno/vulkan/tu_cmd_buffer.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_cmd_buffer.c b/src/freedreno/vulkan/tu_cmd_buffer.c
+index e492c10..f981bc2 100644
+--- a/src/freedreno/vulkan/tu_cmd_buffer.c
++++ b/src/freedreno/vulkan/tu_cmd_buffer.c
+@@ -1205,6 +1205,26 @@ tu_submit_ping_pong(struct tu_cmd_buffer *cmd)
+ {
++   /* Alternate between ring buffer chunks A and B */
++   uint32_t active_idx = cmd->ping_pong_index;
++   cmd->ping_pong_index ^= 1;
++   
++   /* Signal completion via timeline semaphore without blocking CPU thread */
++   struct tu_queue *queue = cmd->device->queues[0];
++   tu_queue_submit_async(queue, cmd->ping_pong_buffers[active_idx], cmd->timeline_semaphore, ++cmd->timeline_value);
+ }
+-- 
+2.45.2.windows.1

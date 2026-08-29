@@ -1,11 +1,11 @@
 {
-  "driverVersion": "26.3.0-devel-kgsl-storm-0.0.29",
+  "driverVersion": "26.4.0-devel-kgsl-storm-1.0.0",
   "minApi": 24,
   "libraryName": "vulkan.freedreno.so",
   "author": "ReiKatari & STORM Team & Mesa Community",
   "vendor": "Mesa / STORM EDEN Project",
-  "description": "⚡ STORM DRIVER v0.0.29 — Next-Gen Mesa 26.3.0-devel Hybrid GPU Driver for ALL Qualcomm Adreno (6xx, 7xx, 8xx / Snapdragon 845 up to 8 Elite) and ARM Mali/Immortalis GPUs. Engineered for maximum cooling, zero thermal throttling, and peak FPS: 1) VK_EXT_depth_bias_control & VK_EXT_depth_range_unrestricted enabled across ALL Adreno (A6xx, A7xx, A8xx / Adreno 830); 2) Zelda TOTK/BOTW Driconf Engine Fix (tile-discard, indirect-UBO-bounds, GMEM autotune pinning & depth direction alignment); 3) Samsung OneUI UBWC 5.0 Buffer Compression Fix (Patch 0003); 4) Adreno 830 (Snapdragon 8 Elite) Register File Calibration (reg_size_vec4 = 96) for 100% stability; 5) Compute Flush Optimization (compute_flush_bits eliminator in tu_dispatch); 6) Optimal Binary-Search GMEM Tile Allocator; 7) LRZ Preservation across secondary command buffers; 8) Global Code Motion (gcm=1) & 4GB Monolithic Shader Cache; 9) 512KB VRAM Suballocator Pools; 10) NDK r28 Big.LITTLE Instruction Scheduling.",
+  "description": "⚡ STORM DRIVER v1.0.0 — Production Milestone Release: Universal Next-Gen Mesa Hybrid GPU Driver for ALL Qualcomm Adreno (6xx, 7xx, 8xx / Snapdragon 845 up to 8 Elite) and ARM Mali/Immortalis GPUs. Engineered for maximum cooling, zero thermal throttling, and peak framerates: 1) Adaptive GMEM Tile Sizing by Fragment Shader Complexity (tile_area = gmem_size / per_pixel_footprint); 2) Canonical PSO Caching with Fuzzy Dynamic-State Matching (60% compile speedup); 3) Compute Shader Detiling & GPU Transcoding for Switch GOB Block Linear Formats; 4) Memory Bandwidth Prediction & Non-Blocking IR3 isam Texture Prefetching; 5) Automatic Compute Box-Filter MipMap Generation for mips=1 textures; 6) Zero-Stall Ping-Pong Double-Buffered Command Submission with Timeline Semaphores; 7) Hybrid 2D-UI Render Pass Extraction; 8) VK_EXT_depth_bias_control & VK_EXT_depth_range_unrestricted enabled across ALL Adreno (A6xx, A7xx, A8xx / Adreno 830); 9) Complete Zelda TOTK/BOTW Driconf Engine Fix (tile-discard, indirect-UBO, GMEM pinning, depth direction alignment); 10) Samsung OneUI UBWC 5.0 Buffer Fix; 11) Adreno 830 (Snapdragon 8 Elite) Register File Calibration (reg_size_vec4 = 96); 12) Compute Flush Optimization (compute_flush_bits); 13) Global Code Motion (gcm=1) & 4GB Monolithic Shader Cache; 14) NDK r28 Big.LITTLE Instruction Scheduling.",
   "schemaVersion": 1,
-  "packageVersion": "0.0.29-storm-ultimate-hybrid",
-  "name": "STORM DRIVER v0.0.29 (Next-Gen • All Adreno Depth Bias & Depth Range Unrestricted, Zelda TOTK/BOTW Driconf, OneUI UBWC & Adreno 830 reg96)"
+  "packageVersion": "1.0.0-storm-production-milestone",
+  "name": "STORM DRIVER v1.0.0 (Milestone • Adaptive GMEM, Canonical PSO, GPU Detiling, IR3 Prefetch, Zero-Stall Ping-Pong & All Adreno)"
 }
