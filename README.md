@@ -8,7 +8,7 @@
 [![Mali](https://img.shields.io/badge/Mali-Bifrost%20%7C%20Valhall-purple.svg)](https://developer.arm.com/)
 [![Android](https://img.shields.io/badge/Android-9%20--%2015+-orange.svg)](https://developer.android.com/)
 
-**Created and maintained by [ReiKatari](https://github.com/ReiKatari) & STORM Team**
+**Created and maintained by ReiKatari & STORM Team**
 
 </div>
 
@@ -118,9 +118,9 @@ python3 scripts/package_driver.py --out build/STORM_DRIVER_0.0.29.zip
 
 STORM DRIVER создан благодаря фундаментальным исследованиям и разработкам мирового open-source сообщества:
 
-- **[Mesa 3D Project](https://gitlab.freedesktop.org/mesa/mesa) & Freedreno / Panfrost Teams** (*Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset и др.*) — фундаментальная разработка драйверов Turnip, PanVK, Panfrost и компиляторов IR3 / Bifrost / Valhall.
-- **[Rick Amaral (rickamaral94 / Amaral-Adreno-Tools)](https://github.com/rickamaral94/Amaral-Adreno-Tools)** — инструментарий для работы с драйверами Adreno, библиотеки хуков и организация пайплайнов кастомных драйверов.
-- **[Aydar Kamaltdinov (aydar-kamaltdinov/mes)](https://github.com/aydar-kamaltdinov/mes)** — исследования и адаптация Mesa Turnip под Android, оптимизации компилятора и интеграция патчей.
+- **Mesa 3D Project & Freedreno / Panfrost Teams** (*Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset и др.*) — фундаментальная разработка драйверов Turnip, PanVK, Panfrost и компиляторов IR3 / Bifrost / Valhall.
+- **Rick Amaral (rickamaral94 / Amaral-Adreno-Tools)** — инструментарий для работы с драйверами Adreno, библиотеки хуков и организация пайплайнов кастомных драйверов.
+- **Aydar Kamaltdinov (aydar-kamaltdinov / mes)** — исследования и адаптация Mesa Turnip под Android, оптимизации компилятора и интеграция патчей.
 - **MrPurple666** — глубокие оптимизации производительности, шейдерные патчи для Zelda BOTW/TOTK и энергоэффективные профили.
 - **Balemuni (Leon)** — исследования тайлинга GMEM, NDK r28 пайплайн и наработки ветки *Aurora / Apex Edition*.
 - **K11MCH1 (Kimchi)** — стандартизация и поддержка экосистемы кастомных драйверов Adrenotools.
