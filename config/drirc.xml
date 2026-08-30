@@ -35,6 +35,7 @@
             <option name="tu_depth_bounds_test" value="true" />
             <option name="tu_depth_clamp_control_fix" value="true" />
             <option name="tu_force_d32_unnormalized" value="true" />
+            <option name="tu_depth_bias_slope_hw_clamp" value="true" />
             
             <!-- 5. Samsung OneUI UBWC Framebuffer Compression & Lossless Guard -->
             <option name="tu_ubwc_oneui_fix" value="true" />
@@ -64,9 +65,9 @@
             <option name="tu_fast_astc_decompress_gmem" value="true" />
             <option name="tu_bindless_textures" value="true" />
             <option name="tu_zero_copy_subsampled_sampler" value="true" />
+            <option name="tu_astc_hdr_fp16_direct_sample" value="true" />
             
-            <!-- 9. IR3 Compiler: Global Code Motion (gcm=1) & 128-byte ICache Align -->
-            <option name="tu_gcm" value="1" />
+            <!-- 9. IR3 Compiler: Safe Dead Code Elimination & Scheduler Hazard Guard -->
             <option name="tu_ir3_icache_128b_align" value="true" />
             <option name="tu_ir3_dead_code_elimination" value="true" />
             <option name="tu_ir3_constant_folding" value="true" />

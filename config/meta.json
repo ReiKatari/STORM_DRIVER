@@ -1,11 +1,11 @@
 {
-  "driverVersion": "26.3.0-devel-kgsl-storm-0.0.29",
-  "minApi": 24,
-  "libraryName": "vulkan.freedreno.so",
-  "author": "ReiKatari & STORM Team & Mesa Community",
-  "vendor": "Mesa / STORM EDEN Project",
-  "description": "⚡ STORM DRIVER v0.0.29 — Next-Gen Mesa 26.3.0-devel Hybrid GPU Driver for ALL Qualcomm Adreno (6xx, 7xx, 8xx / Snapdragon 845 up to 8 Elite) and ARM Mali/Immortalis GPUs. Engineered for maximum cooling, zero thermal throttling, and peak FPS: 1) VK_EXT_depth_bias_control & VK_EXT_depth_range_unrestricted enabled across ALL Adreno (A6xx, A7xx, A8xx / Adreno 830); 2) Zelda TOTK/BOTW Driconf Engine Fix (tile-discard, indirect-UBO-bounds, GMEM autotune pinning & depth direction alignment); 3) Samsung OneUI UBWC 5.0 Buffer Compression Fix (Patch 0003); 4) Adreno 830 (Snapdragon 8 Elite) Register File Calibration (reg_size_vec4 = 96) for 100% stability; 5) Compute Flush Optimization (compute_flush_bits eliminator in tu_dispatch); 6) Optimal Binary-Search GMEM Tile Allocator; 7) LRZ Preservation across secondary command buffers; 8) Global Code Motion (gcm=1) & 4GB Monolithic Shader Cache; 9) 512KB VRAM Suballocator Pools; 10) NDK r28 Big.LITTLE Instruction Scheduling.",
   "schemaVersion": 1,
-  "packageVersion": "0.0.29-storm-ultimate-hybrid",
-  "name": "STORM DRIVER v0.0.29 (Next-Gen • All Adreno Depth Bias & Depth Range Unrestricted, Zelda TOTK/BOTW Driconf, OneUI UBWC & Adreno 830 reg96)"
+  "name": "STORM DRIVER",
+  "description": "⚡ STORM DRIVER 1.0.8 — Next-Gen Ultra-Low Thermal Vulkan Driver for ALL Qualcomm Snapdragon (Adreno 6xx/7xx/8xx / Snapdragon 845 up to 8 Elite) & ARM Mali/Immortalis GPUs. Features 100% rock-solid stability, Zero-Overhead ASTC HDR GMEM Decompression, Zelda BOTW/TOTK Shrine & Depth Precision Geometry Rules, Adreno 830 Reg96 File Calibration, Samsung OneUI UBWC 5.0 Lossless Guard, Monolithic 4GB LZ4 Pipeline Cache, and Low-Latency Mailbox VSync.",
+  "author": "ReiKatari",
+  "packageVersion": "1.0.8",
+  "vendor": "STORM SOFT / Mesa Turnip Pro",
+  "driverVersion": "STORM DRIVER 1.0.8",
+  "minApi": 28,
+  "libraryName": "vulkan.adreno.so"
 }
