@@ -1,74 +1,42 @@
-<div align="center">
+<h1 align="center">STORM DRIVER</h1>
 
-# ⚡ STORM DRIVER — Universal Next-Gen Turnip & PanVK Mesa GPU Driver
-
-[![License](https://img.shields.io/badge/License-MIT%20%2F%20GPL-blue.svg)](LICENSE)
-[![Vulkan](https://img.shields.io/badge/Vulkan-1.3%20%2F%201.4-red.svg)](https://www.vulkan.org/)
-[![Adreno](https://img.shields.io/badge/Adreno-6xx%20%7C%207xx%20%7C%208xx-green.svg)](https://developer.qualcomm.com/)
-[![Mali](https://img.shields.io/badge/Mali-Bifrost%20%7C%20Valhall-purple.svg)](https://developer.arm.com/)
-[![Android](https://img.shields.io/badge/Android-9%20--%2015+-orange.svg)](https://developer.android.com/)
-
-**Created and maintained by ReiKatari & STORM Team**
-
-</div>
+<p align="center">
+  <strong>Универсальный кастомный высокопроизводительный графический драйвер Vulkan нового поколения для Android-эмуляторов на базе Mesa Turnip & PanVK (Mesa 3D Project, Freedreno & Panfrost Teams)</strong>
+</p>
 
 ---
 
-**STORM DRIVER** — это универсальный высокопроизводительный гибридный драйвер Vulkan (Mesa Turnip & PanVK) нового поколения для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (Snapdragon 845, 865, 870, 888, 8+ Gen 1, 8 Gen 2, 8 Gen 3 и 8 Elite / Adreno 830), а также **ARM Mali** (Bifrost, Valhall).
+## **О проекте**
 
-Разработан для максимальной производительности, стабильности и охлаждения в эмуляторах Nintendo Switch (**STORM EDEN**, **Eden**, Yuzu, Citron, Suyu, Sudachi, Skyline), PS Vita (Vita3K), Windows/PC (Winlator, Mobox, Box64), PSP (PPSSPP) и нативных Vulkan-играх на Android.
+**STORM DRIVER** — это специализированный оптимизированный графический драйвер Vulkan на базе открытой кодовой базы **Mesa 3D Project (Turnip & PanVK)** и наработок команд **Freedreno** и **Panfrost**. Драйвер спроектирован для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (Snapdragon 845, 865, 870, 888, 8 Gen 1/2/3, 8 Elite / Adreno 830) и **ARM Mali / Immortalis** (Bifrost, Valhall).
 
----
-
-## 🌟 Ключевые архитектурные преимущества и оптимизации
-
-### 1. 🛡️ Полная поддержка Adreno 830 (Snapdragon 8 Elite) без полос и артефактов
-- Калибровка регистрового файла (`reg_size_vec4 = 96`) устраняет артефакты нестабильности и краши IR3.
-- Аппаратное выравнивание шага питча и тайлинга UBWC 5.0 для Samsung Galaxy S25 Ultra, ROG Phone 9, Xiaomi 15 Pro.
-- Аппаратно-безопасная конфигурация Swapchain и WSI гарантирует чистое изображение со стабильными 60 FPS.
-
-### 2. 🎮 Глобальные расширения глубины для всех поколений Adreno
-- **`VK_EXT_depth_bias_control`**: Включен для всех линеек Adreno (A6xx, A7xx, A8xx / Adreno 830), устраняя мерцание теней, наложение Z-fighting и некорректные смещения глубины.
-- **`VK_EXT_depth_range_unrestricted`**: Позволяет корректно рендерить бесконечные плоскости обзора и зеркальные отражения.
-
-### 3. 🌊 Zelda TOTK / BOTW Driconf Engine Rules
-- Полная ликвидация непрозрачной/черной воды и артефактов поверхностей в *The Legend of Zelda: Breath of the Wild* и *Tears of the Kingdom*.
-- Оптимизации `tile-discard`, `indirect-UBO-bounds`, GMEM autotune pinning и аппаратный фикс направления глубины (`tu_depth_direction_fix`).
-- Устранение исчезающих полов и стен в святилищах (Shrines: Ja Baij, Kam Urog и др.).
-
-### 4. 📱 Samsung OneUI UBWC 5.0 Buffer Fix (Patch 0003)
-- Устранение графических искажений и цветового сдвига в системном кадровом буфере OneUI на смартфонах Samsung Galaxy S24 / S25 Ultra.
-
-### 5. ⚡ Compute Flush Bits Optimization
-- Устранение избыточных циклов синхронизации конвейера в `tu_dispatch`, повышающее фреймрейт в вычислительно-тяжелых играх (Unreal Engine 4/5, Animal Well, Mortal Kombat 1).
-
-### 6. 🧠 Binary-Search GMEM Tile Allocator
-- Оптимальный бинарный поиск конфигурации тайлов GMEM, минимизирующий промахи миграции памяти и перегрев чипа.
-
-### 7. 🛡️ Динамический DVFS Power-Throttling Guard (60°C Target)
-- Плавное управление частотами графического процессора через драйверные хинты при достижении температурного порога (60°C). Предотвращает резкий троттлинг и дропы кадров.
-
-### 8. 🚀 Subpass Fusion & Render Pass Compaction
-- Автоматическое слияние соседних проходов рендеринга в единый RenderPass. Исключает избыточные циклы записи во внешнюю память и повторного чтения, снижая нагрев и энергопотребление.
-
-### 9. 🎮 Mali Bifrost / Valhall PanVK & Midgard Geometry Culling
-- Аппаратное раннее отсечение невидимой геометрии (Early Z-Cull) и Forward Pixel Kill v5 для чипов Mali. Снижает нагрузку на пиксельные шейдерные ядра до 35% на устройствах MediaTek Dimensity и Exynos.
-
-### 10. 🧠 Adaptive Suballocator Buffer Pooling (512 KB / 2 MB Chunking)
-- Продвинутый пул суб-аллокатора памяти для предотвращения фрагментации VRAM и снижения оверхеда системных вызовов ядра ioctl/kgsl.
-
-### 11. ⚡ Direct ASTC / ETC2 Texture Transcoding Fast-Path
-- Прямой аппаратный транскодинг сжатых текстур Nintendo Switch в GMEM без промежуточного копирования через CPU.
-
-### 12. 🔬 128-byte Instruction Cache Alignment & Global Code Motion (IR3 / Bifrost)
-- Выравнивание шейдерных инструкций по границе 128 байт для 100% попадания в I-кэш GPU и оптимизация `gcm=1`.
-
-### 13. 🚀 Zero-Copy Swapchain WSI Blit & 4GB Monolithic Shader Cache
-- Прямая передача отрисованных буферов в Android SurfaceFlinger без лишнего копирования и расширенный до **4 ГБ** дисковый кэш (LZ4).
+Обеспечивает максимальный фреймрейт, эффективное охлаждение и устранение графических артефактов в эмуляторах Nintendo Switch (**STORM EDEN**, **Eden**, Yuzu, Citron, Suyu, Sudachi, Skyline), PS Vita (Vita3K), Windows/PC (Winlator, Mobox, Box64), PSP (PPSSPP) и нативных Vulkan-играх на Android.
 
 ---
 
-## 📋 Поддерживаемые платформы и GPU
+## **Технологический стек**
+- **Языки и компиляторы**: C, C++20, Python, Meson, Ninja, Android NDK r28+
+- **Графический API**: Vulkan 1.3 / 1.4 API Specifications, WSI, Android SurfaceFlinger
+- **Архитектуры GPU**: Qualcomm Adreno (A6xx, A7xx, A830 / Snapdragon 8 Elite), ARM Mali (Bifrost, Valhall, Immortalis)
+- **Базовые проекты**: Mesa 3D Project, Freedreno Turnip Driver, Panfrost PanVK Driver, libadrenotools
+
+---
+
+## **Ключевые особенности и оптимизации**
+- **Полная поддержка Adreno 830 (Snapdragon 8 Elite)**: калибровка регистрового файла (`reg_size_vec4 = 96`) и выравнивание шага питча UBWC 5.0 устраняют полосы, мерцания и краши IR3.
+- **Глобальные расширения глубины**: поддержка `VK_EXT_depth_bias_control` и `VK_EXT_depth_range_unrestricted` для всех поколений Adreno, ликвидирующая мерцание теней и Z-fighting.
+- **Комплекс оптимизаций для Zelda BOTW / TOTK**: устранение непрозрачной/темной воды, исправление глубины святилищ (Shrines) и оптимизация `tu_depth_direction_fix`.
+- **Samsung OneUI UBWC 5.0 Buffer Patch**: устранение графических искажений в системном кадровом буфере OneUI на смартфонах серии Galaxy S24 / S25.
+- **Compute Flush Bits Optimization**: минимизация циклов синхронизации конвейера в `tu_dispatch`, обеспечивающая прирост FPS в играх на движках Unreal Engine 4/5 и Unity.
+- **Binary-Search GMEM Tile Allocator**: динамический подбор конфигурации тайлов GMEM, предотвращающий перегрев и промахи миграции памяти.
+- **Динамический DVFS Power-Throttling Guard (60°C Target)**: плавное управление частотами GPU для предотвращения резкого троттлинга и просадок кадров.
+- **Subpass Fusion & Render Pass Compaction**: автоматическое объединение проходов рендеринга для снижения энергопотребления.
+- **Mali Early Z-Cull & Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
+- **Zero-Copy Swapchain WSI & 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
+
+---
+
+## **Поддерживаемые платформы и GPU**
 
 | Архитектура | Процессоры / Чипсеты | Графический чип |
 | :--- | :--- | :--- |
@@ -79,54 +47,50 @@
 
 ---
 
-## 📥 Установка в эмуляторах
-
-1. Скачайте актуальный архив драйвера `STORM_DRIVER_x.x.x.zip`.
-2. Запустите эмулятор (**STORM EDEN**, **Eden**, Yuzu, Citron, Sudachi, Skyline и др.).
-3. Откройте **Настройки ➔ Менеджер драйверов GPU (GPU Driver Manager)**.
-4. Нажмите **«Установить» (Install)** и выберите скачанный .zip архив.
-5. Выберите **STORM DRIVER** в качестве активного драйвера.
+## **Установка и использование**
+1. Скачайте архив драйвера: `STORM_DRIVER_<версия>.zip`.
+2. Запустите поддерживаемый эмулятор (**STORM EDEN**, **Eden**, Yuzu, Citron, Sudachi, Skyline, Vita3K, Winlator).
+3. Перейдите в **Настройки ➔ Менеджер драйверов GPU (GPU Driver Manager)**.
+4. Нажмите кнопку **Установить (Install)** и укажите файл `STORM_DRIVER_<версия>.zip`.
+5. Выберите **STORM DRIVER** в качестве активного графического драйвера.
 
 ---
 
-## 🛠️ Сборка из исходников (Building from Source)
+## **Сборка из исходного кода**
 
-### Требования:
-- Linux (Ubuntu 22.04+ / Debian 12+) или WSL2
-- Android NDK r28+
-- Python 3.10+, Meson 1.3+, Ninja 1.11+
-- CMake 3.25+
+### Требования к окружению:
+- Операционная система: Linux (Ubuntu 22.04+ / Debian 12+) или Windows с подсистемой WSL2
+- Android NDK: r28+
+- Инструменты сборки: Python 3.10+, Meson 1.3+, Ninja 1.11+, CMake 3.25+
 
 ```bash
 # Клонирование репозитория
 git clone https://github.com/ReiKatari/STORM_DRIVER.git
 cd STORM_DRIVER
 
-# Применение набора патчей к Mesa
+# Применение кастомного набора патчей к исходному коду Mesa
 ./scripts/apply_patches.sh /path/to/mesa-src
 
-# Сборка драйвера
+# Сборка драйвера Turnip / PanVK
 ./scripts/build_turnip.sh --ndk /path/to/android-ndk-r28
 
-# Упаковка .zip архива
-python3 scripts/package_driver.py --out build/STORM_DRIVER_0.0.29.zip
+# Упаковка дистрибутива
+python3 scripts/package_driver.py --out build/STORM_DRIVER_<версия>.zip
 ```
 
 ---
 
-## 🙏 Благодарности и авторы (Credits & Acknowledgments)
-
-STORM DRIVER создан благодаря фундаментальным исследованиям и разработкам мирового open-source сообщества:
-
-- **Mesa 3D Project & Freedreno / Panfrost Teams** (*Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset и др.*) — фундаментальная разработка драйверов Turnip, PanVK, Panfrost и компиляторов IR3 / Bifrost / Valhall.
-- **Rick Amaral (rickamaral94 / Amaral-Adreno-Tools)** — инструментарий для работы с драйверами Adreno, библиотеки хуков и организация пайплайнов кастомных драйверов.
-- **Aydar Kamaltdinov (aydar-kamaltdinov / mes)** — исследования и адаптация Mesa Turnip под Android, оптимизации компилятора и интеграция патчей.
-- **MrPurple666** — глубокие оптимизации производительности, шейдерные патчи для Zelda BOTW/TOTK и энергоэффективные профили.
-- **Balemuni (Leon)** — исследования тайлинга GMEM, NDK r28 пайплайн и наработки ветки *Aurora / Apex Edition*.
-- **K11MCH1 (Kimchi)** — стандартизация и поддержка экосистемы кастомных драйверов Adrenotools.
-- **Weab-chan & Whitebelyash** — непрерывная интеграция (CI) и масштабное тестирование сборок Turnip.
-- **Crueter & GameHub Community** — детальный реверс-инжиниринг и анализ архитектуры Adreno 8xx / Snapdragon 8 Elite.
-- **Bylaws (Danil)** — базовые библиотеки libadrenotools и динамический механизм инъекции драйверов.
-- **Ryubing / Ryujinx Community** — глубокий анализ конвейеров Switch GPU, форматов глубины и трансляции шейдеров.
-- **Yuzu & Eden Emulator Teams** — архитектура GPU-эмуляции Nintendo Switch и интеграция драйверов Vulkan.
-- **Qualcomm & ARM** — за аппаратные платформы Snapdragon/Mali и архитектурные спецификации.
+## **Благодарности**
+STORM DRIVER создан благодаря исследованиям, кодовой базе и наработкам мирового open-source сообщества:
+- Mesa 3D Project, Freedreno & Panfrost Teams (Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset)
+- Rick Amaral (rickamaral94, Amaral-Adreno-Tools)
+- Aydar Kamaltdinov (aydar-kamaltdinov, mes)
+- MrPurple666
+- Balemuni (Leon, Apex / Aurora Edition)
+- K11MCH1 (Kimchi)
+- Weab-chan и Whitebelyash
+- Crueter и GameHub Community
+- Bylaws (Danil, libadrenotools)
+- Ryubing и Ryujinx Community
+- Команды эмуляторов Yuzu, Citron и Eden
+- Qualcomm и ARM
