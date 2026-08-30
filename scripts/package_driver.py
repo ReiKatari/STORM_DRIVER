@@ -6,6 +6,9 @@ import argparse
 
 def package(source_dir, output_zip):
     print(f"Creating standardized driver archive: {output_zip}")
+    out_dir = os.path.dirname(os.path.abspath(output_zip))
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
     with zipfile.ZipFile(output_zip, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for root, _, files in os.walk(source_dir):
             for file in files:
@@ -16,6 +19,7 @@ def package(source_dir, output_zip):
                 with open(full_path, 'rb') as f:
                     zf.writestr(zi, f.read())
     print(f"Successfully created {output_zip} ({os.path.getsize(output_zip)} bytes)")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Package STORM DRIVER for Adrenotools / Eden / Yuzu")
