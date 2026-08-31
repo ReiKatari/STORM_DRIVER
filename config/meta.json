@@ -4,7 +4,7 @@
   "author": "ReiKatari",
   "description": "Qualcomm Snapdragon Adreno 6xx/7xx/8xx and ARM Mali / Immortalis GPU Driver",
   "vendor": "Mesa / Turnip / Freedreno / Panfrost",
-  "driverVersion": "1.1.1",
+  "driverVersion": "1.1.2",
   "minApi": 27,
   "libraryName": "vulkan.adreno.so"
 }
