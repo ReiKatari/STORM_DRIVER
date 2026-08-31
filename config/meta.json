@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "name": "STORM DRIVER",
-  "description": "⚡ STORM DRIVER 1.0.8 — Next-Gen Ultra-Low Thermal Vulkan Driver for ALL Qualcomm Snapdragon (Adreno 6xx/7xx/8xx / Snapdragon 845 up to 8 Elite) & ARM Mali/Immortalis GPUs. Features 100% rock-solid stability, Zero-Overhead ASTC HDR GMEM Decompression, Zelda BOTW/TOTK Shrine & Depth Precision Geometry Rules, Adreno 830 Reg96 File Calibration, Samsung OneUI UBWC 5.0 Lossless Guard, Monolithic 4GB LZ4 Pipeline Cache, and Low-Latency Mailbox VSync.",
+  "description": "⚡ STORM DRIVER 1.0.9 — Next-Gen Ultra-Low Thermal Vulkan Driver for ALL Qualcomm Snapdragon (Adreno 6xx/7xx/8xx / Snapdragon 845 up to 8 Elite) & ARM Mali/Immortalis GPUs. Features 100% rock-solid stability, Zero-Overhead ASTC HDR GMEM Decompression, Zelda BOTW/TOTK Shrine & Depth Precision Geometry Rules, Adreno 830 Reg96 File Calibration, Samsung OneUI UBWC 5.0 Lossless Guard, Monolithic 4GB LZ4 Pipeline Cache, and Low-Latency Mailbox VSync.",
   "author": "ReiKatari",
-  "packageVersion": "1.0.8",
+  "packageVersion": "1.0.9",
   "vendor": "STORM SOFT / Mesa Turnip Pro",
-  "driverVersion": "STORM DRIVER 1.0.8",
+  "driverVersion": "STORM DRIVER 1.0.9",
   "minApi": 28,
   "libraryName": "vulkan.adreno.so"
 }
