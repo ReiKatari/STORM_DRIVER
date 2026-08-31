@@ -1,115 +1,50 @@
 <driconf>
     <device driver="turnip">
         <application name="all">
-            <!-- 1. Next-Gen Thermal Governor Floor & Power Optimization v6 -->
-            <option name="tu_thermal_governor_floor" value="true" />
-            <option name="tu_power_governor_floor" value="true" />
-            <option name="tu_perf_floor_clamp" value="true" />
-            <option name="tu_power_profile_balanced" value="true" />
-            <option name="tu_low_power_vulkan_pipeline" value="true" />
-            <option name="tu_dynamic_thermal_budget" value="true" />
-            <option name="tu_energy_aware_scheduling" value="true" />
+            <!-- 1. Framebuffer Compression & Stability (UBWC Guard) -->
+            <option name="tu_disable_ubwc" value="true" />
+            <option name="mesa_shader_cache_max_size" value="4294967296" />
+            <option name="tu_subpass_fusion" value="true" />
+            <option name="tu_adaptive_binning" value="true" />
+            <option name="tu_fast_clears" value="true" />
+            <option name="tu_async_compute" value="true" />
+            <option name="tu_async_transfer" value="true" />
+            <option name="tu_gcm" value="true" />
+            <option name="tu_dynamic_vertex_input" value="true" />
+            <option name="tu_descriptor_buffer" value="true" />
+            <option name="tu_depth_bounds" value="true" />
+            <option name="tu_nir_opt_loop" value="true" />
+            <option name="tu_ubwc_fallback_guard" value="true" />
+            <option name="tu_pipeline_library_fastpath" value="true" />
+            <option name="tu_bindless_textures" value="true" />
+            <option name="tu_robustness2" value="true" />
+            <option name="tu_extended_dynamic_state3" value="true" />
+            <option name="tu_relaxed_vertex_layout" value="true" />
+            <option name="tu_shader_cache_multithreaded" value="true" />
             
-            <!-- 2. Low-Latency Mailbox VSync & Dynamic Adaptive Frame Pacing -->
-            <option name="tu_adaptive_frame_pacing" value="true" />
+            <!-- 2. Power & Frame Pacing Tuning -->
+            <option name="tu_low_power_vulkan_pipeline" value="true" />
             <option name="tu_frame_time_smoothing" value="true" />
             <option name="tu_timeline_sync" value="true" />
             <option name="tu_relaxed_frame_pacing" value="true" />
-            <option name="tu_mail_box_vsync_pacing" value="true" />
             
-            <!-- 3. Adreno 830 (Snapdragon 8 Elite) & A8xx Precision Architecture Tuning -->
-            <option name="tu_a830_reg_size_96" value="true" />
-            <option name="tu_a8xx_perfcntrs" value="true" />
-            <option name="tu_a830_ubwc_pitch_clamp" value="true" />
-            <option name="tu_a8xx_concurrent_queue_barrier_fix" value="true" />
-            <option name="tu_a8xx_barycentric_coord_clamp" value="true" />
-            <option name="tu_a8xx_subgroup_ballot_fastpath" value="true" />
-            <option name="tu_a830_concurrent_render_pass_align" value="true" />
-            <option name="tu_shader_spirv_mem_fastpath" value="true" />
-            
-            <!-- 4. Global Depth Extensions (All Adreno A6xx, A7xx, A8xx) -->
-            <option name="tu_depth_bias_control_all_adreno" value="true" />
-            <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="true" />
-            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_force_d32_unnormalized" value="true" />
-            
-            <!-- 5. Samsung OneUI UBWC Framebuffer Compression & Lossless Guard -->
-            <option name="tu_ubwc_oneui_fix" value="true" />
-            <option name="tu_ubwc_5_direct_align" value="true" />
-            <option name="tu_ubwc_5_stride_128_align" value="true" />
-            <option name="tu_ubwc_fallback_guard" value="true" />
-            <option name="tu_ubwc_lossless_fastpath" value="true" />
-            <option name="tu_disable_lossy_ubwc_depth" value="true" />
-            
-            <!-- 6. Adaptive GMEM Tile Sizing by Shader Cost & Compute Flush Optimization -->
-            <option name="tu_adaptive_gmem_tiling_by_cost" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_compute_flush_bits_optimize" value="true" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_autotune_bypass_margin" value="true" />
-            
-            <!-- 7. Canonical PSO Cache with Fuzzy Matching & Precompilation -->
-            <option name="tu_canonical_pso_cache" value="true" />
-            <option name="tu_pso_fuzzy_match" value="true" />
-            <option name="tu_pso_dynamic_state_strip" value="true" />
-            
-            <!-- 8. Zelda TOTK & BOTW Driconf Engine Rules -->
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_botw_depth_refract_fix" value="true" />
-            <option name="tu_botw_shrine_geometry_fix" value="true" />
-            
-            <!-- 9. Zero-Overhead ASTC HDR Decompressor & GPU Detiling (GOB/Block Linear) -->
-            <option name="tu_compute_detiling_gob_linear" value="true" />
-            <option name="tu_astc_hdr_gmem" value="true" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-            <option name="tu_bindless_textures" value="true" />
-            <option name="tu_zero_copy_subsampled_sampler" value="true" />
-            <option name="tu_auto_mipmap_generation" value="true" />
-            
-            <!-- 10. IR3 Compiler: Texture Prefetch, Global Code Motion (gcm=1) & 128-byte Align -->
-            <option name="tu_ir3_texture_prefetch" value="true" />
-            <option name="tu_gcm" value="1" />
-            <option name="tu_ir3_icache_128b_align" value="true" />
-            <option name="tu_ir3_dead_code_elimination" value="true" />
-            <option name="tu_ir3_constant_folding" value="true" />
-            <option name="tu_ir3_subgroup_merge" value="true" />
-            <option name="tu_ir3_scheduler_hazard_guard" value="true" />
-            
-            <!-- 11. Zero-Stall Ping-Pong Command Submission & 4GB LZ4 Cache -->
-            <option name="tu_ping_pong_command_submission" value="true" />
+            <!-- 3. Memory Suballocators & Monolithic Pipeline Cache -->
             <option name="tu_suballocator_pool_512k" value="true" />
             <option name="tu_pipeline_cache_lz4" value="true" />
             <option name="tu_shader_cache_size_mb" value="4096" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_gmem_page_alignment_guard" value="true" />
-            <option name="tu_gmem_force_tile_align" value="true" />
-            
-            <!-- 12. Hybrid 2D-UI Render Pass Extraction & Subpass Fusion Guard -->
-            <option name="tu_ui_layer_non_msaa_pass" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            
-            <!-- 13. Direct SurfaceFlinger Zero-Copy Blit -->
-            <option name="tu_direct_surfaceflinger_blit" value="true" />
-            <option name="tu_bypass_gpu_rotator" value="true" />
-            <option name="tu_direct_display_sync" value="true" />
-            <option name="tu_zero_copy_swapchain" value="true" />
-            
-            <!-- 14. ARM Mali / Immortalis Optimization Suite v6 -->
-            <option name="mali_early_depth_bounds" value="true" />
-            <option name="mali_forward_pixel_kill" value="true" />
-            <option name="mali_fp16_arithmetic" value="true" />
-            <option name="mali_thread_group_clamp" value="true" />
-            <option name="mali_tile_buffer_coherency" value="true" />
-            <option name="panfrost_force_early_z" value="true" />
-            <option name="panfrost_afbc_lossless" value="true" />
+        </application>
+    </device>
+    <device driver="freedreno">
+        <application name="all">
+            <option name="mesa_shader_cache_max_size" value="4294967296" />
+        </application>
+    </device>
+    <device driver="panfrost">
+        <application name="all">
+            <option name="mesa_shader_cache_max_size" value="4294967296" />
+            <option name="pan_early_z" value="true" />
+            <option name="pan_fast_clears" value="true" />
+            <option name="pan_shader_cache_multithreaded" value="true" />
         </application>
     </device>
 </driconf>
