@@ -1,6 +1,6 @@
-<div align="center">
+<h1 align="center">STORM DRIVER</h1>
 
-# ⚡ STORM DRIVER v1.0.0 — Universal Next-Gen Turnip & PanVK Mesa GPU Driver
+<div align="center">
 
 [![License](https://img.shields.io/badge/License-MIT%20%2F%20GPL-blue.svg)](LICENSE)
 [![Vulkan](https://img.shields.io/badge/Vulkan-1.3%20%2F%201.4-red.svg)](https://www.vulkan.org/)
@@ -8,19 +8,17 @@
 [![Mali](https://img.shields.io/badge/Mali-Bifrost%20%7C%20Valhall-purple.svg)](https://developer.arm.com/)
 [![Android](https://img.shields.io/badge/Android-9%20--%2015+-orange.svg)](https://developer.android.com/)
 
-**Created and maintained by ReiKatari & STORM Team**
-
 </div>
 
 ---
 
-**STORM DRIVER v1.0.0** — это релизная веха (Production Milestone): универсальный высокопроизводительный гибридный драйвер Vulkan (Mesa Turnip & PanVK) нового поколения для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (Snapdragon 845, 865, 870, 888, 8+ Gen 1, 8 Gen 2, 8 Gen 3 и 8 Elite / Adreno 830), а также **ARM Mali** (Bifrost, Valhall).
+**STORM DRIVER 1.2.0** — универсальный высокопроизводительный гибридный драйвер Vulkan (на базе Mesa Turnip и PanVK) нового поколения для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (включая Snapdragon 8 Elite / Adreno 830) и **ARM Mali** (Bifrost, Valhall).
 
-Разработан для максимальной производительности, стабильности и охлаждения в эмуляторах Nintendo Switch (**STORM EDEN**, **Eden**, Yuzu, Citron, Suyu, Sudachi, Skyline), PS Vita (Vita3K), Windows/PC (Winlator, Mobox, Box64), PSP (PPSSPP) и нативных Vulkan-играх на Android.
+Драйвер оптимизирован для максимальной производительности, стабильности и энергоэффективности в эмуляторах Nintendo Switch (**STORM EDEN**, **STORM SWITCH**, **Eden**, Yuzu, Citron), PS Vita, Windows/PC и нативных Vulkan-приложениях на Android.
 
 ---
 
-## 🌟 Ключевые архитектурные преимущества и оптимизации v1.0.0
+## **Ключевые архитектурные преимущества и оптимизации 1.2.0**
 
 ### 1. 🧠 Адаптивный размер GMEM-тайла по сложности шейдера
 - Динамический расчет размеров тайла по формуле `tile_area = gmem_size / (per_pixel_footprint * attachment_count * complexity_weight)`. Исключает медленные сбросы в оперативную память.
@@ -64,12 +62,12 @@
 ### 13. 🛡️ Динамический DVFS Power-Throttling Guard (60°C Target)
 - Плавное управление частотами GPU через драйверные хинты при достижении температурного порога (60°C).
 
-### 14. 🎮 Mali Bifrost / Valhall PanVK & Midgard Geometry Culling
+### 14. Mali Bifrost / Valhall PanVK & Midgard Geometry Culling
 - Аппаратное раннее отсечение невидимой геометрии (Early Z-Cull) и Forward Pixel Kill v5 для чипов Mali.
 
 ---
 
-## 📋 Поддерживаемые платформы и GPU
+## **Поддерживаемые платформы и GPU**
 
 | Архитектура | Процессоры / Чипсеты | Графический чип |
 | :--- | :--- | :--- |
@@ -80,17 +78,17 @@
 
 ---
 
-## 📥 Установка в эмуляторах
+## **Установка в эмуляторах**
 
-1. Скачайте актуальный архив драйвера `STORM_DRIVER_1.0.0.zip`.
-2. Запустите эмулятор (**STORM EDEN**, **Eden**, Yuzu, Citron, Sudachi, Skyline и др.).
-3. Откройте **Настройки ➔ Менеджер драйверов GPU (GPU Driver Manager)**.
-4. Нажмите **«Установить» (Install)** и выберите скачанный .zip архив.
+1. Скачайте актуальный архив драйвера `STORM_DRIVER_1.2.0.zip`.
+2. Запустите эмулятор (**STORM EDEN**, **STORM SWITCH**, **Eden**, Yuzu, Citron, Sudachi, Skyline).
+3. Откройте **Настройки ➔ Менеджер драйверов GPU**.
+4. Нажмите **«Установить»** и выберите скачанный `.zip` архив.
 5. Выберите **STORM DRIVER** в качестве активного драйвера.
 
 ---
 
-## 🛠️ Сборка из исходников (Building from Source)
+## **Сборка из исходников**
 
 ### Требования:
 - Linux (Ubuntu 22.04+ / Debian 12+) или WSL2
@@ -110,12 +108,12 @@ cd STORM_DRIVER
 ./scripts/build_turnip.sh --ndk /path/to/android-ndk-r28
 
 # Упаковка .zip архива
-python3 scripts/package_driver.py --out build/STORM_DRIVER_1.0.0.zip
+python3 scripts/package_driver.py --out build/STORM_DRIVER_1.2.0.zip
 ```
 
 ---
 
-## 🙏 Благодарности и авторы (Credits & Acknowledgments)
+## **Благодарности**
 
 STORM DRIVER создан благодаря фундаментальным исследованиям и разработкам мирового open-source сообщества:
 
