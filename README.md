@@ -12,13 +12,13 @@
 
 ---
 
-**STORM DRIVER 1.2.0** — универсальный высокопроизводительный гибридный драйвер Vulkan (на базе Mesa Turnip и PanVK) нового поколения для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (включая Snapdragon 8 Elite / Adreno 830) и **ARM Mali** (Bifrost, Valhall).
+**STORM DRIVER 1.2.2** — универсальный высокопроизводительный гибридный драйвер Vulkan (на базе Mesa Turnip и PanVK) нового поколения для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (включая Snapdragon 8 Elite / Adreno 830) и **ARM Mali** (Bifrost, Valhall).
 
 Драйвер оптимизирован для максимальной производительности, стабильности и энергоэффективности в эмуляторах Nintendo Switch (**STORM EDEN**, **STORM SWITCH**, **Eden**, Yuzu, Citron), PS Vita, Windows/PC и нативных Vulkan-приложениях на Android.
 
 ---
 
-## **Ключевые архитектурные преимущества и оптимизации 1.2.0**
+## **Ключевые архитектурные преимущества и оптимизации 1.2.2**
 
 ### 1. 🧠 Адаптивный размер GMEM-тайла по сложности шейдера
 - Динамический расчет размеров тайла по формуле `tile_area = gmem_size / (per_pixel_footprint * attachment_count * complexity_weight)`. Исключает медленные сбросы в оперативную память.
