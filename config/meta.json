@@ -1,10 +1,11 @@
 {
+    "schemaVersion": 1,
     "name": "STORM DRIVER",
-    "description": "STORM Turnip Driver 1.2.5 - Isolated Per-Game Profiles with Mesa Regex Matching, Safe Defaults, Zero-Artifact GMEM, Fixes for Diablo II, Zelda, FC 24/25/26, Witcher 3",
+    "description": "STORM Turnip Driver 2.0.0 - Unified Hybrid Driver with Granular Single-Title Regex Matching, Safe 0.0.29 Global Foundation, Zero-Conflict Fixes for Diablo II, Zelda BOTW/TOTK, Streets of Rage 4, Witcher 3, Skyrim, FC 24/25/26, 4GB Monolithic Shader Cache, and Direct SurfaceFlinger Low-Latency Pipeline",
     "author": "ReiKatari",
-    "packageVersion": "1.2.5",
-    "vendor": "Mesa/Freedreno",
-    "driverVersion": "Turnip 25.1.0-devel",
+    "packageVersion": "2.0.0",
+    "vendor": "Mesa/Freedreno/Panfrost",
+    "driverVersion": "Turnip 26.3.0-devel / PanVK",
     "minApi": 27,
-    "libraryName": "libvulkan_freedreno.so"
+    "libraryName": "vulkan.adreno.so"
 }
