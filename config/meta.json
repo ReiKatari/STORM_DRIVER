@@ -1,10 +1,10 @@
 {
-  "schemaVersion": 1,
-  "name": "STORM DRIVER",
-  "author": "ReiKatari",
-  "description": "Qualcomm Snapdragon Adreno 6xx/7xx/8xx and ARM Mali / Immortalis GPU Driver",
-  "vendor": "Mesa / Turnip / Freedreno / Panfrost",
-  "driverVersion": "1.2.2",
-  "minApi": 27,
-  "libraryName": "vulkan.adreno.so"
+    "name": "STORM DRIVER",
+    "description": "STORM Turnip Driver 1.2.5 - Isolated Per-Game Profiles with Mesa Regex Matching, Safe Defaults, Zero-Artifact GMEM, Fixes for Diablo II, Zelda, FC 24/25/26, Witcher 3",
+    "author": "ReiKatari",
+    "packageVersion": "1.2.5",
+    "vendor": "Mesa/Freedreno",
+    "driverVersion": "Turnip 25.1.0-devel",
+    "minApi": 27,
+    "libraryName": "libvulkan_freedreno.so"
 }
