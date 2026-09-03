@@ -1,11 +1,11 @@
 {
     "schemaVersion": 1,
     "name": "STORM DRIVER",
-    "description": "STORM Turnip Driver 2.0.0 - Unified Hybrid Driver with Granular Single-Title Regex Matching, Safe 0.0.29 Global Foundation, Zero-Conflict Fixes for Diablo II, Zelda BOTW/TOTK, Streets of Rage 4, Witcher 3, Skyrim, FC 24/25/26, 4GB Monolithic Shader Cache, and Direct SurfaceFlinger Low-Latency Pipeline",
+    "description": "STORM Turnip Driver 2.0.1 - Proven 0.0.29 Engine Baseline with Pristine Zelda BOTW/TOTK Fix, Flawless Diablo II: Resurrected, Streets of Rage 4, and Universal Adreno/Mali Architecture",
     "author": "ReiKatari",
-    "packageVersion": "2.0.0",
+    "packageVersion": "2.0.1",
     "vendor": "Mesa/Freedreno/Panfrost",
     "driverVersion": "Turnip 26.3.0-devel / PanVK",
-    "minApi": 27,
-    "libraryName": "vulkan.adreno.so"
+    "minApi": 24,
+    "libraryName": "vulkan.freedreno.so"
 }
