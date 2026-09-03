@@ -1,9 +1,9 @@
 {
     "schemaVersion": 1,
     "name": "STORM DRIVER",
-    "description": "STORM Turnip Driver 2.0.1 - Proven 0.0.29 Engine Baseline with Pristine Zelda BOTW/TOTK Fix, Flawless Diablo II: Resurrected, Streets of Rage 4, and Universal Adreno/Mali Architecture",
+    "description": "STORM Turnip Driver 2.0.2 - Universal Nintendo Switch Ecosystem Edition with Adreno 830 Support, Dynamic Game Isolation Engine, ASTC HDR GMEM, and Anti-Throttling Architecture",
     "author": "ReiKatari",
-    "packageVersion": "2.0.1",
+    "packageVersion": "2.0.2",
     "vendor": "Mesa/Freedreno/Panfrost",
     "driverVersion": "Turnip 26.3.0-devel / PanVK",
     "minApi": 24,
