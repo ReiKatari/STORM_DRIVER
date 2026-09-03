@@ -1,7 +1,7 @@
 <h1 align="center">STORM DRIVER</h1>
 
 <p align="center">
-  <strong>Универсальный кастомный высокопроизводительный графический драйвер Vulkan нового поколения для Android-эмуляторов на базе Mesa Turnip & PanVK (Mesa 3D Project, Freedreno & Panfrost Teams)</strong>
+  <strong>Универсальный кастомный высокопроизводительный графический драйвер Vulkan нового поколения для Android-эмуляторов на базе Mesa Turnip и PanVK (Mesa 3D Project, Freedreno и Panfrost Teams)</strong>
 </p>
 
 ---
@@ -30,9 +30,9 @@
 - **Compute Flush Bits Optimization**: минимизация циклов синхронизации конвейера в `tu_dispatch`, обеспечивающая прирост FPS в играх на движках Unreal Engine 4/5 и Unity.
 - **Binary-Search GMEM Tile Allocator**: динамический подбор конфигурации тайлов GMEM, предотвращающий перегрев и промахи миграции памяти.
 - **Динамический DVFS Power-Throttling Guard (60°C Target)**: плавное управление частотами GPU для предотвращения резкого троттлинга и просадок кадров.
-- **Subpass Fusion & Render Pass Compaction**: автоматическое объединение проходов рендеринга для снижения энергопотребления.
+- **Subpass Fusion и Render Pass Compaction**: автоматическое объединение проходов рендеринга для снижения энергопотребления.
 - **Mali Early Z-Cull & Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
-- **Zero-Copy Swapchain WSI & 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
+- **Zero-Copy Swapchain WSI и 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
 
 ---
 
@@ -82,7 +82,7 @@ python3 scripts/package_driver.py --out build/STORM_DRIVER_<версия>.zip
 
 ## **Благодарности**
 STORM DRIVER создан благодаря исследованиям, кодовой базе и наработкам мирового open-source сообщества:
-- Mesa 3D Project, Freedreno & Panfrost Teams (Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset)
+- Mesa 3D Project, Freedreno и Panfrost Teams (Rob Clark, Danylo Piliaiev, Connor Abbott, Emma Anholt, Alyssa Rosenzweig, Boris Brezillon, faith, Samuel Pitoiset)
 - Rick Amaral (rickamaral94, Amaral-Adreno-Tools)
 - Aydar Kamaltdinov (aydar-kamaltdinov, mes)
 - MrPurple666
