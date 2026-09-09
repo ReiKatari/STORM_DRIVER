@@ -11,3 +11,5 @@ google-credentials.json
 installer/Output/
 *.tmp*
 *.wal
+*.zip
+temp_pack/

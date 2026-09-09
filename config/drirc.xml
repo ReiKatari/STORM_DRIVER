@@ -1,7 +1,7 @@
 <driconf>
     <device driver="turnip">
         <application name="all">
-            <!-- 1. Next-Gen Thermal Governor Floor & Power Optimization (Proven in 0.0.29) -->
+            <!-- 1. Next-Gen Thermal Governor Floor & Power Optimization -->
             <option name="tu_thermal_governor_floor" value="true" />
             <option name="tu_power_governor_floor" value="true" />
             <option name="tu_perf_floor_clamp" value="true" />
@@ -10,7 +10,7 @@
             <option name="tu_dynamic_thermal_budget" value="true" />
             <option name="tu_energy_aware_scheduling" value="true" />
             
-            <!-- 2. Low-Latency Mailbox VSync & Dynamic Adaptive Frame Pacing (Proven in 0.0.29) -->
+            <!-- 2. Low-Latency Mailbox VSync & Dynamic Adaptive Frame Pacing -->
             <option name="tu_adaptive_frame_pacing" value="true" />
             <option name="tu_frame_time_smoothing" value="true" />
             <option name="tu_timeline_sync" value="true" />
@@ -27,7 +27,7 @@
             <option name="tu_a830_concurrent_render_pass_align" value="true" />
             <option name="tu_shader_spirv_mem_fastpath" value="true" />
             
-            <!-- 4. Global Depth & Precision Extensions (Safe 0.0.29 Baseline for Diablo II & 3D Games) -->
+            <!-- 4. Global Depth & Precision Extensions -->
             <option name="tu_depth_bias_control_all_adreno" value="true" />
             <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="true" />
             <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
@@ -51,7 +51,7 @@
             <option name="tu_drop_tile_wfi" value="true" />
             <option name="tu_autotune_bypass_margin" value="true" />
             
-            <!-- 7. Proven Engine Baseline (tu_tile_discard=true for Diablo II & Streets of Rage 4) -->
+            <!-- 7. Proven Engine Baseline -->
             <option name="tu_tile_discard" value="true" />
             <option name="tu_indirect_ubo_bounds" value="true" />
             <option name="tu_gmem_pinning_zelda" value="true" />
@@ -144,19 +144,121 @@
         </application>
 
         <!-- 4. Streets of Rage 4 & 2D Sprite Masterworks -->
-        <application name="Streets of Rage 4" application_name_match=".*(010085800E33E000|0100BA700E340000|010085800E33E800|Streets of Rage 4).*">
+        <application name="Streets of Rage 4" application_name_match=".*(010085800E33E000|0100BA700E340000|010085800E33E800|0100EC9010258000|0100AC300919A000|0100C60010228000|Streets of Rage 4).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_auto_mipmap_generation" value="false" />
             <option name="tu_compute_detiling_gob_linear" value="false" />
             <option name="tu_indirect_ubo_bounds" value="true" />
             <option name="tu_depth_clamp_control_fix" value="true" />
         </application>
+
+        <!-- 5. The Legend of Heroes: Trails in the Sky -->
+        <application name="The Legend of Heroes: Trails in the Sky" application_name_match=".*0100(B0E020356000|4A301D6E2000|2C5016EE8000|F7A016336000).*">
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_disable_lrz" value="true" />
+            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
+            <option name="tu_adaptive_frame_pacing" value="false" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_subpass_fusion" value="false" />
+        </application>
+
+        <!-- 6. Cronos: Before the Ashes -->
+        <application name="Cronos: Before the Ashes" application_name_match=".*01000B0012E4E000.*">
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+        </application>
+
+        <!-- 7. EA Sports FC 24, FC 25 & FC 26 -->
+        <application name="EA Sports FC" application_name_match=".*0100(A38018D5A000|5B101DC84000|77D0238FA000).*">
+            <option name="tu_canonical_pso_cache" value="false" />
+            <option name="tu_pso_fuzzy_match" value="false" />
+            <option name="tu_pso_dynamic_state_strip" value="false" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+            <option name="tu_relaxed_frame_pacing" value="false" />
+        </application>
+
+        <!-- 8. Leap Year -->
+        <application name="Leap Year" application_name_match=".*01008CA01F186000.*">
+            <option name="tu_suballocator_pool_512k" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+            <option name="tu_adaptive_frame_pacing" value="false" />
+        </application>
+
+        <!-- 9. The Outer Worlds -->
+        <application name="The Outer Worlds" application_name_match=".*0100(55700C30A000|EB800D600000).*">
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+        </application>
+
+        <!-- 10. The Witcher 3: Wild Hunt -->
+        <application name="The Witcher 3: Wild Hunt" application_name_match=".*0100(3D100E9C6000|14B00E9BE000|E670129CA000).*">
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+        </application>
+
+        <!-- 11. The Elder Scrolls V: Skyrim -->
+        <application name="The Elder Scrolls V: Skyrim" application_name_match=".*01000A10041EA000.*">
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_disable_lrz" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+        </application>
+
+        <!-- 12. Hogwarts Legacy -->
+        <application name="Hogwarts Legacy" application_name_match=".*0100(BCB0176D0000|B5B0112F8000|D1801648E000).*">
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+        </application>
+    </device>
+    
+    <device driver="freedreno">
+        <application name="all">
+            <option name="mesa_disk_cache_single_file" value="true" />
+            <option name="mesa_shader_cache_max_size" value="4294967296" />
+        </application>
     </device>
     
     <device driver="panfrost">
         <application name="all">
+            <option name="pan_depth_bounds_test" value="true" />
             <option name="pan_early_z" value="true" />
-            <option name="pan_afbc_lossless" value="true" />
+            <option name="pan_forward_pixel_kill" value="true" />
+            <option name="pan_forward_pixel_kill_v2" value="true" />
+            <option name="pan_fpk" value="true" />
+            <option name="panfrost_mali_opt" value="true" />
+            <option name="pan_subpass_fusion" value="false" />
+            <option name="pan_fast_clears" value="true" />
+            <option name="pan_fp16" value="true" />
+            <option name="pan_bifrost_valhall_opt" value="true" />
+            <option name="pan_tile_buffer_fast_pack" value="true" />
+            <option name="pan_shader_cache_multithreaded" value="true" />
+            <option name="mesa_disk_cache_single_file" value="true" />
+            <option name="mesa_shader_cache_max_size" value="4294967296" />
         </application>
     </device>
     
