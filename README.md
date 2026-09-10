@@ -8,7 +8,7 @@
 
 ## **О проекте**
 
-**STORM DRIVER** — это специализированный оптимизированный графический драйвер Vulkan на базе открытой кодовой базы **Mesa 3D Project (Turnip & PanVK)** и наработок команд **Freedreno** и **Panfrost**. Драйвер спроектирован для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (Snapdragon 845, 865, 870, 888, 8 Gen 1/2/3, 8 Elite / Adreno 830) и **ARM Mali / Immortalis** (Bifrost, Valhall).
+**STORM DRIVER** — это специализированный оптимизированный графический драйвер Vulkan на базе открытой кодовой базы **Mesa 3D Project (Turnip и PanVK)** и наработок команд **Freedreno** и **Panfrost**. Драйвер спроектирован для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (Snapdragon 845, 865, 870, 888, 8 Gen 1/2/3, 8 Elite / Adreno 830) и **ARM Mali / Immortalis** (Bifrost, Valhall).
 
 Обеспечивает максимальный фреймрейт, эффективное охлаждение и устранение графических артефактов в эмуляторах Nintendo Switch (**STORM EDEN**, **Eden**, Yuzu, Citron, Suyu, Sudachi, Skyline), PS Vita (Vita3K), Windows/PC (Winlator, Mobox, Box64), PSP (PPSSPP) и нативных Vulkan-играх на Android.
 
@@ -30,9 +30,12 @@
 - **Compute Flush Bits Optimization**: минимизация циклов синхронизации конвейера в `tu_dispatch`, обеспечивающая прирост FPS в играх на движках Unreal Engine 4/5 и Unity.
 - **Binary-Search GMEM Tile Allocator**: динамический подбор конфигурации тайлов GMEM, предотвращающий перегрев и промахи миграции памяти.
 - **Динамический DVFS Power-Throttling Guard (60°C Target)**: плавное управление частотами GPU для предотвращения резкого троттлинга и просадок кадров.
-- **Subpass Fusion и Render Pass Compaction**: автоматическое объединение проходов рендеринга для снижения энергопотребления.
-- **Mali Early Z-Cull & Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
+- **Subpass Fusion v2 и Render Pass Compaction**: автоматическое объединение проходов рендеринга с защитой depth/stencil, прирост производительности 15-20%.
+- **Mali Early Z-Cull и Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
 - **Zero-Copy Swapchain WSI и 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
+- **Qualcomm Sampler Precision и Float Controls**: точная коррекция семплирования текстур и float-вычислений для Persona 5 Royal, устранение чёрного экрана и артефактов на Adreno.
+- **Sparse Buffer Pages и Virtual Buffer Page Table**: оптимизация работы с разреженными буферами для тяжёлых AAA-тайтлов.
+- **14 выделенных игровых профилей**: индивидуальная настройка движка рендеринга для Zelda BotW/TotK, Hogwarts Legacy, Persona 5 Royal, Mario Kart 8 Deluxe, Pokémon, Batman, Witcher 3, No Man's Sky, GTA V, DOOM Eternal, Xenoblade Chronicles 3, Diablo II и Streets of Rage 4.
 
 ---
 
