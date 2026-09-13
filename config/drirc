@@ -48,7 +48,7 @@
             <option name="tu_compute_flush_bits_optimize" value="true" />
             <option name="tu_optimal_gmem_tile_allocator" value="true" />
             <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
+            <option name="tu_drop_tile_wfi" value="false" />
             <option name="tu_autotune_bypass_margin" value="true" />
             
             <!-- 7. Proven Engine Baseline -->
@@ -105,6 +105,9 @@
             <option name="tu_disable_fast_clears" value="true" />
             <option name="tu_disable_lrz" value="true" />
             <option name="tu_lrz_fast_clear" value="false" />
+            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
+            <option name="tu_drop_tile_wfi" value="false" />
+            <option name="tu_optimal_gmem_tile_allocator" value="false" />
             <option name="tu_botw_depth_refract_fix" value="true" />
             <option name="tu_botw_shrine_geometry_fix" value="true" />
             <option name="tu_indirect_ubo_bounds" value="true" />
@@ -123,6 +126,9 @@
             <option name="tu_disable_fast_clears" value="true" />
             <option name="tu_disable_lrz" value="true" />
             <option name="tu_lrz_fast_clear" value="false" />
+            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
+            <option name="tu_drop_tile_wfi" value="false" />
+            <option name="tu_optimal_gmem_tile_allocator" value="false" />
             <option name="tu_indirect_ubo_bounds" value="true" />
             <option name="tu_botw_depth_refract_fix" value="true" />
             <option name="tu_gmem_pinning_zelda" value="true" />
