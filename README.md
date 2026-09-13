@@ -25,13 +25,15 @@
 ## **Ключевые особенности и оптимизации**
 - **Полная поддержка Adreno 830 (Snapdragon 8 Elite)**: калибровка регистрового файла (`reg_size_vec4 = 96`) и выравнивание шага питча UBWC 5.0 устраняют полосы, мерцания и краши IR3.
 - **Глобальные расширения глубины**: поддержка `VK_EXT_depth_bias_control` и `VK_EXT_depth_range_unrestricted` для всех поколений Adreno, ликвидирующая мерцание теней и Z-fighting.
-- **Комплекс оптимизаций для Zelda BOTW / TOTK**: устранение непрозрачной/темной воды, исправление глубины святилищ (Shrines) и оптимизация `tu_depth_direction_fix`.
+- **Выделенные профили стабильности Mortal Kombat 1 и Mortal Kombat 11**: ликвидация вылетов при инициализации шейдерных пайплайнов, устранение графических артефактов и разлета полигонов через `tu_barrier_feedback_loops`, `tu_indirect_ubo_bounds` и `tu_huge_heap_8gb_align`.
+- **Профиль стабильности Streets of Rage 4**: исправление падений на экранах загрузки и сетевых дедлоков через изоляцию кадрового буфера и точную синхронизацию барьеров.
+- **Комплекс оптимизаций для Zelda BotW / TotK**: устранение непрозрачной и темной воды, исправление глубины святилищ (Shrines), выравнивание памяти 8GB DRAM и оптимизация `tu_depth_direction_fix`.
 - **Samsung OneUI UBWC 5.0 Buffer Patch**: устранение графических искажений в системном кадровом буфере OneUI на смартфонах серии Galaxy S24 / S25.
 - **Compute Flush Bits Optimization**: минимизация циклов синхронизации конвейера в `tu_dispatch`, обеспечивающая прирост FPS в играх на движках Unreal Engine 4/5 и Unity.
 - **Binary-Search GMEM Tile Allocator**: динамический подбор конфигурации тайлов GMEM, предотвращающий перегрев и промахи миграции памяти.
 - **Динамический DVFS Power-Throttling Guard (60°C Target)**: плавное управление частотами GPU для предотвращения резкого троттлинга и просадок кадров.
 - **Subpass Fusion и Render Pass Compaction**: автоматическое объединение проходов рендеринга для снижения энергопотребления.
-- **Mali Early Z-Cull & Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
+- **Mali Early Z-Cull and Forward Pixel Kill**: аппаратное отсечение невидимой геометрии, снижающее нагрузку на пиксельные шейдеры до 35% на чипах MediaTek Dimensity и Samsung Exynos.
 - **Zero-Copy Swapchain WSI и 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
 
 ---
@@ -48,10 +50,10 @@
 ---
 
 ## **Установка и использование**
-1. Скачайте архив драйвера: `STORM_DRIVER_<версия>.zip`.
-2. Запустите поддерживаемый эмулятор (**STORM EDEN**, **Eden**, Yuzu, Citron, Sudachi, Skyline, Vita3K, Winlator).
+1. Скачайте архив драйвера: `STORM_DRIVER_3.1.0.zip`.
+2. Запустите поддерживаемый эмулятор (**STORM SWITCH**, **STORM EDEN**, **Eden**, Yuzu, Citron, Sudachi, Skyline, Vita3K, Winlator).
 3. Перейдите в **Настройки ➔ Менеджер драйверов GPU (GPU Driver Manager)**.
-4. Нажмите кнопку **Установить (Install)** и укажите файл `STORM_DRIVER_<версия>.zip`.
+4. Нажмите кнопку **Установить (Install)** и укажите файл `STORM_DRIVER_3.1.0.zip`.
 5. Выберите **STORM DRIVER** в качестве активного графического драйвера.
 
 ---
