@@ -1,11 +1,11 @@
 {
-  "driverVersion": "Turnip 26.3.0-devel / PanVK",
-  "libraryName": "vulkan.freedreno.so",
-  "description": "STORM Turnip Driver 3.0.1 - Universal Nintendo Switch Ecosystem Edition with Subpass Fusion v2, Qualcomm Sampler Precision, Sparse Buffer Pages, 16 Dedicated Game Profiles, Adreno 830 Support, and Anti-Throttling Architecture",
+  "driverVersion": "STORM-4.0.0",
+  "libraryName": "vulkan.adreno.so",
+  "description": "STORM Turnip Driver 4.0.0 - Universal High-Performance Edition with Adreno 830 (Snapdragon 8 Elite), Adreno 7xx and 6xx Deep Architectural Optimizations, Ultra-Fast NIR/IR3 Multi-Threaded Shader Compilation, Advanced Artifact Elimination, Zero-Overhead GMEM Tiling, and Dedicated Stability Profiles",
   "author": "ReiKatari",
   "schemaVersion": 1,
-  "minApi": 24,
-  "vendor": "Mesa/Freedreno/Panfrost",
+  "minApi": 28,
+  "vendor": "Mesa/Freedreno/Panfrost/ReiKatari",
   "name": "STORM DRIVER",
-  "packageVersion": "3.0.1"
+  "packageVersion": "4.0.0"
 }
