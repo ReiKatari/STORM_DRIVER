@@ -1,5 +1,11 @@
 # 📜 STORM DRIVER Changelog
 
+### 4.0.4 (16.09.2026)
+- **Monolithic Architecture:** Переход на чистую монолитную модель конфигурации с прямой синхронизацией буферов кадра и тайлов памяти GMEM (`tu_tile_discard = true`, `tu_drop_tile_wfi = true`).
+- **2D and 3D Engine Stability:** Полное устранение артефактов межпассового рендера, моргания элементов интерфейса и пропадания графики загружаемого контента (DLC) в Dispatch (`01008BA02525A000`), Diablo II: Resurrected, The Legend of Zelda и Streets of Rage 4.
+- **Universal Driver Binding:** Восстановлена основная точка входа `vulkan.freedreno.so` с поддержкой Android API 24+ (`minApi = 24`) для безошибочной загрузки во всех версиях эмуляторов и системных профилей.
+- **Hardware Architecture:** Сохранены расширения `VK_EXT_depth_bias_control`, `VK_EXT_depth_range_unrestricted`, оптимизация регистрового файла Adreno 830 (`reg_size_vec4 = 96`), калибровка UBWC 5.0 для Samsung OneUI и оптимизации для ARM Mali и Immortalis.
+
 ### 4.0.3 (16.09.2026)
 - **Dispatch Fix:** Полностью устранено моргание кнопок меню («ИГРАТЬ», «ПАРАМЕТРЫ», «ДОПОЛНИТЕЛЬНО») и восстановлено корректное отображение арта и баннера «Бесплатный загружаемый контент» в правом верхнем углу игры Dispatch (`01008BA02525A000`).
 - **Baseline Restoration:** Восстановлена проверенная эталонная логика тайлового рендеринга из версии 0.0.29: включён сброс тайлов в GMEM (`tu_tile_discard = true`), отключены петли обратной связи барьеров (`tu_barrier_feedback_loops = false`), отключен параллельный биннинг (`tu_allow_concurrent_binning = false`).
