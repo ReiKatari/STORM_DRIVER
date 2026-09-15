@@ -1,11 +1,11 @@
-﻿{
-  "driverVersion": "STORM-4.0.1",
+{
+  "driverVersion": "STORM-4.0.2",
   "libraryName": "vulkan.adreno.so",
-  "description": "STORM Turnip Driver 4.0.1 - Universal High-Performance Edition with Adreno 830 (Snapdragon 8 Elite), Adreno 7xx and 6xx Deep Architectural Optimizations, Proven Stability Baseline, WinNative 1.15 and Amaral 4.6.1.5 Enhancements, and Dedicated Game Profiles",
+  "description": "STORM Turnip Driver 4.0.2 - Universal High-Performance Edition with Adreno 830 (Snapdragon 8 Elite), Adreno 7xx and 6xx Deep Architectural Optimizations, Multi-threaded Shader Fastpath, Zstandard Disk Cache Compression, Samsung OneUI UBWC 5.0 Precision Calibration, and Dedicated Game Profiles",
   "author": "ReiKatari",
   "schemaVersion": 1,
   "minApi": 28,
   "vendor": "Mesa/Freedreno/Panfrost/ReiKatari",
   "name": "STORM DRIVER",
-  "packageVersion": "4.0.1"
+  "packageVersion": "4.0.2"
 }

@@ -1,6 +1,16 @@
 # 📜 STORM DRIVER Changelog
 
-### 2.0.0 (03.09.2026)
+### 4.0.2 (15.09.2026)
+- **Shader Pipeline:** Прокачан многопоточный конвейер компиляции шейдеров (`tu_shader_compilation_fastpath`), предварительная загрузка конвейеров (`tu_pipeline_cache_preload`) и ускоренная обработка SPIR-V (`tu_shader_spirv_mem_fastpath`).
+- **Disk Cache:** Внедрено сжатие дискового кэша алгоритмом Zstandard (`tu_ir3_disk_cache_compression_zstd`) для мгновенной загрузки шейдеров и устранения стартовых микрофризов в тяжелых тайтлах.
+- **Adreno 830 (Snapdragon 8 Elite):** Оптимизировано распределение регистров (`reg_size_vec4 = 96`), защита от утечек регистров (`tu_a830_dual_register_spill_opt`), когерентность срезов L2-кэша и векторный буст кластеров АЛУ (`tu_a830_vector_alu_cluster_boost`).
+- **Adreno 750 / 740:** Включена аппаратная тесселяция (`tu_a830_tess_eval_fastpath`), агрессивная отсечка LRZ (`tu_a7xx_lrz_fast_cull`) и управление общими регистрами (`tu_a7xx_shared_reg_alloc`).
+- **Vulkan Extensions:** Полная поддержка расширений `VK_EXT_depth_bias_control` и `VK_EXT_depth_range_unrestricted` для всех чипов Adreno.
+- **Samsung OneUI:** Калибровка сжатия буфера кадра UBWC 5.0 (`tu_ubwc_oneui_fix`, `tu_ubwc_5_direct_align`, `tu_ubwc_5_stride_128_align`) с защитой от сбоев на устройствах линейки Samsung Galaxy.
+- **GMEM Allocator:** Бинарный калибратор тайлового рендеринга (`tu_optimal_gmem_tile_allocator`), предотвращающий троттлинг и перегрев при длительных игровых сессиях.
+- **Game Profiles:** Тонкая настройка стабильности и производительности для Zelda BotW/TotK, Streets of Rage 4, Mortal Kombat 1, Persona 5 Royal, Dave the Diver, Crypt of the NecroDancer и Unreal Engine 5.
+
+### 4.0.1 (04.09.2026)
 - **Architecture:** Полное слияние проверенной стабильной базы 0.0.29 и профилей 1.2.5.
 - **Compatibility:** Устранены графические артефакты в Diablo II: Resurrected за счёт изоляции региональных Title ID (USA, EUR, JPN) в отдельные профили и восстановления `tu_force_d32_unnormalized`, `tu_indirect_ubo_bounds`, `tu_depth_clamp_control_fix`.
 - **Compatibility:** Устранены графические артефакты и мерцания в Streets of Rage 4 за счёт разделения Title ID, отключения `tu_compute_detiling_gob_linear`, `tu_auto_mipmap_generation` и `tu_canonical_pso_cache`.
