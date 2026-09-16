@@ -1,11 +1,11 @@
 {
-  "driverVersion": "STORM-4.0.4",
+  "driverVersion": "26.3.0-devel-kgsl-storm-4.0.4",
   "minApi": 24,
   "libraryName": "vulkan.freedreno.so",
-  "description": "STORM Turnip Driver 4.0.4 - Universal High-Performance Stable Baseline Edition for Qualcomm Adreno (Snapdragon 8 Elite / Adreno 830, 7xx, 6xx) and ARM Mali GPUs with Monolithic GMEM Synchronization and Full Game Compatibility",
-  "author": "ReiKatari",
+  "author": "STORM EDEN Team & Mesa Community",
+  "vendor": "Mesa / STORM EDEN Project",
+  "description": "⚡ STORM DRIVER 4.0.4 — Universal High-Performance Stable Baseline Edition for Qualcomm Adreno (Snapdragon 8 Elite / Adreno 830, 7xx, 6xx) and ARM Mali/Immortalis GPUs with Monolithic GMEM Synchronization, All Adreno Depth Bias & Depth Range Clamping Unrestricted, and Full Game Compatibility (Dispatch, Zelda BOTW/TOTK)",
   "schemaVersion": 1,
-  "packageVersion": "4.0.4",
-  "name": "STORM DRIVER",
-  "vendor": "Mesa / STORM EDEN Project"
+  "packageVersion": "4.0.4-storm-ultimate-hybrid",
+  "name": "STORM DRIVER 4.0.4 (Adreno 830 / 7xx / 6xx • Depth Unrestricted & Monolithic GMEM)"
 }

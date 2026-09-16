@@ -1,41 +1,42 @@
-Copy-Item 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\00-storm.conf' 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc' -Force
-Copy-Item 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\00-storm.conf' 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc.conf' -Force
-Copy-Item 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\00-storm.conf' 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc.xml' -Force
+$workDir = "E:\STORM SWITCH 4\STORM DRIVER\Build\stage_clean_404"
+if (Test-Path $workDir) { Remove-Item $workDir -Recurse -Force }
+New-Item -ItemType Directory -Path $workDir -Force | Out-Null
 
-$tempDir = 'E:\STORM SWITCH 4\STORM DRIVER\Build\stage_driver_404'
-if (Test-Path $tempDir) { Remove-Item $tempDir -Recurse -Force }
-New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
+$sourceZip = "E:\STORM EDEN 3\DRIVERS\STORM_DRIVER_0.0.29.zip"
+& "C:\Program Files\7-Zip\7z.exe" x $sourceZip "-o$workDir" -y | Out-Null
 
-$baseZip = 'E:\STORM SWITCH 4\Files\STORM_DRIVER_4.0.3.zip'
-if (-not (Test-Path $baseZip)) {
-    $baseZip = 'E:\STORM SWITCH 4\Files\STORM_DRIVER_4.0.2.zip'
+Copy-Item "E:\STORM SWITCH 4\STORM DRIVER\Build\config\meta.json" "$workDir\meta.json" -Force
+
+$stageFiles = Get-ChildItem $workDir
+if ($stageFiles.Count -ne 5) {
+    throw "Expected exactly 5 files in staging directory, but found $($stageFiles.Count)!"
 }
 
-& 'C:\Program Files\7-Zip\7z.exe' x $baseZip "-o$tempDir" -y
-Copy-Item 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\*' $tempDir\ -Force
+$destFiles = @(
+    "E:\STORM SWITCH 4\Files\STORM_DRIVER_4.0.4.zip",
+    "E:\STORM DRIVER\STORM_DRIVER_4.0.4.zip",
+    "E:\STORM SWITCH 4\STORM DRIVER\Files\STORM_DRIVER_4.0.4.zip"
+)
 
-$zipOut1 = 'E:\STORM SWITCH 4\Files\STORM_DRIVER_4.0.4.zip'
-$zipOut2 = 'E:\STORM DRIVER\STORM_DRIVER_4.0.4.zip'
-$zipDir3 = 'E:\STORM SWITCH 4\STORM DRIVER\Files'
-if (-not (Test-Path $zipDir3)) { New-Item -ItemType Directory -Path $zipDir3 -Force | Out-Null }
-$zipOut3 = "$zipDir3\STORM_DRIVER_4.0.4.zip"
-
-if (Test-Path $zipOut1) { Remove-Item $zipOut1 -Force }
-if (Test-Path $zipOut2) { Remove-Item $zipOut2 -Force }
-if (Test-Path $zipOut3) { Remove-Item $zipOut3 -Force }
-
-& 'C:\Program Files\7-Zip\7z.exe' a -tzip $zipOut1 "$tempDir\*" -mx=9
-if (Test-Path 'E:\STORM DRIVER') {
-    Copy-Item $zipOut1 $zipOut2 -Force
+foreach ($dest in $destFiles) {
+    $parent = Split-Path $dest -Parent
+    if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
+    if (Test-Path $dest) { Remove-Item $dest -Force }
 }
-Copy-Item $zipOut1 $zipOut3 -Force
 
-Unblock-File $zipOut1
-if (Test-Path $zipOut2) { Unblock-File $zipOut2 }
-Unblock-File $zipOut3
+$primaryZip = $destFiles[0]
+& "C:\Program Files\7-Zip\7z.exe" a -tzip $primaryZip "$workDir\*" -mx=9 | Out-Null
 
-Remove-Item $tempDir -Recurse -Force
+for ($i = 1; $i -lt $destFiles.Count; $i++) {
+    Copy-Item $primaryZip $destFiles[$i] -Force
+}
 
-Write-Host "STORM_DRIVER_4.0.4.zip built successfully!"
-Get-Item $zipOut1, $zipOut3 | Select-Object Name, Length, LastWriteTime, Directory
-Get-FileHash $zipOut1 -Algorithm SHA256 | Select-Object Hash, Path
+foreach ($dest in $destFiles) {
+    if (Test-Path $dest) { Unblock-File $dest }
+}
+
+Remove-Item $workDir -Recurse -Force
+
+Write-Host "=== Created STORM_DRIVER_4.0.4.zip successfully ==="
+Get-Item $destFiles | Select-Object FullName, Length, LastWriteTime | Format-Table -AutoSize
+Get-FileHash $primaryZip -Algorithm SHA256 | Format-List
