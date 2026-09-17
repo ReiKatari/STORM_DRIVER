@@ -4,7 +4,8 @@ $ErrorActionPreference = 'Stop'
 $srcConf = 'E:\STORM SWITCH 4\STORM DRIVER\Build\config_403_extract\00-storm.conf'
 $targetConf = 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\00-storm.conf'
 
-$confContent = [System.IO.File]::ReadAllText($srcConf, [System.Text.Encoding]::UTF8)
+if (Test-Path $srcConf) {
+    $confContent = [System.IO.File]::ReadAllText($srcConf, [System.Text.Encoding]::UTF8)
 
 $universalAll = @"
             <!-- 15. Universal PC Windows (Winlator / Mobox / Box64 / DXVK / VKD3D) Compatibility -->
@@ -117,6 +118,7 @@ if ($confContent.Contains($targetMarker2)) {
 Copy-Item $targetConf 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc' -Force
 Copy-Item $targetConf 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc.conf' -Force
 Copy-Item $targetConf 'E:\STORM SWITCH 4\STORM DRIVER\Build\config\drirc.xml' -Force
+}
 
 # Stage files
 $tempDir = 'E:\STORM SWITCH 4\STORM DRIVER\Build\stage_driver_500'
