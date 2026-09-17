@@ -1,11 +1,11 @@
 {
-  "driverVersion": "26.3.0-devel-kgsl-storm-4.0.4",
+  "driverVersion": "26.3.0-devel-kgsl-storm-5.0.0",
   "minApi": 24,
   "libraryName": "vulkan.freedreno.so",
   "author": "STORM EDEN Team & Mesa Community",
   "vendor": "Mesa / STORM EDEN Project",
-  "description": "⚡ STORM DRIVER 4.0.4 — Universal High-Performance Stable Baseline Edition for Qualcomm Adreno (Snapdragon 8 Elite / Adreno 830, 7xx, 6xx) and ARM Mali/Immortalis GPUs with Monolithic GMEM Synchronization, All Adreno Depth Bias & Depth Range Clamping Unrestricted, and Full Game Compatibility (Dispatch, Zelda BOTW/TOTK)",
+  "description": "⚡ STORM DRIVER 5.0.0 — Universal High-Performance Multi-Platform Edition for Qualcomm Adreno GPUs (Snapdragon 8 Elite / Adreno 830, 7xx, 6xx) with Universal Multi-Console (Nintendo Switch, 3DS, NDS, PS1, PS2, PS Vita, GameCube/Wii) and PC Windows (Winlator, Mobox, Box64, FEX, Hangover) Zero-Config Support, DXVK/VKD3D Optimizations, Monolithic GMEM Synchronization, and Unrestricted Depth Bounds.",
   "schemaVersion": 1,
-  "packageVersion": "4.0.4-storm-ultimate-hybrid",
-  "name": "STORM DRIVER 4.0.4 (Adreno 830 / 7xx / 6xx • Depth Unrestricted & Monolithic GMEM)"
+  "packageVersion": "5.0.0-storm-universal-multi-platform",
+  "name": "STORM DRIVER 5.0.0 (Adreno 830 / 7xx / 6xx • Universal Multi-Console and PC Emulation)"
 }
