@@ -137,11 +137,17 @@
             <option name="mali_forward_pixel_kill" value="true" />
             <option name="mali_tile_buffer_coherency" value="true" />
             <option name="mali_afbc_lossless" value="true" />
+
+            <!-- 15. Universal PC Windows (Winlator / Mobox / Box64 / DXVK / VKD3D) Compatibility -->
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="vk_dont_care_as_load" value="true" />
+            <option name="tu_clear_with_gmem" value="true" />
         </application>
         
         <!-- ==================== DEDICATED PROFILES ==================== -->
         <!-- 1. The Legend of Zelda: Breath of the Wild -->
-        <application name="The Legend of Zelda: Breath of the Wild" application_name_match=".*(01007EF00011E000|01007EF00011E800|Zelda|Breath of the Wild).*">
+        <application name="The Legend of Zelda: Breath of the Wild" application_name_match=".*(01007EF00011E000|01007EF00011E800|Zelda.*Breath|Breath of the Wild).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_disable_fast_clears" value="false" />
             <option name="tu_disable_lrz" value="false" />
@@ -166,7 +172,7 @@
         </application>
 
         <!-- 2. The Legend of Zelda: Tears of the Kingdom -->
-        <application name="The Legend of Zelda: Tears of the Kingdom" application_name_match=".*(0100F2C0115B6000|0100F2C0115B6800|Tears of the Kingdom).*">
+        <application name="The Legend of Zelda: Tears of the Kingdom" application_name_match=".*(0100F2C0115B6000|0100F2C0115B6800|Zelda.*Tears|Tears of the Kingdom).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_disable_fast_clears" value="true" />
             <option name="tu_disable_lrz" value="true" />
@@ -183,11 +189,33 @@
             <option name="tu_ir3_texture_prefetch" value="false" />
             <option name="tu_subpass_fusion" value="false" />
             <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+            <option name="tu_astc_hdr_gmem" value="true" />
+            <option name="tu_fast_astc_decompress_gmem" value="true" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
         </application>
 
-        <!-- 3. Diablo II: Resurrected -->
+        <!-- 3. The Legend of Zelda: Echoes of Wisdom -->
+        <application name="The Legend of Zelda: Echoes of Wisdom" application_name_match=".*(01008CF01BAAC000|01008CF01BAAD000|Echoes of Wisdom).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_disable_lrz" value="true" />
+            <option name="tu_lrz_fast_clear" value="false" />
+            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
+            <option name="tu_drop_tile_wfi" value="false" />
+            <option name="tu_optimal_gmem_tile_allocator" value="false" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_ping_pong_command_submission" value="false" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+        </application>
+
+        <!-- 4. Diablo II: Resurrected -->
         <application name="Diablo II: Resurrected" application_name_match=".*(01002A801458A000|0100916014D8C000|0100726014352000|01002A801458A800|Diablo II).*">
-            <option name="tu_tile_discard" value="true" />
+            <option name="tu_tile_discard" value="false" />
             <option name="tu_force_d32_unnormalized" value="false" />
             <option name="tu_depth_bias_control_all_adreno" value="true" />
             <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="false" />
@@ -195,6 +223,7 @@
             <option name="tu_depth_bounds" value="false" />
             <option name="tu_depth_bounds_test" value="false" />
             <option name="tu_depth_clamp_control_fix" value="false" />
+            <option name="tu_depth_direction_fix" value="true" />
             <option name="tu_indirect_ubo_bounds" value="true" />
             <option name="tu_disable_fast_clears" value="false" />
             <option name="tu_a8_unorm_swizzle_one" value="true" />
@@ -204,7 +233,7 @@
             <option name="tu_barrier_feedback_loops" value="true" />
         </application>
 
-        <!-- 3b. Little Nightmares Series (Unreal Engine 4 & 5 Bloom and Volumetric Light Fix) -->
+        <!-- 5. Little Nightmares Series (Unreal Engine 4 and 5 Bloom and Volumetric Light Fix) -->
         <application name="Little Nightmares Series" application_name_match=".*(01002FC00412C000|010097100EDD6000|010066101A55A000|Little Nightmares).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_force_d32_unnormalized" value="false" />
@@ -221,7 +250,7 @@
             <option name="tu_barrier_feedback_loops" value="true" />
         </application>
 
-        <!-- 4. Streets of Rage 4 and 2D Sprite Masterworks -->
+        <!-- 6. Streets of Rage 4 and 2D Sprite Masterworks -->
         <application name="Streets of Rage 4" application_name_match=".*(010085800E33E000|0100BA700E340000|010085800E33E800|0100EC9010258000|0100AC300919A000|0100C60010228000|Streets of Rage 4).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_auto_mipmap_generation" value="false" />
@@ -234,7 +263,7 @@
             <option name="tu_barrier_feedback_loops" value="true" />
         </application>
 
-        <!-- 5. Hogwarts Legacy -->
+        <!-- 7. Hogwarts Legacy -->
         <application name="Hogwarts Legacy" application_name_match=".*(0100BCB0176D0000|0100B5B0112F8000|0100D1801648E000|Hogwarts Legacy).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_disable_fast_clears" value="true" />
@@ -243,9 +272,10 @@
             <option name="tu_subpass_fusion" value="false" />
             <option name="tu_subpass_fusion_v2" value="false" />
             <option name="tu_ir3_texture_prefetch" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
         </application>
 
-        <!-- 6. Persona 5 Royal (Qualcomm sampler fix) -->
+        <!-- 8. Persona 5 Royal (Qualcomm Sampler and Float Fix) -->
         <application name="Persona 5 Royal" application_name_match=".*(010053201F9B4000|Persona 5 Royal).*">
             <option name="tu_sampler_precision_fix" value="true" />
             <option name="tu_float_controls_strict" value="true" />
@@ -255,7 +285,7 @@
             <option name="tu_subpass_fusion_v2" value="false" />
         </application>
 
-        <!-- 7. Mario Kart 8 Deluxe -->
+        <!-- 9. Mario Kart 8 Deluxe -->
         <application name="Mario Kart 8 Deluxe" application_name_match=".*(0100152000022000|Mario Kart 8).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_astc_hdr_gmem" value="true" />
@@ -263,7 +293,7 @@
             <option name="tu_depth_direction_fix" value="true" />
         </application>
 
-        <!-- 8. Pokémon Legends: Arceus / Scarlet / Violet -->
+        <!-- 10. Pokemon Open World (Arceus, Scarlet, Violet) -->
         <application name="Pokemon Open World" application_name_match=".*(01001F5010DFA000|0100A3D008C5C000|0100187003A36000|Pokemon|Pokémon).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_disable_fast_clears" value="true" />
@@ -271,61 +301,18 @@
             <option name="tu_depth_direction_fix" value="true" />
         </application>
 
-        <!-- 9. Batman: Arkham Knight -->
-        <application name="Batman: Arkham Knight" application_name_match=".*(010063B017DAE000|01007820195A6000|Batman.*Arkham).*">
+        <!-- 11. Red Dead Redemption -->
+        <application name="Red Dead Redemption" application_name_match=".*(01007820195A6000|0100B7001A848000|Red Dead).*">
             <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_depth_bias_control_all_adreno" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
             <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_barrier_feedback_loops" value="true" />
             <option name="tu_subpass_fusion" value="false" />
             <option name="tu_subpass_fusion_v2" value="false" />
         </application>
 
-        <!-- 10. The Witcher 3: Wild Hunt -->
-        <application name="The Witcher 3: Wild Hunt" application_name_match=".*(01003D100E9C6000|0100E67012924000|Witcher 3).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 11. No Man's Sky -->
-        <application name="No Man's Sky" application_name_match=".*(0100D6F015F70000|No Man.*Sky).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 12. Grand Theft Auto V (Homebrew Port) -->
-        <application name="Grand Theft Auto V" application_name_match=".*(0100B00B51230000|0100000000000055|GTA.*V|Grand Theft Auto).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_ir3_texture_prefetch" value="false" />
-        </application>
-
-        <!-- 13. DOOM Eternal -->
-        <application name="DOOM Eternal" application_name_match=".*(0100BB600DC30000|DOOM.*Eternal).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-        </application>
-
-        <!-- 14. Xenoblade Chronicles 3 -->
-        <application name="Xenoblade Chronicles 3" application_name_match=".*(010074F013262000|Xenoblade.*3).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-        </application>
-
-        <!-- 15. Mortal Kombat 1 and Batman Arkham Series -->
+        <!-- 12. Mortal Kombat 1 and Batman Arkham Series -->
         <application name="Mortal Kombat 1 and Batman Arkham" application_name_match=".*(01006560184E6000|0100D2800D5C2000|010063B017DAE000|010023A017E94000|01003AE017DB0000|01001D4017DA8000|Mortal Kombat 1|Batman).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
@@ -344,7 +331,7 @@
             <option name="tu_subpass_fusion_v2" value="false" />
         </application>
 
-        <!-- 16. Mortal Kombat 11 -->
+        <!-- 13. Mortal Kombat 11 -->
         <application name="Mortal Kombat 11" application_name_match=".*(0100F2200C984000|0100B1100C4D0000|0100B1100C4D0800|Mortal Kombat 11).*">
             <option name="tu_tile_discard" value="false" />
             <option name="tu_indirect_ubo_bounds" value="true" />
@@ -362,24 +349,92 @@
             <option name="tu_huge_heap_8gb_align" value="true" />
         </application>
 
-        <!-- 17. The Legend of Zelda: Echoes of Wisdom -->
-        <application name="The Legend of Zelda: Echoes of Wisdom" application_name_match=".*(01008CF01BAAC000|01008CF01BAAD000|Echoes of Wisdom).*">
+        <!-- 14. Metroid Prime Remastered -->
+        <application name="Metroid Prime Remastered" application_name_match=".*(0100121014688000|Metroid Prime).*">
             <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_disable_lrz" value="true" />
-            <option name="tu_lrz_fast_clear" value="false" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
-            <option name="tu_drop_tile_wfi" value="false" />
-            <option name="tu_optimal_gmem_tile_allocator" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
             <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_ping_pong_command_submission" value="false" />
             <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
             <option name="tu_subpass_fusion" value="false" />
             <option name="tu_subpass_fusion_v2" value="false" />
         </application>
 
-        <!-- 18. Assassin's Creed Series (The Rebel Collection, The Ezio Collection, AC III) -->
+        <!-- 15. Bayonetta 3 -->
+        <application name="Bayonetta 3" application_name_match=".*(01004A4010FE4000|Bayonetta 3).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+        </application>
+
+        <!-- 16. Xenoblade Chronicles Series (1, 2, 3) -->
+        <application name="Xenoblade Chronicles Series" application_name_match=".*(010074F013262000|0100E95004038000|0100F3400332C000|Xenoblade).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_gmem_pinning_zelda" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+        </application>
+
+        <!-- 17. Batman: Arkham Knight -->
+        <application name="Batman: Arkham Knight" application_name_match=".*(010063B017DAE000|01007820195A6000|Batman.*Arkham).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+        </application>
+
+        <!-- 18. The Witcher 3: Wild Hunt (REDengine 3) -->
+        <application name="The Witcher 3: Wild Hunt" application_name_match=".*(01003D100E9C6000|0100E67012924000|Witcher 3).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_gmem_pinning_zelda" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+        </application>
+
+        <!-- 19. No Man's Sky -->
+        <application name="No Man's Sky" application_name_match=".*(0100D6F015F70000|No Man.*Sky).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_gmem_pinning_zelda" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+        </application>
+
+        <!-- 20. Grand Theft Auto V (Homebrew Port) -->
+        <application name="Grand Theft Auto V" application_name_match=".*(0100B00B51230000|0100000000000055|GTA.*V|Grand Theft Auto).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_disable_fast_clears" value="true" />
+            <option name="tu_gmem_pinning_zelda" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_ir3_texture_prefetch" value="false" />
+        </application>
+
+        <!-- 21. DOOM Eternal (idTech 7) -->
+        <application name="DOOM Eternal" application_name_match=".*(0100B9F010DC4000|0100BB600DC30000|DOOM.*Eternal).*">
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_disable_lrz" value="true" />
+            <option name="tu_optimal_gmem_tile_allocator" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_fast_astc_decompress_gmem" value="true" />
+        </application>
+
+        <!-- 22. Assassin's Creed Series (The Rebel Collection, The Ezio Collection, AC III) -->
         <application name="Assassin's Creed Series" application_name_match=".*(010044700DEB0000|010044700DC30000|010044700DEB0001|0100670014482000|01007F600B134000|Assassin.*).*">
             <option name="tu_force_d32_unnormalized" value="false" />
             <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
@@ -391,17 +446,7 @@
             <option name="tu_barrier_feedback_loops" value="true" />
         </application>
 
-        <!-- 19. DOOM Eternal (idTech 7) -->
-        <application name="DOOM Eternal" application_name_match=".*(0100B9F010DC4000|0100BB600DC30000|DOOM Eternal).*">
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_disable_lrz" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 20. Alan Wake Remastered -->
+        <!-- 23. Alan Wake Remastered -->
         <application name="Alan Wake Remastered" application_name_match=".*(0100236015B7A000|Alan Wake).*">
             <option name="tu_barrier_feedback_loops" value="true" />
             <option name="tu_depth_clamp_control_fix" value="true" />
@@ -409,7 +454,7 @@
             <option name="tu_indirect_ubo_bounds" value="true" />
         </application>
 
-        <!-- 21. Donkey Kong Country: Tropical Freeze -->
+        <!-- 24. Donkey Kong Country: Tropical Freeze -->
         <application name="Donkey Kong Country: Tropical Freeze" application_name_match=".*(010077200889E000|0100C1F0051B2000|Donkey Kong).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_drop_tile_wfi" value="true" />
@@ -417,7 +462,7 @@
             <option name="tu_adaptive_frame_pacing" value="true" />
         </application>
 
-        <!-- 22. Metroid Dread -->
+        <!-- 25. Metroid Dread -->
         <application name="Metroid Dread" application_name_match=".*(01005AF00BA7A000|010093801237C000|Metroid Dread).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_drop_tile_wfi" value="true" />
@@ -425,16 +470,7 @@
             <option name="tu_adaptive_frame_pacing" value="true" />
         </application>
 
-        <!-- 23. The Witcher 3: Wild Hunt (REDengine 3) -->
-        <application name="The Witcher 3: Wild Hunt" application_name_match=".*(0100E67012924000|01003D100E9C6000|Witcher 3).*">
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-        </application>
-
-        <!-- 24. Dispatch -->
+        <!-- 26. Dispatch -->
         <application name="Dispatch" application_name_match=".*(01008BA02525A000|Dispatch).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_drop_tile_wfi" value="true" />
@@ -456,7 +492,7 @@
             <option name="tu_virtual_buffer_page_table" value="false" />
         </application>
 
-        <!-- 25. Dave the Diver -->
+        <!-- 27. Dave the Diver -->
         <application name="Dave the Diver" application_name_match=".*(0100DDF01A03A000|Dave the Diver).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_drop_tile_wfi" value="true" />
@@ -465,13 +501,90 @@
             <option name="tu_subpass_fusion_v2" value="false" />
         </application>
 
-        <!-- 26. Brotato -->
+        <!-- 28. Brotato -->
         <application name="Brotato" application_name_match=".*(010077001A8D4000|Brotato).*">
             <option name="tu_tile_discard" value="true" />
             <option name="tu_drop_tile_wfi" value="true" />
             <option name="tu_optimal_gmem_tile_allocator" value="true" />
             <option name="tu_subpass_fusion" value="false" />
             <option name="tu_subpass_fusion_v2" value="false" />
+        </application>
+
+        <!-- 29. Winlator, Mobox, Box64, FEX and Wine PC Translation Layers -->
+        <application name="Winlator and Wine PC Translation" application_name_match=".*(wine|winlator|box64|box86|mobox|fex|hangover|dxvk|vkd3d|d8vk|zink|wined3d).*">
+            <option name="tu_adaptive_frame_pacing" value="true" />
+            <option name="tu_timeline_sync" value="true" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_compute_flush_bits_optimize" value="true" />
+            <option name="tu_bindless_textures" value="true" />
+            <option name="tu_clear_with_gmem" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+            <option name="tu_huge_heap_8gb_align" value="true" />
+            <option name="vk_dont_care_as_load" value="true" />
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+        </application>
+
+        <!-- 30. AetherSX2 and NetherSX2 (Sony PlayStation 2) -->
+        <application name="AetherSX2 and NetherSX2 (PS2)" application_name_match=".*(aethersx2|nethersx2|pcsx2).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_barrier_feedback_loops" value="true" />
+            <option name="tu_depth_clamp_control_fix" value="true" />
+        </application>
+
+        <!-- 31. Citra, Lime3DS, Mandarine and Azahar (Nintendo 3DS) -->
+        <application name="Citra, Lime3DS and Mandarine (3DS)" application_name_match=".*(citra|lime3ds|mandarine|azahar).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_depth_direction_fix" value="true" />
+        </application>
+
+        <!-- 32. Vita3K (Sony PlayStation Vita) -->
+        <application name="Vita3K (PS Vita)" application_name_match=".*(vita3k).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+            <option name="tu_force_d32_unnormalized" value="true" />
+            <option name="tu_depth_bounds" value="true" />
+            <option name="tu_depth_bounds_test" value="true" />
+        </application>
+
+        <!-- 33. Dolphin (Nintendo GameCube and Wii) -->
+        <application name="Dolphin (GameCube and Wii)" application_name_match=".*(dolphin).*">
+            <option name="tu_tile_discard" value="false" />
+            <option name="tu_indirect_ubo_bounds" value="true" />
+            <option name="tu_depth_direction_fix" value="true" />
+            <option name="tu_subpass_fusion" value="false" />
+            <option name="tu_subpass_fusion_v2" value="false" />
+        </application>
+
+        <!-- 34. PPSSPP (Sony PlayStation Portable) -->
+        <application name="PPSSPP (PSP)" application_name_match=".*(ppsspp).*">
+            <option name="tu_tile_discard" value="true" />
+            <option name="tu_optimal_gmem_tile_allocator" value="true" />
+            <option name="tu_drop_tile_wfi" value="true" />
+        </application>
+
+        <!-- 35. DuckStation and SwanStation (Sony PlayStation 1) -->
+        <application name="DuckStation and SwanStation (PS1)" application_name_match=".*(duckstation|swanstation).*">
+            <option name="tu_tile_discard" value="true" />
+            <option name="tu_drop_tile_wfi" value="true" />
+            <option name="tu_optimal_gmem_tile_allocator" value="true" />
+        </application>
+
+        <!-- 36. MelonDS and DraStic (Nintendo DS) -->
+        <application name="MelonDS and DraStic (NDS)" application_name_match=".*(melonds|drastic).*">
+            <option name="tu_tile_discard" value="true" />
+            <option name="tu_drop_tile_wfi" value="true" />
+            <option name="tu_optimal_gmem_tile_allocator" value="true" />
         </application>
     </device>
     

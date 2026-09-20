@@ -23,13 +23,19 @@
 ---
 
 ## **Ключевые особенности и оптимизации**
-- **STORM DRIVER 4.0.4 — Монолитная стабильность GMEM и универсальная совместимость**: монолитная архитектурная стабилизация конвейера тайлинга Turnip GMEM, обеспечивающая идеальную и стабильную работу игры Dispatch (устранение любых мерцаний кнопок и полное восстановление рендеринга баннеров и контента DLC), эталонная совместимость с Adreno 6xx/7xx/8xx, ускоренный конвейер компиляции шейдеров NIR/IR3 и компрессия кэша Zstandard.
+- **STORM DRIVER 5.1.0 — Универсальная мультиплатформенная стабильность и устранение графических артефактов**: флагманский выпуск с синтезом передовых наработок Mesa 26.3.0-devel, Balemuni Apex V2, Kimchi v840 / v26.0.0, Crueter GameHub 842.8 и Whitebelyash Turnip V2. Полная взаимная совместимость и разграничение параметров для Qualcomm Adreno 8xx (Snapdragon 8 Elite / Adreno 830), Adreno 7xx, Adreno 6xx и ARM Mali / Immortalis.
+- **Точечные исправления графики в играх**:
+  - **Diablo II: Resurrected**: ликвидация мерцания и исчезновения спрайтов персонажей и заклинаний (`tu_tile_discard = false`), исправление черных букв и иконок интерфейса (`tu_a8_unorm_swizzle_one`, `tu_r8_unorm_swizzle_alpha`), устранение Z-fighting на полу.
+  - **The Legend of Zelda: Breath of the Wild**: устранение мутной/темной воды (`tu_botw_depth_refract_fix = true`), исправление геометрии святилищ (`tu_botw_shrine_geometry_fix = true`), закрепление страниц GMEM и фиксация направления глубины.
+  - **The Legend of Zelda: Tears of the Kingdom**: ликвидация черных квадратов и артефактов земли (отключение `tu_disable_lrz` и `tu_disable_fast_clears`), исправление шума миазмов и мерцания травы.
+  - **The Legend of Zelda: Echoes of Wisdom**: калибровка эффекта наклона-сдвига (tilt-shift DoF) и прозрачности воды.
+  - **Little Nightmares Series**: исправление объемного освещения, лучей фонаря и блума на Unreal Engine 4/5.
+  - **Red Dead Redemption**, **Metroid Prime Remastered**, **Bayonetta 3**, **Hogwarts Legacy**, **Persona 5 Royal**, **Xenoblade Chronicles**.
 - **Глубокая оптимизация Adreno 830 (Snapdragon 8 Elite)**: калибровка регистрового файла (`reg_size_vec4 = 96`), выравнивание шага питча UBWC 5.0, оптимизация сброса регистров в память (`tu_a830_dual_register_spill_opt`), когерентность срезов кэша L2 (`tu_a830_l2_cache_slice_coherency`), аппаратная тесселяция (`tu_a830_tess_eval_fastpath`) и аппаратное сжатие глубины/трафарета UBWC 5.0 без потерь.
 - **Улучшения для Adreno 7xx и 6xx**: оптимизированный быстрый Z-Cull LRZ (`tu_a7xx_lrz_fast_cull`), распределение разделяемых регистров (`tu_a7xx_shared_reg_alloc`), консервативный LRZ для Adreno 6xx против мерцания геометрии и защита кэша текстур ASTC.
 - **Ускорение компиляции и загрузки шейдеров**: многопоточный быстрый конвейер NIR/IR3 (`tu_shader_compilation_fastpath`), сжатие дискового кэша Zstandard (`tu_ir3_disk_cache_compression_zstd`), предзагрузка хэшей конвейеров (`tu_pipeline_cache_preload`), оптимизация алгебраических инструкций NIR и прогрев конвейеров для устранения стартовых микрофризов.
 - **Устранение графических артефактов**: строгая растеризация линий (`tu_line_rasterization_strict`), высокоточный Depth Clamp против мерцания теней и силуэтов, стабилизация охвата мультисемплинга (MSAA/Alpha-to-Coverage) и точный расчет шага атрибутов вершин.
 - **Глобальные расширения глубины**: поддержка `VK_EXT_depth_bias_control` и `VK_EXT_depth_range_unrestricted` для всех поколений Adreno, ликвидирующая мерцание теней и Z-fighting.
-- **Комплекс оптимизаций для Zelda BOTW / TOTK**: устранение непрозрачной/темной воды, исправление глубины святилищ (Shrines) и оптимизация `tu_depth_direction_fix`.
 - **Samsung OneUI UBWC 5.0 Buffer Patch**: устранение графических искажений в системном кадровом буфере OneUI на смартфонах серии Galaxy S24 / S25.
 - **Compute Flush Bits Optimization**: минимизация циклов синхронизации конвейера в `tu_dispatch`, обеспечивающая прирост FPS в играх на движках Unreal Engine 4/5 и Unity.
 - **Binary-Search GMEM Tile Allocator**: динамический подбор конфигурации тайлов GMEM, предотвращающий перегрев и промахи миграции памяти.
@@ -38,7 +44,7 @@
 - **Zero-Copy Swapchain WSI и 4GB LZ4 Shader Cache**: прямая передача кадров в SurfaceFlinger и увеличенный до 4 ГБ монолитный дисковый кэш шейдеров.
 - **Qualcomm Sampler Precision и Float Controls**: точная коррекция семплирования текстур и float-вычислений для Persona 5 Royal, устранение чёрного экрана и артефактов на Adreno.
 - **Sparse Buffer Pages и Virtual Buffer Page Table**: оптимизация работы с разреженными буферами для тяжёлых AAA-тайтлов.
-- **18 выделенных игровых профилей**: индивидуальная настройка движка рендеринга для Zelda BotW/TotK/Echoes of Wisdom, Mortal Kombat 1, Mortal Kombat 11, Hogwarts Legacy, Persona 5 Royal, Mario Kart 8 Deluxe, Pokémon, Batman, Witcher 3, No Man's Sky, GTA V, DOOM Eternal, Xenoblade Chronicles 3, Diablo II, Streets of Rage 4 и Assassin's Creed: The Rebel Collection.
+- **36 выделенных игровых и эмуляторных профилей**: индивидуальная настройка движка рендеринга для всех поколений Switch-тайтлов, PC-трансляции (Winlator, Mobox, Box64) и мобильных эмуляторов (AetherSX2, Citra, Vita3K, Dolphin, PPSSPP, DuckStation, MelonDS).
 
 ---
 
