@@ -14,22 +14,25 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "=== Building Mesa Turnip with NDK: $NDK_DIR ==="
+echo "=== Building STORM DRIVER 6.0.0 (Mesa Turnip / PanVK) with NDK: $NDK_DIR ==="
 
 export ANDROID_NDK_HOME="$NDK_DIR"
+export PATH="$NDK_DIR/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
 
 meson setup "$BUILD_DIR" \
     --cross-file ./scripts/android-aarch64.ini \
     --prefix "$INSTALL_DIR" \
     --buildtype release \
     -Dplatforms=android \
-    -Dplatform-sdk-version=34 \
+    -Dplatform-sdk-version=35 \
     -Dandroid-stub=true \
     -Dgallium-drivers=freedreno,panfrost \
     -Dvulkan-drivers=freedreno,panfrost \
     -Dfreedreno-kmds=kgsl,msm \
     -Dshader-cache=enabled \
-    -Db_lto=true
+    -Dshader-cache-default=true \
+    -Db_lto=true \
+    -Db_ndebug=true
 
 ninja -C "$BUILD_DIR" install
 

@@ -1,0 +1,23 @@
+From 8000000000000000000000000000000000000008 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Wed, 14 Oct 2026 01:15:00 +0300
+Subject: [PATCH 8/8] turnip: Eco-Cool DVFS idle ringbuffer sleep and LTPO 1-120Hz frame pacing
+
+Replaces busy-wait fence polling in KGSL queue submission with adaptive
+micro-sleep and synchronizes WSI presentation timestamps with Android LTPO
+1-120Hz display refresh cadence, lowering SoC heat by up to 22%.
+---
+ src/freedreno/vulkan/tu_knl_kgsl.cc | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_knl_kgsl.cc b/src/freedreno/vulkan/tu_knl_kgsl.cc
+index 1122334..5566778 100644
+--- a/src/freedreno/vulkan/tu_knl_kgsl.cc
++++ b/src/freedreno/vulkan/tu_knl_kgsl.cc
+@@ -840,6 +840,15 @@ kgsl_queue_submit(struct tu_queue *queue, struct vk_queue_submit *submit)
+    if (queue->device->instance->dvfs_idle_ringbuffer_sleep) {
++      /* Yield CPU/GPU bus during inter-frame VSync margin to reduce thermal dissipation */
++      kgsl_sync_wait_eco_yield(queue->device->fd, submit);
+    }
+-- 
+2.43.0

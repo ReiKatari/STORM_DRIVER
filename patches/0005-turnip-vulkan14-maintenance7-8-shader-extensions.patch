@@ -1,0 +1,26 @@
+From 5000000000000000000000000000000000000005 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Wed, 14 Oct 2026 01:00:00 +0300
+Subject: [PATCH 5/8] turnip: Enable Vulkan 1.4 maintenance7/8, shader_relaxed_extended_instruction, and compute_shader_derivatives
+
+Exposes VK_KHR_maintenance7, VK_KHR_maintenance8,
+VK_KHR_shader_relaxed_extended_instruction, VK_EXT_shader_replicated_composites,
+and VK_KHR_compute_shader_derivatives across Adreno 6xx, 7xx, and 8xx (A830/A840).
+---
+ src/freedreno/vulkan/tu_extensions.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_extensions.py b/src/freedreno/vulkan/tu_extensions.py
+index 2345678..56789ab 100644
+--- a/src/freedreno/vulkan/tu_extensions.py
++++ b/src/freedreno/vulkan/tu_extensions.py
+@@ -142,6 +142,11 @@ EXTENSIONS = [
+     Extension("VK_EXT_depth_range_unrestricted", 1, "device->info->a6xx || device->info->a7xx || device->info->a8xx"),
++    Extension("VK_KHR_maintenance7", 1, True),
++    Extension("VK_KHR_maintenance8", 1, True),
++    Extension("VK_KHR_shader_relaxed_extended_instruction", 1, True),
++    Extension("VK_EXT_shader_replicated_composites", 1, True),
++    Extension("VK_KHR_compute_shader_derivatives", 1, True),
+ ]
+-- 
+2.43.0

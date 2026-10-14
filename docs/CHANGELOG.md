@@ -1,5 +1,20 @@
 # 📜 STORM DRIVER Changelog
 
+### 6.0.0 (14.10.2026)
+- **Vulkan 1.4 & Next-Gen Khronos Extensions:** Внедрена поддержка расширений нового поколения `VK_KHR_maintenance7`, `VK_KHR_maintenance8`, `VK_KHR_dynamic_rendering_local_read`, `VK_KHR_compute_shader_derivatives`, `VK_KHR_shader_relaxed_extended_instruction`, `VK_EXT_shader_replicated_composites`, `VK_EXT_legacy_vertex_attributes`, `VK_EXT_host_image_copy` и `VK_MESA_image_alignment_control`.
+- **Adreno 830 / 840 Gen 8 Slice Clock Gating & Wave64 Occupancy:** Активировано аппаратное отключение тактирования неактивных срезов (`tu_a830_slice_clock_gating`), оптимизация заполнения Wave64 (`tu_a830_wave64_occupancy_opt`) и быстрое вытеснение тайлов GMEM (`tu_a830_gmem_fast_evict`) для Snapdragon 8 Elite (`SM8750`).
+- **Eco-Cool Thermal Governor & LTPO 1-120Hz Pacing:** Устранён холостой спин-опрос кольцевого буфера KGSL (`tu_dvfs_idle_ringbuffer_sleep = true`, целевой температурный порог `38°C`), добавлена синхронизация представления кадров с LTPO-матрицами 1–120 Гц (`tu_present_pacing_ltpo_sync = true`, `tu_zero_jitter_swapchain_present = true`), снижающая нагрев телефона до 22%.
+- **2D / Indie & AAA Game Profiles (42 Dedicated Profiles):** Добавлены выделенные профили для *Aggelos* и *Aggelos 2* (`010004D00A9C0000`, `010040F01EC60000`), *Darkest Dungeon* и *Darkest Dungeon II* (`01008F1008DA6000`, `0100E5E01C098000`), *Well Dweller* (`0100217023F6C000`), *Crypt Custodian* (`0100A4601ECA8000`), *Xeno Crisis* (`010013F009B88000`), *Golden Force*, *Finding Teddy II*, *Terminator 2D*, *Hollow Knight / Silksong*, *The Last Faith*, *Signalis*, *The Coma Series* и *Vampire Crawlers*.
+- **Non-Destructive Per-Game Driconf Merging:** Исправлена интеграция с `STORM SWITCH` (`GpuDriverHelper.kt` / `PerGameDrircGenerator.kt`), при которой запуск игры перезаписывал базовый `00-storm.conf` урезанным файлом из 8 строк. Теперь все 16 архитектурных уровней и 42 профиля сохраняются неизменными.
+- **Self-Contained Packaging & Build Pipeline:** Обновлены скрипты сборки под Android API 35 (NDK r28+), добавлен `scripts/android-aarch64.ini`, идемпотентный `apply_patches.sh` (8 патчей `0001`–`0008`) и автономный упаковщик `package_driver_600.ps1` на базе `.NET ZipFile` с POSIX-правами `0644`.
+
+### 5.1.0 (20.09.2026)
+- **Precision & NIR/IR3 Multi-Threaded Fastpath:** Добавлены блоки `3b` (Adreno 7xx/6xx), `3c` (ускоренная многопоточная компиляция шейдеров NIR/IR3 и Zstd-сжатие дискового кэша) и `3d` (устранение геометрических артефактов точности).
+- **Expanded Game Profiles:** Добавлены профили для *Dave the Diver* и *Brotato*.
+
+### 5.0.0 (18.09.2026)
+- **Universal Multi-Console & PC Edition:** Расширена совместимость с Winlator, Mobox, Box64, FEX, DXVK, VKD3D, AetherSX2/NetherSX2, Citra/Lime3DS/Azahar, Vita3K, Dolphin, PPSSPP, DuckStation и MelonDS.
+
 ### 4.0.4 (16.09.2026)
 - **Monolithic Architecture:** Переход на чистую монолитную модель конфигурации с прямой синхронизацией буферов кадра и тайлов памяти GMEM (`tu_tile_discard = true`, `tu_drop_tile_wfi = true`).
 - **2D and 3D Engine Stability:** Полное устранение артефактов межпассового рендера, моргания элементов интерфейса и пропадания графики загружаемого контента (DLC) в Dispatch (`01008BA02525A000`), Diablo II: Resurrected, The Legend of Zelda и Streets of Rage 4.

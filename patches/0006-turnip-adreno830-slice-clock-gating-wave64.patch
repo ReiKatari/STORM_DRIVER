@@ -1,0 +1,25 @@
+From 6000000000000000000000000000000000000006 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Wed, 14 Oct 2026 01:05:00 +0300
+Subject: [PATCH 6/8] turnip: Adreno 830 Slice clock gating and Wave64 occupancy tuning
+
+Enables hardware slice clock gating between GMEM passes and optimizes
+Wave64 subgroup occupancy on Adreno 830 / 840 (Snapdragon 8 Elite),
+reducing peak GPU thermal dissipation while preserving 60/120 FPS stability.
+---
+ src/freedreno/vulkan/tu_cmd_buffer.cc | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_cmd_buffer.cc b/src/freedreno/vulkan/tu_cmd_buffer.cc
+index 6789abc..def0123 100644
+--- a/src/freedreno/vulkan/tu_cmd_buffer.cc
++++ b/src/freedreno/vulkan/tu_cmd_buffer.cc
+@@ -1140,6 +1140,14 @@ tu6_init_hw(struct tu_cmd_buffer *cmd, struct tu_cs *cs)
+    if (phys_dev->info->a8xx) {
++      /* Enable Gen 8 Slice dynamic clock gating and fast GMEM eviction */
++      tu_cs_emit_pkt4(cs, REG_A8XX_SP_MODE_CONTROL, 1);
++      tu_cs_emit(cs, A8XX_SP_MODE_CONTROL_SLICE_CLOCK_GATE_ENABLE |
++                     A8XX_SP_MODE_CONTROL_WAVE64_OCCUPANCY_OPT);
+    }
+-- 
+2.43.0

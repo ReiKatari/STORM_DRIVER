@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "name": "STORM DRIVER 5.1.0",
-  "description": "Snapdragon 8 Elite / Adreno 830, 7xx, 6xx • Mali Immortalis • Universal Multi-Console and PC Emulation",
+  "name": "STORM DRIVER 6.0.0",
+  "description": "Snapdragon 8 Elite / Adreno 830, 7xx, 6xx • Mali Immortalis • Vulkan 1.4 Next-Gen • Ultra-Low Thermal & 120Hz LTPO Smoothness",
   "author": "STORM SOFT and Mesa Community",
-  "packageVersion": "5.1.0-universal",
+  "packageVersion": "6.0.0-universal",
   "vendor": "Mesa / STORM SOFT",
-  "driverVersion": "26.3.0-devel-kgsl-storm-5.1.0",
+  "driverVersion": "26.4.0-devel-kgsl-storm-6.0.0",
   "minApi": 24,
   "libraryName": "vulkan.freedreno.so"
 }
