@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "STORM DRIVER 6.0.0",
-  "description": "Snapdragon 8 Elite / Adreno 830, 7xx, 6xx • Mali Immortalis • Vulkan 1.4 Next-Gen • Ultra-Low Thermal & 120Hz LTPO Smoothness",
+  "name": "STORM DRIVER 7.0.0",
+  "description": "Snapdragon 8 Elite Gen 5 (SM8850 / Adreno 840 Oryon v2) & 8 Elite (Adreno 830), Adreno 7xx (A710/A720/A722/A730–A750), Adreno 6xx • Mali Immortalis • D2R Font Atlas & FPS Fix • Xenoblade Chronicles X DE Anti-Crash • 180s BO-Cache Anti-Leak for 1h+ Sessions",
+  "version": "7.0.0",
   "author": "STORM SOFT and Mesa Community",
-  "packageVersion": "6.0.0-universal",
+  "packageVersion": "7.0.0",
   "vendor": "Mesa / STORM SOFT",
-  "driverVersion": "26.4.0-devel-kgsl-storm-6.0.0",
+  "driverVersion": "26.2.0-devel",
   "minApi": 24,
   "libraryName": "vulkan.freedreno.so"
 }

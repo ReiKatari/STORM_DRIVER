@@ -4,7 +4,7 @@ set -euo pipefail
 MESA_DIR="${1:-../mesa}"
 PATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../patches" && pwd)"
 
-echo "=== Applying STORM DRIVER 6.0.0 patches to Mesa ($MESA_DIR) ==="
+echo "=== Applying STORM DRIVER 7.0.0 patches to Mesa ($MESA_DIR) ==="
 
 if [ ! -d "$MESA_DIR" ]; then
     echo "Error: Mesa directory '$MESA_DIR' not found!"
@@ -25,4 +25,4 @@ for patch in "$PATCH_DIR"/*.patch; do
     fi
 done
 
-echo "=== All STORM DRIVER 6.0.0 patches processed! ==="
+echo "=== All STORM DRIVER 7.0.0 patches processed! ==="

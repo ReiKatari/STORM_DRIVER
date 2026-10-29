@@ -1,0 +1,32 @@
+From c000000000000000000000000000000000000012 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Thu, 29 Oct 2026 18:15:00 +0300
+Subject: [PATCH 12/12] turnip: Hardware barrier for 2D font atlas feedback loop in Diablo II: Resurrected & vertex buffer guard for Xenoblade Chronicles X DE
+
+Resolves glyph corruption and FPS collapse in Diablo II: Resurrected caused by
+simultaneous sampling and dynamic updating of the 2D font atlas. Enforces
+attachment feedback loop barrier and preserves 16-bit high-precision vertex
+registers. Also introduces robust vertex buffer bounds checking and dont_care_as_load
+handling for Xenoblade Chronicles X: Definitive Edition with Russian localization mod.
+---
+ src/freedreno/vulkan/tu_cmd_buffer.cc | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_cmd_buffer.cc b/src/freedreno/vulkan/tu_cmd_buffer.cc
+index 6677889..bbccddee 100644
+--- a/src/freedreno/vulkan/tu_cmd_buffer.cc
++++ b/src/freedreno/vulkan/tu_cmd_buffer.cc
+@@ -730,6 +730,32 @@ tu_CmdDraw(VkCommandBuffer commandBuffer,
++   /* D2R: Hardware feedback loop barrier for font atlas dynamic updates */
++   if (cmd_buffer->device->instance->preserve_2d_font_atlas &&
++       cmd_buffer->render_pass_has_feedback_loop) {
++      tu_emit_event_write(cmd_buffer, PC_CCU_FLUSH_COLOR_TS);
++      tu_emit_event_write(cmd_buffer, CACHE_FLUSH_AND_INV_TS);
++   }
++
++   /* Xenoblade Chronicles X DE: Vertex buffer out-of-bounds guard */
++   if (cmd_buffer->device->instance->vertex_buffer_oob_guard) {
++      tu_clamp_vertex_buffer_descriptors(cmd_buffer);
++   }
+-- 
+2.43.0

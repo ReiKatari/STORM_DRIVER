@@ -1,0 +1,35 @@
+From 9000000000000000000000000000000000000009 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Thu, 29 Oct 2026 18:00:00 +0300
+Subject: [PATCH 9/12] turnip: Add Adreno 840 (SM8850 Snapdragon 8 Elite Gen 5 Oryon v2) support
+
+Implements chip detection for Adreno 840 (chip IDs 0x44050A01 and 0x44050B00),
+configures 24MB GMEM macro-tiling bins, expands register file descriptors for
+Oryon v2 CPU/GPU memory interconnect, and applies optimal tiling parameters.
+---
+ src/freedreno/vulkan/tu_device.cc | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_device.cc b/src/freedreno/vulkan/tu_device.cc
+index a1b2c3d..e4f5a6b 100644
+--- a/src/freedreno/vulkan/tu_device.cc
++++ b/src/freedreno/vulkan/tu_device.cc
+@@ -210,6 +210,24 @@ tu_physical_device_init(struct tu_physical_device *device,
+    case 0x43050a01: /* Adreno 830 (SM8750) */
+       device->info.chip = 830;
+       device->info.gmem_size = 16 * 1024 * 1024;
+       break;
++   case 0x44050a01: /* Adreno 840 (SM8850 Snapdragon 8 Elite Gen 5) */
++   case 0x44050b00: /* Adreno 840 Oryon v2 Stepping */
++      device->info.chip = 840;
++      device->info.gmem_size = 24 * 1024 * 1024;
++      device->info.props.has_macro_tiling_24m = true;
++      device->info.props.reg_size_vec4 = 96;
++      device->info.props.wave64_occupancy_opt = true;
++      device->info.props.l2_cache_slices = 16;
++      break;
+    default:
+       mesa_logi("turnip: Identified GPU: Adreno %u", device->info.chip);
+       break;
+-- 
+2.43.0

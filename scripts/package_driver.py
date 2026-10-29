@@ -15,6 +15,7 @@ def package(source_dir, output_zip):
                 full_path = os.path.join(root, file)
                 rel_path = os.path.relpath(full_path, source_dir).replace('\\', '/')
                 zi = zipfile.ZipInfo(rel_path)
+                zi.compress_type = zipfile.ZIP_DEFLATED
                 zi.external_attr = 0o644 << 16
                 with open(full_path, 'rb') as f:
                     zf.writestr(zi, f.read())

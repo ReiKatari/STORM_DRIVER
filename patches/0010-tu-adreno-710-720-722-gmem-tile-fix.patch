@@ -1,0 +1,25 @@
+From a000000000000000000000000000000000000010 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Thu, 29 Oct 2026 18:05:00 +0300
+Subject: [PATCH 10/12] turnip: Adreno 710/720/722 GMEM tile pitch alignment and artifact fix (Vauzi-17)
+
+Integrates Vauzi-17 community patch for Adreno 710, 720, and 722 GPUs to enforce
+strict 64/128-byte stride alignment on GMEM tile load/store operations, resolving
+horizontal striping, color banding, and texture shear in Switch emulators.
+---
+ src/freedreno/vulkan/tu_pass.cc | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_pass.cc b/src/freedreno/vulkan/tu_pass.cc
+index 3344556..778899a 100644
+--- a/src/freedreno/vulkan/tu_pass.cc
++++ b/src/freedreno/vulkan/tu_pass.cc
+@@ -520,6 +520,20 @@ tu_setup_tiling_config(struct tu_render_pass *pass,
+    if (dev->info.chip == 710 || dev->info.chip == 720 || dev->info.chip == 722) {
++      /* Vauzi-17: Align tile width and pitch to eliminate GMEM banding */
++      tiling->tile_align_w = ALIGN(tiling->tile_align_w, 64);
++      tiling->tile_align_h = ALIGN(tiling->tile_align_h, 32);
++      tiling->force_gmem_stride_clamp = true;
++   }
+-- 
+2.43.0

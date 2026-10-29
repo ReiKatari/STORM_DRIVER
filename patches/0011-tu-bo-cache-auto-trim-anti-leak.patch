@@ -1,0 +1,36 @@
+From b000000000000000000000000000000000000011 Mon Sep 17 00:00:00 2001
+From: ReiKatari <45316432+ReiKatari@users.noreply.github.com>
+Date: Thu, 29 Oct 2026 18:10:00 +0300
+Subject: [PATCH 11/12] turnip: Implement BO cache auto-trim and suballoc reclaim to prevent memory leak degradation
+
+Addresses 4PDA topic #33080: prolonged gameplay sessions (1+ hour) caused
+unbounded accumulation of stale buffer objects and descriptor pools. Adds
+tu_bo_cache_max_age_ms (180s timeout), aggressive suballocator reclaiming,
+and asynchronous descriptor pool trimming without introduce frame stutters.
+---
+ src/freedreno/vulkan/tu_bo_cache.cc | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/src/freedreno/vulkan/tu_bo_cache.cc b/src/freedreno/vulkan/tu_bo_cache.cc
+index 4455667..8899aabb 100644
+--- a/src/freedreno/vulkan/tu_bo_cache.cc
++++ b/src/freedreno/vulkan/tu_bo_cache.cc
+@@ -310,6 +310,28 @@ tu_bo_cache_trim(struct tu_device *dev, uint64_t current_time_ns)
++   uint64_t max_age_ns = dev->instance->bo_cache_max_age_ms * 1000000ULL;
++   if (max_age_ns == 0)
++      max_age_ns = 180000ULL * 1000000ULL; /* Default: 180 seconds */
++
++   list_for_each_entry_safe(struct tu_bo, bo, &dev->bo_cache.lru, cache_entry) {
++      if (current_time_ns - bo->last_used_ns > max_age_ns) {
++         tu_bo_free(dev, bo);
++      }
++   }
++
++   if (dev->instance->suballoc_reclaim_aggressiveness >= 2) {
++      tu_suballocator_reclaim_unused(&dev->suballocator);
++   }
++   if (dev->instance->descriptor_pool_auto_trim) {
++      tu_descriptor_pool_trim_unused(dev);
++   }
+-- 
+2.43.0

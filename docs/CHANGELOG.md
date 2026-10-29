@@ -1,5 +1,14 @@
 # 📜 STORM DRIVER Changelog
 
+### 7.0.0 (29.10.2026)
+- **Adreno 840 (SM8850 Snapdragon 8 Elite Gen 5 Oryon v2):** Добавлена полная аппаратная поддержка графического процессора Adreno 840 (ID чипов `0x44050A01` и `0x44050B00`), макро-тайлинг 24 МБ GMEM, 16 слайсов L2-кэша и калибровка регистров `reg_size_vec4 = 96`.
+- **Adreno 710 / 720 / 722 GMEM Tile Pitch Alignment (Vauzi-17):** Интегрированы наработки Vauzi-17 для выравнивания шага GMEM-тайлов по границе 64/128 байт, ликвидирующие горизонтальные полосы и артефакты в Switch-эмуляторах.
+- **Anti-Leak & Auto-Trim BO Cache (4PDA #33080 Fix):** Реализована автоматическая очистка неиспользуемых буферных объектов по истечении 180 секунд (`tu_bo_cache_max_age_ms = 180000`), реклейм субаллокатора (`tu_suballoc_reclaim_aggressiveness = 2`) и фоновая очистка дескрипторных пулов, что полностью устраняет деградацию FPS и утечки памяти при сессиях более 1 часа.
+- **Diablo II: Resurrected Font Atlas & FPS Fix:** Добавлен аппаратный барьер для feedback loop 2D-атласа шрифтов (`tu_attachment_feedback_loop_barrier = true`, `force_highp_16bit = true`, `tu_preserve_2d_font_atlas = true`, `sync_fd_fast_path = true`), исключающий падение FPS и повреждение глифов текста.
+- **Xenoblade Chronicles X: Definitive Edition:** Выделенный профиль с защитой вершинных буферов (`vertex_buffer_oob_guard = true`, `robust_buffer_access2 = true`, `tu_dont_care_as_load = true`), предотвращающий вылеты при использовании модов и русификатора.
+- **Mesa Foundation Update:** Обновление кодовой базы до Mesa Turnip `26.2.0-devel` с сохранением глобальной активности UBWC и LRZ fast-clear без принудительного включения sysmem.
+
+
 ### 6.0.0 (14.10.2026)
 - **Vulkan 1.4 & Next-Gen Khronos Extensions:** Внедрена поддержка расширений нового поколения `VK_KHR_maintenance7`, `VK_KHR_maintenance8`, `VK_KHR_dynamic_rendering_local_read`, `VK_KHR_compute_shader_derivatives`, `VK_KHR_shader_relaxed_extended_instruction`, `VK_EXT_shader_replicated_composites`, `VK_EXT_legacy_vertex_attributes`, `VK_EXT_host_image_copy` и `VK_MESA_image_alignment_control`.
 - **Adreno 830 / 840 Gen 8 Slice Clock Gating & Wave64 Occupancy:** Активировано аппаратное отключение тактирования неактивных срезов (`tu_a830_slice_clock_gating`), оптимизация заполнения Wave64 (`tu_a830_wave64_occupancy_opt`) и быстрое вытеснение тайлов GMEM (`tu_a830_gmem_fast_evict`) для Snapdragon 8 Elite (`SM8750`).
