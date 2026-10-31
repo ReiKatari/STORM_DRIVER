@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "=== Building STORM DRIVER 7.0.0 (Mesa Turnip / PanVK) with NDK: $NDK_DIR ==="
+echo "=== Building STORM DRIVER 8.0.0 (Mesa Turnip / PanVK) with NDK: $NDK_DIR ==="
 
 export ANDROID_NDK_HOME="$NDK_DIR"
 export PATH="$NDK_DIR/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"

@@ -1,16 +1,31 @@
-# 🏗️ Архитектура и оптимизации STORM DRIVER 7.0.0
+# 🏗️ Архитектура и оптимизации STORM DRIVER 8.0.0
 
-## 1. Калибровка регистрового файла и Slice Clock Gating для Adreno 830 / 840 (Snapdragon 8 Elite)
-Графический процессор Adreno 830 использует новую архитектуру срезов (Slice Architecture). При компиляции комплексных шейдеров стандартное распределение вызывало панику планировщика IR3. STORM DRIVER 7.0.0 калибрует `reg_size_vec4` на значение **96**, включает аппаратное отключение тактирования неактивных срезов (`tu_a830_slice_clock_gating`) и оптимизацию заполнения подгрупп Wave64 (`tu_a830_wave64_occupancy_opt`), обеспечивая максимальную плотность инструкций без сброса регистров в системную память.
+## 1. Ликвидация гонок Concurrent Binning и восстановление целостности глифов (Glyph-Safe Baseline)
+В выпусках драйверов версий 6.0.0–7.0.0 глобальное включение параметра `tu_allow_concurrent_binning="true"` в секции `<application name="all">` приводило к опережению фазы биннинга относительно инкрементальных динамических обновлений 2D-атласа шрифтов (форматы R8 / BC4). В результате в играх с динамическими атласами (*Diablo II: Resurrected*, *Xenoblade Chronicles X DE* и др.) пропадали буквы интерфейса и диалогов.
+В **STORM DRIVER 8.0.0** полностью восстановлен проверенный безопасный базовый профиль:
+- В `<application name="all">` строго установлено `tu_allow_concurrent_binning="false"`.
+- Параметр `tu_allow_concurrent_binning="true"` изолирован **исключительно** в **Tier 5** (чистые трехмерные движки первой стороны: *Super Mario Odyssey*, *Mario Kart 8 Deluxe*, *Super Smash Bros. Ultimate*, *Metroid Prime Remastered* и др.), где отсутствует динамический 2D-атлас и требуется максимальная пропускная способность тайлинга.
 
-## 2. Аппаратное выравнивание UBWC 5.0 для Samsung OneUI 7
-Universal Bandwidth Compression (UBWC) 5.0 требует строгого выравнивания шага питча по границе 128 байт на внешних кадровых буферах WSI. Патч 0003 принудительно выравнивает питч по 128-байтовым блокам (`FD_UBWC_ALIGN_5_0`), полностью исключая полосы и искажения на дисплеях Samsung Galaxy S24 / S25 Ultra.
+## 2. Исключение фиктивных опций и переход на скомпилированные параметры Mesa Turnip
+Конфигурационные файлы прошлых ревизий содержали несуществующие параметры, которые игнорировались синтаксическим анализатором `xmlconfig.c`. В STORM DRIVER 8.0.0 используются исключительно реальные флаги `dri_option`, верифицированные в секции `.rodata` бинарного файла `vulkan.adreno.so`:
+- `tu_allow_concurrent_binning`, `disable_cb` (явный запрет конкурентного биннинга для 2D-атласов);
+- `tu_dont_care_as_load` (сохранение содержимого тайлов при `VK_ATTACHMENT_LOAD_OP_DONT_CARE`, исключающее затирание уже сгенерированных глифов);
+- `tu_use_tex_coord_round_nearest_even_mode` (субпиксельное округление текстурных координат для идеальной резкости шрифтов и UI);
+- `tu_override_uncached_as_cache_coherent`, `ubwc_coherency_quirk`;
+- `tu_allow_oob_indirect_ubo_loads`, `tu_enable_d24s8_border_color_workaround`, `dual_color_blend_by_location`;
+- `vk_x11_override_min_image_count`, `vk_wsi_force_bgra8_unorm_first`.
 
-## 3. Поддержка Vulkan 1.4 и новейших расширений Khronos
-В версии 7.0.0 активированы расширения `VK_KHR_maintenance7`, `VK_KHR_maintenance8`, `VK_KHR_dynamic_rendering_local_read`, `VK_KHR_compute_shader_derivatives`, `VK_KHR_shader_relaxed_extended_instruction`, `VK_EXT_shader_replicated_composites`, `VK_EXT_host_image_copy` и `VK_MESA_image_alignment_control`, позволяющие эмуляторам читать тайловые буферы GMEM напрямую без разрыва прохода рендеринга и загружать текстуры без простоев конвейера.
+## 3. Восьмиуровневая изолированная архитектура движков и жанров (Engine Architecture Tiers)
+Конфигурация драйвера разделена на 8 изолированных уровней, полностью исключающих кросс-контаминацию настроек:
+- **Tier 0 — Universal Safe Baseline (`all`)**: базовая стабильность, `tu_allow_concurrent_binning="false"`, `tu_allow_oob_indirect_ubo_loads="true"`, `ubwc_coherency_quirk="true"`.
+- **Tier 1 — Dynamic 2D Font Atlas & Isometric ARPGs**: аппаратная защита атласов шрифтов, отключение LRZ fast clear и принудительное сохранение тайлов для D2R, D3, Disco Elysium, Baldur's Gate, Divinity: Original Sin 2.
+- **Tier 2 — Nintendo LunchPack / KingSystem & Monolith Soft Open-World**: воркэраунд для D24S8 border color, отключение консервативного LRZ для Zelda BotW/TotK/EoW и всей серии Xenoblade Chronicles.
+- **Tier 3 — Unreal Engine 4 / 5 & HD-2D Deferred Renderers**: оптимизация субпиксельной выборки и барьеров глубины для SMT V, Hogwarts Legacy, Mortal Kombat 1/11, Octopath Traveler, Little Nightmares, Batman: Arkham.
+- **Tier 4 — RE Engine, PlatinumGames & High-Speed Action**: когерентность некэшируемой памяти и ликвидация микростаттеров в Monster Hunter Rise, Astral Chain, Bayonetta, NieR: Automata, Resident Evil.
+- **Tier 5 — Pure 3D First-Party High-Throughput Engines**: изолированный конкурентный биннинг (`tu_allow_concurrent_binning="true"`) для Super Mario Odyssey, Mario Kart 8, Smash Bros Ultimate, Metroid Prime/Dread, Pokemon Legends.
+- **Tier 6 — 2D, Indie, Unity & Vector/Sprite Precision**: субпиксельное округление и dual-color blend для спрайтов в Hollow Knight, Hades, Dead Cells, Cuphead, Celeste, Streets of Rage 4, Prince of Persia TLC, Brotato, Balatro.
+- **Tier 7 — Heavy AAA Open-World & Proprietary PC Ports**: аппаратная коррекция буферов глубины и кэширования для The Witcher 3, Red Dead Redemption, DOOM, Skyrim, No Man's Sky, Crysis, Persona 5 Royal.
+- **Tier 8 — Cross-Platform Emulators & PC Translation Layers**: оптимизация WSI и оверрайд минимального числа изображений X11 для Winlator, Wine/DXVK/VKD3D, Vita3K, AetherSX2, Citra/Lime3DS, Dolphin, PPSSPP.
 
-## 4. Eco-Cool DVFS и синхронизация с дисплеями LTPO 1–120 Гц
-Патч 0008 заменяет активный спин-опрос завершения команд в KGSL на адаптивное микро-ожидание (`tu_dvfs_idle_ringbuffer_sleep`) и синхронизирует вывод кадров с частотой обновления LTPO-панелей (`tu_present_pacing_ltpo_sync`), снижая тепловыделение SoC до 22%.
-
-## 5. Бинарный аллокатор тайлов GMEM и PanVK / Mali FPK v5
-Вместо статичной сетки тайлов STORM DRIVER использует бинарный поиск (`tu_optimal_gmem_tile_allocator`), подбирающий идеальные пропорции тайла для 100% размещения в локальной памяти GMEM чипа. Для графических процессоров ARM Mali / Immortalis активируются механизмы Forward Pixel Kill (FPK v5) и аппаратный Early Z-Cull.
+## 4. Аппаратная поддержка Adreno 840 / 830 / 825, Adreno 7xx, Adreno 6xx и ARM Mali
+Полная аппаратная совместимость с чипами Snapdragon 8 Elite Gen 5 (SM8850, Adreno 840 Oryon v2), Snapdragon 8 Elite (SM8750, Adreno 830), линейками Adreno 7xx (A710/A720/A722/A725/A730/A740/A750), Adreno 6xx (A610–A660), а также графическими процессорами ARM Mali (Bifrost, Valhall, Immortalis).

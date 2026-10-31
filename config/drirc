@@ -1,660 +1,673 @@
 <driconf>
     <device driver="turnip">
+        <!-- ================================================================= -->
+        <!-- TIER 0: UNIVERSAL SAFE BASELINE (Restoring < 3.0.0 Glyph Baseline) -->
+        <!-- ================================================================= -->
         <application name="all">
-            <!-- 1. Next-Gen Thermal Governor Floor and Power Optimization -->
-            <option name="tu_thermal_governor_floor" value="true" />
-            <option name="tu_power_governor_floor" value="true" />
-            <option name="tu_perf_floor_clamp" value="true" />
-            <option name="tu_power_profile_balanced" value="true" />
-            <option name="tu_low_power_vulkan_pipeline" value="true" />
-            <option name="tu_dynamic_thermal_budget" value="true" />
-            <option name="tu_energy_aware_scheduling" value="true" />
-            
-            <!-- 2. Low-Latency Mailbox VSync and Dynamic Adaptive Frame Pacing -->
-            <option name="tu_adaptive_frame_pacing" value="true" />
-            <option name="tu_frame_time_smoothing" value="true" />
-            <option name="tu_timeline_sync" value="true" />
-            <option name="tu_relaxed_frame_pacing" value="true" />
-            <option name="tu_mail_box_vsync_pacing" value="true" />
-            
-            <!-- 3. Adreno 8xx (Adreno 830 SM8750 + Adreno 840 SM8850 Oryon v2) Precision Architecture Tuning -->
-            <option name="tu_a840_sm8850_oryon_v2_support" value="true" />
-            <option name="tu_a8xx_gmem_macro_tiling_24m" value="true" />
-            <option name="tu_a830_reg_size_96" value="true" />
-            <option name="tu_a8xx_perfcntrs" value="true" />
-            <option name="tu_a830_ubwc_pitch_clamp" value="true" />
-            <option name="tu_a8xx_concurrent_queue_barrier_fix" value="true" />
-            <option name="tu_a8xx_barycentric_coord_clamp" value="true" />
-            <option name="tu_a8xx_subgroup_ballot_fastpath" value="true" />
-            <option name="tu_a830_concurrent_render_pass_align" value="true" />
-            <option name="tu_shader_spirv_mem_fastpath" value="true" />
-            <option name="tu_a830_fast_math" value="true" />
-            <option name="tu_a830_dual_register_spill_opt" value="true" />
-            <option name="tu_a830_l2_cache_slice_coherency" value="true" />
-            <option name="tu_a830_tess_eval_fastpath" value="true" />
-            <option name="tu_a830_ubwc_lossless_depth_stencil" value="true" />
-            <option name="tu_a830_vector_alu_cluster_boost" value="true" />
-
-            <!-- 3b. Adreno 7xx (including A710/A720/A722 GMEM Tile Pitch Alignment) and 6xx Architectural Enhancements -->
-            <option name="tu_a710_720_722_gmem_tile_fix" value="true" />
-            <option name="tu_a7xx_gmem_pitch_align_vauzi" value="true" />
-            <option name="tu_a7xx_lrz_fast_cull" value="true" />
-            <option name="tu_a7xx_shared_reg_alloc" value="true" />
-            <option name="tu_a7xx_concurrent_resolve_clamp" value="true" />
-            <option name="tu_a6xx_conservative_lrz" value="true" />
-            <option name="tu_a6xx_astc_texture_cache_bypass_guard" value="true" />
-            <option name="tu_a6xx_register_pressure_reduction" value="true" />
-
-            <!-- 3c. Accelerated NIR/IR3 Multi-Threaded Shader Compilation and Loading -->
-            <option name="tu_shader_compilation_fastpath" value="true" />
-            <option name="tu_ir3_disk_cache_compression_zstd" value="true" />
-            <option name="tu_pipeline_cache_preload" value="true" />
-            <option name="tu_nir_opt_algebraic_fast" value="true" />
-            <option name="tu_shader_warmup_pipeline_sync" value="true" />
-            <option name="tu_multithreaded_pipeline_creation" value="true" />
-
-            <!-- 3d. Precision Artifact Elimination and Geometric Stability -->
-            <option name="tu_line_rasterization_strict" value="true" />
-            <option name="tu_depth_clamp_precision_fix" value="true" />
-            <option name="tu_multisample_coverage_clamp" value="true" />
-            <option name="tu_vertex_attribute_stride_clamp" value="true" />
-            <option name="tu_sample_locations_enable" value="true" />
-            <option name="tu_texture_coord_wrap_precision" value="true" />
-            
-            <!-- 4. Global Depth and Precision Extensions -->
-            <option name="tu_depth_bias_control_all_adreno" value="true" />
-            <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="false" />
-            <option name="tu_dynamic_state_depth_bias_clamp" value="true" />
-            <option name="tu_depth_bounds" value="false" />
-            <option name="tu_depth_bounds_test" value="false" />
-            <option name="tu_depth_clamp_control_fix" value="false" />
-            <option name="tu_force_d32_unnormalized" value="false" />
-            
-            <!-- 5. Samsung OneUI UBWC Framebuffer Compression and Lossless Guard -->
-            <option name="tu_ubwc_oneui_fix" value="true" />
-            <option name="tu_ubwc_5_direct_align" value="true" />
-            <option name="tu_ubwc_5_stride_128_align" value="true" />
-            <option name="tu_ubwc_fallback_guard" value="true" />
-            <option name="tu_ubwc_lossless_fastpath" value="true" />
-            <option name="tu_disable_lossy_ubwc_depth" value="true" />
-            
-            <!-- 6. Compute Flush Optimization, Binary-Search GMEM Allocator & LRZ Fast-Clear -->
-            <option name="tu_lrz_fast_clear" value="true" />
-            <option name="tu_disable_lrz" value="false" />
-            <option name="tu_sysmem" value="false" />
-            <option name="tu_compute_flush_bits_optimize" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_autotune_bypass_margin" value="true" />
-            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
-            <option name="tu_allow_concurrent_binning" value="true" />
-            
-            <!-- 7. Proven Engine Baseline -->
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_botw_depth_refract_fix" value="true" />
-            <option name="tu_botw_shrine_geometry_fix" value="true" />
-            
-            <!-- 8. Zero-Overhead ASTC HDR Decompressor in GMEM and Bindless Textures -->
-            <option name="tu_astc_hdr_gmem" value="true" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-            <option name="tu_bindless_textures" value="true" />
-            <option name="tu_zero_copy_subsampled_sampler" value="true" />
-            
-            <!-- 9. IR3 Compiler: Global Code Motion (gcm=1) and 128-byte ICache Align -->
-            <option name="tu_gcm" value="1" />
-            <option name="tu_ir3_icache_128b_align" value="true" />
-            <option name="tu_ir3_dead_code_elimination" value="true" />
-            <option name="tu_ir3_constant_folding" value="true" />
-            <option name="tu_ir3_subgroup_merge" value="true" />
-            <option name="tu_ir3_scheduler_hazard_guard" value="true" />
-            
-            <!-- 10. Memory Suballocators (512KB) and Monolithic Pipeline Cache (4GB LZ4) -->
-            <option name="tu_suballocator_pool_512k" value="true" />
-            <option name="tu_pipeline_cache_lz4" value="true" />
-            <option name="tu_shader_cache_size_mb" value="4096" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_gmem_page_alignment_guard" value="true" />
-            <option name="tu_gmem_force_tile_align" value="true" />
-            
-            <!-- 11. Subpass Fusion v2 (disabled globally for Switch emulation safety) -->
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_subpass_fusion_depth_stencil_guard" value="false" />
-            
-            <!-- 12. Qualcomm Sampler Precision and Float Controls -->
-            <option name="tu_sampler_precision_fix" value="true" />
-            <option name="tu_float_controls_strict" value="true" />
-            <option name="tu_sampler_border_color_clamp" value="true" />
-            <option name="tu_sparse_buffer_pages" value="true" />
-            <option name="tu_virtual_buffer_page_table" value="true" />
-            <option name="tu_bindless_descriptor_fast" value="true" />
-            
-            <!-- 13. Direct SurfaceFlinger Zero-Copy Blit -->
-            <option name="tu_direct_surfaceflinger_blit" value="true" />
-            <option name="tu_bypass_gpu_rotator" value="true" />
-            <option name="tu_direct_display_sync" value="true" />
-            <option name="tu_zero_copy_swapchain" value="true" />
-            
-            <!-- 14. ARM Mali / Immortalis Optimization Suite v5 -->
-            <option name="mali_early_depth_bounds" value="true" />
-            <option name="mali_forward_pixel_kill" value="true" />
-            <option name="mali_tile_buffer_coherency" value="true" />
-            <option name="mali_afbc_lossless" value="true" />
-
-            <!-- 15. Universal PC Windows (Winlator / Mobox / Box64 / DXVK / VKD3D) Compatibility -->
-            <option name="vk_x11_override_min_image_count" value="2" />
-            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
-            <option name="vk_dont_care_as_load" value="true" />
-            <option name="tu_clear_with_gmem" value="true" />
-            
-            <!-- 16. Long Gaming Sessions Anti-Leak & BO Cache Auto-Trim Protection (4PDA #33080 Fix) -->
-            <option name="tu_bo_cache_max_age_ms" value="180000" />
-            <option name="tu_suballoc_reclaim_aggressiveness" value="2" />
-            <option name="tu_descriptor_pool_auto_trim" value="true" />
-        </application>
-        
-        <!-- ==================== DEDICATED PROFILES ==================== -->
-        <!-- 1. The Legend of Zelda: Breath of the Wild -->
-        <application name="The Legend of Zelda: Breath of the Wild" application_name_match=".*(01007EF00011E000|01007EF00011E800|Zelda.*Breath|Breath of the Wild).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_disable_lrz" value="false" />
-            <option name="tu_lrz_fast_clear" value="true" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_drop_tile_wfi" value="false" />
-            <option name="tu_optimal_gmem_tile_allocator" value="false" />
-            <option name="tu_botw_depth_refract_fix" value="true" />
-            <option name="tu_botw_shrine_geometry_fix" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_ping_pong_command_submission" value="false" />
-            <option name="tu_pso_fuzzy_match" value="false" />
-            <option name="tu_ir3_texture_prefetch" value="false" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 2. The Legend of Zelda: Tears of the Kingdom -->
-        <application name="The Legend of Zelda: Tears of the Kingdom" application_name_match=".*(0100F2C0115B6000|0100F2C0115B6800|Zelda.*Tears|Tears of the Kingdom).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_disable_lrz" value="true" />
-            <option name="tu_lrz_fast_clear" value="false" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
-            <option name="tu_drop_tile_wfi" value="false" />
-            <option name="tu_optimal_gmem_tile_allocator" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_botw_depth_refract_fix" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_ping_pong_command_submission" value="false" />
-            <option name="tu_pso_fuzzy_match" value="false" />
-            <option name="tu_ir3_texture_prefetch" value="false" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_astc_hdr_gmem" value="true" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-        </application>
-
-        <!-- 3. The Legend of Zelda: Echoes of Wisdom -->
-        <application name="The Legend of Zelda: Echoes of Wisdom" application_name_match=".*(01008CF01BAAC000|01008CF01BAAD000|Echoes of Wisdom).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_disable_lrz" value="true" />
-            <option name="tu_lrz_fast_clear" value="false" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
-            <option name="tu_drop_tile_wfi" value="false" />
-            <option name="tu_optimal_gmem_tile_allocator" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_ping_pong_command_submission" value="false" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 4. Diablo II: Resurrected (Font Atlas Hardware Barrier & Zero FPS Collapse) -->
-        <application name="Diablo II: Resurrected" application_name_match=".*(01002A801458A000|0100916014D8C000|0100726014352000|01002A801458A800|Diablo II).*">
-            <option name="tu_attachment_feedback_loop_barrier" value="true" />
-            <option name="force_highp_16bit" value="true" />
-            <option name="tu_preserve_2d_font_atlas" value="true" />
-            <option name="sync_fd_fast_path" value="true" />
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_force_d32_unnormalized" value="false" />
-            <option name="tu_depth_bias_control_all_adreno" value="true" />
-            <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="false" />
-            <option name="tu_dynamic_state_depth_bias_clamp" value="false" />
-            <option name="tu_depth_bounds" value="false" />
-            <option name="tu_depth_bounds_test" value="false" />
-            <option name="tu_depth_clamp_control_fix" value="false" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_a8_unorm_swizzle_one" value="true" />
-            <option name="tu_r8_unorm_swizzle_alpha" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 5. Little Nightmares Series (Unreal Engine 4 and 5 Bloom and Volumetric Light Fix) -->
-        <application name="Little Nightmares Series" application_name_match=".*(01002FC00412C000|010097100EDD6000|010066101A55A000|Little Nightmares).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_force_d32_unnormalized" value="false" />
-            <option name="tu_depth_range_unrestricted_a7xx_a8xx" value="false" />
-            <option name="tu_depth_clamp_control_fix" value="false" />
-            <option name="tu_depth_bounds" value="false" />
-            <option name="tu_depth_bounds_test" value="false" />
-            <option name="tu_dynamic_state_depth_bias_clamp" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_disable_lossy_ubwc_depth" value="true" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 6. Streets of Rage 4 and 2D Sprite Masterworks -->
-        <application name="Streets of Rage 4" application_name_match=".*(010085800E33E000|0100BA700E340000|010085800E33E800|0100EC9010258000|0100AC300919A000|0100C60010228000|Streets of Rage 4).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_auto_mipmap_generation" value="false" />
-            <option name="tu_compute_detiling_gob_linear" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 7. Hogwarts Legacy -->
-        <application name="Hogwarts Legacy" application_name_match=".*(0100BCB0176D0000|0100B5B0112F8000|0100D1801648E000|Hogwarts Legacy).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_ir3_texture_prefetch" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 8. Persona 5 Royal (Qualcomm Sampler and Float Fix) -->
-        <application name="Persona 5 Royal" application_name_match=".*(010053201F9B4000|Persona 5 Royal).*">
-            <option name="tu_sampler_precision_fix" value="true" />
-            <option name="tu_float_controls_strict" value="true" />
-            <option name="tu_sampler_border_color_clamp" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 9. Mario Kart 8 Deluxe -->
-        <application name="Mario Kart 8 Deluxe" application_name_match=".*(0100152000022000|Mario Kart 8).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_astc_hdr_gmem" value="true" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-        </application>
-
-        <!-- 10. Pokemon Open World (Arceus, Scarlet, Violet) -->
-        <application name="Pokemon Open World" application_name_match=".*(01001F5010DFA000|0100A3D008C5C000|0100187003A36000|Pokemon|Pokémon).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-        </application>
-
-        <!-- 11. Red Dead Redemption -->
-        <application name="Red Dead Redemption" application_name_match=".*(01007820195A6000|0100B7001A848000|Red Dead).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_depth_bias_control_all_adreno" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 12. Mortal Kombat 1 and Batman Arkham Series -->
-        <application name="Mortal Kombat 1 and Batman Arkham" application_name_match=".*(01006560184E6000|0100D2800D5C2000|010063B017DAE000|010023A017E94000|01003AE017DB0000|01001D4017DA8000|Mortal Kombat 1|Batman).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_disable_lrz" value="false" />
-            <option name="tu_compute_flush_bits_optimize" value="true" />
-            <option name="tu_a8xx_concurrent_queue_barrier_fix" value="true" />
-            <option name="tu_force_d32_unnormalized" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 13. Mortal Kombat 11 -->
-        <application name="Mortal Kombat 11" application_name_match=".*(0100F2200C984000|0100B1100C4D0000|0100B1100C4D0800|Mortal Kombat 11).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_adaptive_frame_pacing" value="true" />
-            <option name="tu_a8xx_concurrent_queue_barrier_fix" value="true" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_disable_lrz" value="false" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-        </application>
-
-        <!-- 14. Metroid Prime Remastered -->
-        <application name="Metroid Prime Remastered" application_name_match=".*(0100121014688000|Metroid Prime).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 15. Bayonetta 3 -->
-        <application name="Bayonetta 3" application_name_match=".*(01004A4010FE4000|Bayonetta 3).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 16. Xenoblade Chronicles X: Definitive Edition (Crash fix with Russian localization mod & vertex buffer protection) -->
-        <application name="Xenoblade Chronicles X: Definitive Edition" application_name_match=".*(0100453019AA8000|0100453019AA8800|Xenoblade.*X|Xenoblade Chronicles X).*">
-            <option name="tu_dont_care_as_load" value="true" />
-            <option name="vertex_buffer_oob_guard" value="true" />
-            <option name="robust_buffer_access2" value="true" />
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 17. Xenoblade Chronicles Series (1, 2, 3) -->
-        <application name="Xenoblade Chronicles Series" application_name_match=".*(010074F013262000|0100E95004038000|0100F3400332C000|Xenoblade).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 17. Batman: Arkham Knight -->
-        <application name="Batman: Arkham Knight" application_name_match=".*(010063B017DAE000|01007820195A6000|Batman.*Arkham).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 18. The Witcher 3: Wild Hunt (REDengine 3) -->
-        <application name="The Witcher 3: Wild Hunt" application_name_match=".*(01003D100E9C6000|0100E67012924000|Witcher 3).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-        </application>
-
-        <!-- 19. No Man's Sky -->
-        <application name="No Man's Sky" application_name_match=".*(0100D6F015F70000|No Man.*Sky).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-        </application>
-
-        <!-- 20. Grand Theft Auto V (Homebrew Port) -->
-        <application name="Grand Theft Auto V" application_name_match=".*(0100B00B51230000|0100000000000055|GTA.*V|Grand Theft Auto).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_disable_fast_clears" value="true" />
-            <option name="tu_gmem_pinning_zelda" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_ir3_texture_prefetch" value="false" />
-        </application>
-
-        <!-- 21. DOOM Eternal (idTech 7) -->
-        <application name="DOOM Eternal" application_name_match=".*(0100B9F010DC4000|0100BB600DC30000|DOOM.*Eternal).*">
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_disable_lrz" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_fast_astc_decompress_gmem" value="true" />
-        </application>
-
-        <!-- 22. Assassin's Creed Series (The Rebel Collection, The Ezio Collection, AC III) -->
-        <application name="Assassin's Creed Series" application_name_match=".*(010044700DEB0000|010044700DC30000|010044700DEB0001|0100670014482000|01007F600B134000|Assassin.*).*">
-            <option name="tu_force_d32_unnormalized" value="false" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="false" />
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-        </application>
-
-        <!-- 23. Alan Wake Remastered -->
-        <application name="Alan Wake Remastered" application_name_match=".*(0100236015B7A000|Alan Wake).*">
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-        </application>
-
-        <!-- 24. Donkey Kong Country: Tropical Freeze -->
-        <application name="Donkey Kong Country: Tropical Freeze" application_name_match=".*(010077200889E000|0100C1F0051B2000|Donkey Kong).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_adaptive_frame_pacing" value="true" />
-        </application>
-
-        <!-- 25. Metroid Dread -->
-        <application name="Metroid Dread" application_name_match=".*(01005AF00BA7A000|010093801237C000|Metroid Dread).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_adaptive_frame_pacing" value="true" />
-        </application>
-
-        <!-- 26. Dispatch -->
-        <application name="Dispatch" application_name_match=".*(01008BA02525A000|Dispatch).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_lrz_preserve_across_cmdbuf" value="true" />
-            <option name="tu_disable_fast_clears" value="false" />
-            <option name="tu_disable_lrz" value="false" />
-            <option name="tu_barrier_feedback_loops" value="false" />
             <option name="tu_allow_concurrent_binning" value="false" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_force_d32_unnormalized" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_sample_locations_enable" value="false" />
-            <option name="tu_sparse_buffer_pages" value="false" />
-            <option name="tu_virtual_buffer_page_table" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 27. Dave the Diver -->
-        <application name="Dave the Diver" application_name_match=".*(0100DDF01A03A000|Dave the Diver).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
+        <!-- ================================================================= -->
+        <!-- TIER 1: DYNAMIC 2D FONT ATLAS & ISOMETRIC ARPGs                   -->
+        <!-- ================================================================= -->
+        <application name="Tier 1: Diablo II: Resurrected" application_name_match=".*(01002A801458A000|01002a801458a000|0100916014D8C000|0100916014d8c000|0100726014352000|0100726014352000|01002A801458A800|01002a801458a800|0100726014352800|0100726014352800|0100916014D8C800|0100916014d8c800|Diablo.*II|diablo.*ii|D2R|d2r).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
         </application>
 
-        <!-- 28. Brotato -->
-        <application name="Brotato" application_name_match=".*(010077001A8D4000|Brotato).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
+        <application name="Tier 1: Diablo III: Eternal Collection" application_name_match=".*(01001B300B9BE000|01001b300b9be000|01001B300B9BE800|01001b300b9be800|Diablo.*III|diablo.*iii|Diablo.*3|diablo.*3).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
         </application>
 
-        <!-- 29. Winlator, Mobox, Box64, FEX and Wine PC Translation Layers -->
-        <application name="Winlator and Wine PC Translation" application_name_match=".*(wine|winlator|box64|box86|mobox|fex|hangover|dxvk|vkd3d|d8vk|zink|wined3d).*">
-            <option name="tu_adaptive_frame_pacing" value="true" />
-            <option name="tu_timeline_sync" value="true" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_compute_flush_bits_optimize" value="true" />
-            <option name="tu_bindless_textures" value="true" />
-            <option name="tu_clear_with_gmem" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_huge_heap_8gb_align" value="true" />
-            <option name="vk_dont_care_as_load" value="true" />
+        <application name="Tier 1: Disco Elysium: The Final Cut" application_name_match=".*(01005250146D2000|01005250146d2000|Disco.*Elysium|disco.*elysium).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 1: Baldur's Gate and Icewind Dale Series" application_name_match=".*(01008C100DC70000|01008c100dc70000|010034000DC72000|010034000dc72000|Baldur.*Gate|baldur.*gate|Icewind.*Dale|icewind.*dale).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 1: Torchlight Series" application_name_match=".*(010031900B5B6000|010031900b5b6000|0100A1900BA96000|0100a1900ba96000|Torchlight|torchlight).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 1: Divinity: Original Sin 2" application_name_match=".*(010027100E67E000|010027100e67e000|010027100E67E800|010027100e67e800|Divinity.*Original.*Sin|divinity.*original.*sin).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 2: NINTENDO LUNCHPACK / KINGSYSTEM & MONOLITH SOFT OPEN-WORLD -->
+        <!-- ================================================================= -->
+        <application name="Tier 2: The Legend of Zelda: Breath of the Wild" application_name_match=".*(01007EF00011E000|01007ef00011e000|01007EF00011E800|01007ef00011e800|Zelda.*Breath|zelda.*breath|Breath of the Wild|breath of the wild).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 2: The Legend of Zelda: Tears of the Kingdom" application_name_match=".*(0100F2C0115B6000|0100f2c0115b6000|0100F2C0115B6800|0100f2c0115b6800|Zelda.*Tears|zelda.*tears|Tears of the Kingdom|tears of the kingdom).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 2: The Legend of Zelda: Echoes of Wisdom" application_name_match=".*(01008CF01BAAC000|01008cf01baac000|01008CF01BAAD000|01008cf01baad000|Echoes of Wisdom|echoes of wisdom).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 2: Xenoblade Chronicles Series and Monolith Soft" application_name_match=".*(0100FF500E34A000|0100ff500e34a000|0100E95004038000|0100e95004038000|0100F3400332C000|0100f3400332c000|010074F013262000|010074f013262000|0100453019AA8000|0100453019aa8000|0100453019AA8800|0100453019aa8800|Xenoblade|xenoblade).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="enable_lrz_fast_clear" value="false" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 3: UNREAL ENGINE 4 / 5 & HD-2D DEFERRED RENDERERS            -->
+        <!-- ================================================================= -->
+        <application name="Tier 3: Shin Megami Tensei V and Vengeance" application_name_match=".*(010063B012DC6000|010063b012dc6000|0100B8701AFE2000|0100b8701afe2000|Shin Megami Tensei.*V|shin megami tensei.*v|SMT.*V|smt.*v).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Hogwarts Legacy" application_name_match=".*(0100F7E00C70E000|0100f7e00c70e000|0100BCB0176D0000|0100bcb0176d0000|0100B5B0112F8000|0100b5b0112f8000|0100D1801648E000|0100d1801648e000|Hogwarts Legacy|hogwarts legacy).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Mortal Kombat 1 and 11" application_name_match=".*(01006560184E6000|01006560184e6000|0100F2200C984000|0100f2200c984000|0100B1100C4D0000|0100b1100c4d0000|Mortal Kombat|mortal kombat).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Pikmin 4" application_name_match=".*(01009A800EB36000|01009a800eb36000|Pikmin 4|pikmin 4).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Octopath Traveler Series and Dragon Quest III HD-2D" application_name_match=".*(01005700031AE000|01005700031ae000|0100DB00170BC000|0100db00170bc000|01007E3019BC6000|01007e3019bc6000|Octopath|octopath|Dragon Quest III HD-2D|dragon quest iii hd-2d).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Little Nightmares Series" application_name_match=".*(01002FC00412C000|01002fc00412c000|010097100EDD6000|010097100edd6000|010066101A55A000|010066101a55a000|Little Nightmares|little nightmares).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Batman: Arkham Series" application_name_match=".*(010063B017DAE000|010063b017dae000|0100D2800D5C2000|0100d2800d5c2000|010023A017E94000|010023a017e94000|01003AE017DB0000|01003ae017db0000|01001D4017DA8000|01001d4017da8000|Batman.*Arkham|batman.*arkham).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 3: Alan Wake Remastered" application_name_match=".*(0100236015B7A000|0100236015b7a000|Alan Wake|alan wake).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 4: RE ENGINE, PLATINUMGAMES & HIGH-SPEED ACTION              -->
+        <!-- ================================================================= -->
+        <application name="Tier 4: Monster Hunter Rise and Generations Ultimate" application_name_match=".*(0100B04011742000|0100b04011742000|0100770008DD8000|0100770008dd8000|Monster Hunter|monster hunter).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 4: Astral Chain" application_name_match=".*(01007300020FA000|01007300020fa000|Astral Chain|astral chain).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 4: Bayonetta Series" application_name_match=".*(010076F0049A2000|010076f0049a2000|01007620049A4000|01007620049a4000|01004A4010FE4000|01004a4010fe4000|010070201940E000|010070201940e000|Bayonetta|bayonetta).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 4: NieR: Automata" application_name_match=".*(01005DA015FD6000|01005da015fd6000|NieR.*Automata|nier.*automata).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 4: Devil May Cry Series" application_name_match=".*(010061200D8C8000|010061200d8c8000|0100ca100b21e000|0100CA100B21E000|Devil May Cry|devil may cry|DMC|dmc).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 4: Resident Evil Series" application_name_match=".*(010068D00AE14000|010068d00ae14000|0100f9100877a000|0100F9100877A000|010034a00877c000|010034A00877C000|010058b00be4e000|010058B00BE4E000|0100ef200c8f6000|0100EF200C8F6000|Resident Evil|resident evil|Biohazard|biohazard).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 5: PURE 3D FIRST-PARTY HIGH-THROUGHPUT ENGINES               -->
+        <!-- (Isolated tu_allow_concurrent_binning="true" ONLY for Pure-3D)     -->
+        <!-- ================================================================= -->
+        <application name="Tier 5: Super Mario Odyssey" application_name_match=".*(0100000000010000|Super Mario Odyssey|super mario odyssey|Mario Odyssey|mario odyssey).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Mario Kart 8 Deluxe" application_name_match=".*(0100152000022000|Mario Kart 8|mario kart 8).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Super Mario Bros. Wonder" application_name_match=".*(010015100B514000|010015100b514000|Super Mario Bros.*Wonder|super mario bros.*wonder|Mario Wonder|mario wonder).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Super Smash Bros. Ultimate" application_name_match=".*(01006A800016E000|01006a800016e000|Super Smash Bros|super smash bros|Smash Ultimate|smash ultimate).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Metroid Prime Remastered" application_name_match=".*(0100A21014688000|0100a21014688000|0100121014688000|0100121014688000|Metroid Prime Remastered|metroid prime remastered|Metroid Prime|metroid prime).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Metroid Dread" application_name_match=".*(010093801237C000|010093801237c000|01005AF00BA7A000|01005af00ba7a000|Metroid Dread|metroid dread).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Splatoon 2 and 3" application_name_match=".*(0100F8F0000A2000|0100f8f0000a2000|0100C2500FC20000|0100c2500fc20000|Splatoon|splatoon).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Luigi's Mansion 3" application_name_match=".*(0100DCA0064A6000|0100dca0064a6000|Luigi.*Mansion 3|luigi.*mansion 3).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Kirby and the Forgotten Land" application_name_match=".*(01004D300C5AE000|01004d300c5ae000|Kirby and the Forgotten Land|kirby and the forgotten land).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Pokemon Legends and Open-World Series" application_name_match=".*(01001F5010DFA000|01001f5010dfa000|0100A3D008C5C000|0100a3d008c5c000|01008F6008C5E000|01008f6008c5e000|0100187003A36000|0100187003a36000|Pokemon|pokemon|Pokémon).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 5: Donkey Kong Country: Tropical Freeze" application_name_match=".*(010077200889E000|010077200889e000|0100C1F0051B2000|0100c1f0051b2000|Donkey Kong|donkey kong).*" >
+            <option name="tu_allow_concurrent_binning" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 6: 2D, INDIE, UNITY & VECTOR / SPRITE PRECISION              -->
+        <!-- ================================================================= -->
+        <application name="Tier 6: Hollow Knight and Silksong" application_name_match=".*(0100633007D48000|0100633007d48000|0100075013000000|0100075013000000|Hollow Knight|hollow knight|Silksong|silksong).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Hades" application_name_match=".*(0100535012974000|0100535012974000|Hades|hades).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Dead Cells" application_name_match=".*(01005D500A52A000|01005d500a52a000|Dead Cells|dead cells).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Cuphead" application_name_match=".*(0100806008B42000|0100806008b42000|Cuphead|cuphead).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Celeste" application_name_match=".*(0100067008762000|0100067008762000|Celeste|celeste).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Streets of Rage 4" application_name_match=".*(0100EC6010290000|0100ec6010290000|010085800E33E000|010085800e33e000|0100BA700E340000|0100ba700e340000|010085800E33E800|010085800e33e800|0100EC9010258000|0100ec9010258000|0100AC300919A000|0100ac300919a000|0100C60010228000|0100c60010228000|Streets of Rage 4|streets of rage 4).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Prince of Persia: The Lost Crown" application_name_match=".*(0100210019428000|0100210019428000|Prince of Persia.*Lost Crown|prince of persia.*lost crown|The Lost Crown|the lost crown).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Dave the Diver" application_name_match=".*(0100DDF01A03A000|0100ddf01a03a000|Dave the Diver|dave the diver).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Brotato" application_name_match=".*(010077001A8D4000|010077001a8d4000|Brotato|brotato).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Dispatch" application_name_match=".*(01008BA02525A000|01008ba02525a000|Dispatch|dispatch).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Sea of Stars" application_name_match=".*(0100E90016D64000|0100e90016d64000|Sea of Stars|sea of stars).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Stardew Valley" application_name_match=".*(0100E65002F3A000|0100e65002f3a000|Stardew Valley|stardew valley).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Cult of the Lamb" application_name_match=".*(010026C0168A4000|010026c0168a4000|Cult of the Lamb|cult of the lamb).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <application name="Tier 6: Balatro" application_name_match=".*(010027601D418000|010027601d418000|Balatro|balatro).*" >
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_cb" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 7: HEAVY AAA OPEN-WORLD & PROPRIETARY PC PORTS               -->
+        <!-- ================================================================= -->
+        <application name="Tier 7: The Witcher 3: Wild Hunt" application_name_match=".*(01003D100E9C6000|01003d100e9c6000|0100E67012924000|0100e67012924000|The Witcher 3|the witcher 3|Witcher 3|witcher 3).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Red Dead Redemption" application_name_match=".*(01007820196A6000|01007820196a6000|01007820195A6000|01007820195a6000|0100B7001A848000|0100b7001a848000|Red Dead Redemption|red dead redemption|Red Dead|red dead).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: DOOM 2016 and DOOM Eternal" application_name_match=".*(0100B9F010DC4000|0100b9f010dc4000|0100BB600DC30000|0100bb600dc30000|010026000572C000|010026000572c000|DOOM.*Eternal|doom.*eternal|DOOM|doom).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: The Elder Scrolls V: Skyrim" application_name_match=".*(01000A10041EA000|01000a10041ea000|Skyrim|skyrim|Elder Scrolls|elder scrolls).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: No Man's Sky" application_name_match=".*(01008EC01463E000|01008ec01463e000|0100D6F015F70000|0100d6f015f70000|No Man.*Sky|no man.*sky).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Dying Light" application_name_match=".*(0100762013854000|0100762013854000|Dying Light|dying light).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Kingdom Come: Deliverance" application_name_match=".*(010098401314C000|010098401314c000|Kingdom Come|kingdom come).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Crysis Remastered Trilogy" application_name_match=".*(0100650012CEE000|0100650012cee000|01007E3014B44000|01007e3014b44000|0100CA9014B46000|0100ca9014b46000|Crysis|crysis).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Persona 5 Royal" application_name_match=".*(01005CA01580E000|01005ca01580e000|010053201F9B4000|010053201f9b4000|Persona 5 Royal|persona 5 royal|Persona 5|persona 5).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Assassin's Creed Series" application_name_match=".*(010044700DEB0000|010044700deb0000|010044700DC30000|010044700dc30000|010044700DEB0001|010044700deb0001|0100670014482000|0100670014482000|01007F600B134000|01007f600b134000|Assassin|assassin).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <application name="Tier 7: Grand Theft Auto Series" application_name_match=".*(0100B00B51230000|0100000000000055|0100371013E8E000|0100371013e8e000|01006A2013E90000|01006a2013e90000|0100095013E92000|0100095013e92000|Grand Theft Auto|grand theft auto|GTA|gta).*" >
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
+        </application>
+
+        <!-- ================================================================= -->
+        <!-- TIER 8: CROSS-PLATFORM EMULATORS & PC TRANSLATION LAYERS          -->
+        <!-- ================================================================= -->
+        <application name="Tier 8: Winlator and Wine PC Translation" application_name_match=".*(wine|winlator|box64|box86|mobox|fex|hangover|dxvk|vkd3d|d8vk|zink|wined3d|Winlator|Wine).*" >
             <option name="vk_x11_override_min_image_count" value="2" />
             <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 30. AetherSX2 and NetherSX2 (Sony PlayStation 2) -->
-        <application name="AetherSX2 and NetherSX2 (PS2)" application_name_match=".*(aethersx2|nethersx2|pcsx2).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_barrier_feedback_loops" value="true" />
-            <option name="tu_depth_clamp_control_fix" value="true" />
+        <application name="Tier 8: Vita3K (PlayStation Vita)" application_name_match=".*(vita3k|Vita3K).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 31. Citra, Lime3DS, Mandarine and Azahar (Nintendo 3DS) -->
-        <application name="Citra, Lime3DS and Mandarine (3DS)" application_name_match=".*(citra|lime3ds|mandarine|azahar).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_depth_direction_fix" value="true" />
+        <application name="Tier 8: AetherSX2 and NetherSX2 (PlayStation 2)" application_name_match=".*(aethersx2|nethersx2|pcsx2|AetherSX2|NetherSX2).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 32. Vita3K (Sony PlayStation Vita) -->
-        <application name="Vita3K (PS Vita)" application_name_match=".*(vita3k).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
-            <option name="tu_force_d32_unnormalized" value="true" />
-            <option name="tu_depth_bounds" value="true" />
-            <option name="tu_depth_bounds_test" value="true" />
+        <application name="Tier 8: Citra, Lime3DS and Mandarine (Nintendo 3DS)" application_name_match=".*(citra|lime3ds|mandarine|azahar|Citra|Lime3DS|Azahar).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 33. Dolphin (Nintendo GameCube and Wii) -->
-        <application name="Dolphin (GameCube and Wii)" application_name_match=".*(dolphin).*">
-            <option name="tu_tile_discard" value="false" />
-            <option name="tu_indirect_ubo_bounds" value="true" />
-            <option name="tu_depth_direction_fix" value="true" />
-            <option name="tu_subpass_fusion" value="false" />
-            <option name="tu_subpass_fusion_v2" value="false" />
+        <application name="Tier 8: Dolphin (GameCube and Wii)" application_name_match=".*(dolphin|Dolphin).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 34. PPSSPP (Sony PlayStation Portable) -->
-        <application name="PPSSPP (PSP)" application_name_match=".*(ppsspp).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
+        <application name="Tier 8: PPSSPP (PlayStation Portable)" application_name_match=".*(ppsspp|PPSSPP).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
 
-        <!-- 35. DuckStation and SwanStation (Sony PlayStation 1) -->
-        <application name="DuckStation and SwanStation (PS1)" application_name_match=".*(duckstation|swanstation).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
-        </application>
-
-        <!-- 36. MelonDS and DraStic (Nintendo DS) -->
-        <application name="MelonDS and DraStic (NDS)" application_name_match=".*(melonds|drastic).*">
-            <option name="tu_tile_discard" value="true" />
-            <option name="tu_drop_tile_wfi" value="true" />
-            <option name="tu_optimal_gmem_tile_allocator" value="true" />
+        <application name="Tier 8: DuckStation and SwanStation (PlayStation 1)" application_name_match=".*(duckstation|swanstation|DuckStation).*" >
+            <option name="vk_x11_override_min_image_count" value="2" />
+            <option name="vk_wsi_force_bgra8_unorm_first" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
     </device>
-    
+
     <device driver="freedreno">
         <application name="all">
-            <option name="mesa_disk_cache_single_file" value="true" />
-            <option name="mesa_shader_cache_max_size" value="4294967296" />
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="ubwc_coherency_quirk" value="true" />
         </application>
     </device>
-    
+
     <device driver="panfrost">
         <application name="all">
-            <option name="pan_depth_bounds_test" value="true" />
             <option name="pan_early_z" value="true" />
             <option name="pan_forward_pixel_kill" value="true" />
-            <option name="pan_forward_pixel_kill_v2" value="true" />
-            <option name="pan_fpk" value="true" />
-            <option name="panfrost_mali_opt" value="true" />
-            <option name="pan_subpass_fusion" value="false" />
-            <option name="pan_fast_clears" value="true" />
             <option name="pan_fp16" value="true" />
-            <option name="pan_bifrost_valhall_opt" value="true" />
-            <option name="pan_tile_buffer_fast_pack" value="true" />
-            <option name="pan_shader_cache_multithreaded" value="true" />
-            <option name="mesa_disk_cache_single_file" value="true" />
-            <option name="mesa_shader_cache_max_size" value="4294967296" />
         </application>
     </device>
-    
+
     <device driver="panvk">
         <application name="all">
             <option name="pan_early_z" value="true" />
             <option name="pan_forward_pixel_kill" value="true" />
-            <option name="pan_fp16_arithmetic" value="true" />
-            <option name="pan_thread_group_clamp" value="true" />
-            <option name="pan_tile_buffer_coherency" value="true" />
-            <option name="pan_afbc_lossless" value="true" />
-            <option name="pan_shader_cache_multithreaded" value="true" />
-            <option name="mesa_disk_cache_single_file" value="true" />
-            <option name="mesa_shader_cache_max_size" value="4294967296" />
         </application>
     </device>
 </driconf>
