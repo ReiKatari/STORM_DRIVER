@@ -1,5 +1,18 @@
 # 📜 STORM DRIVER Changelog
 
+### 10.0.0 (05.11.2026)
+- **Универсальная мультиплатформенная поддержка Mesa PanVK (Arm Mali & Immortalis):** Интеграция конфигураций и нативных бинарных точек входа (ulkan.panfrost.so, libvulkan_panfrost.so) для GPU Arm Mali архитектур Bifrost (G31/G52/G72/G76), Valhall (G57/G68/G77/G78/G510/G610/G710) и 5-го поколения CSF (G615/G715/G720/Immortalis-G715/G720/G925). Включены оптимизации pan_allow_concurrent_queues, аппаратного проброса сжатия текстур pan_bcn_passthrough и pan_astc_passthrough, дескрипторной индексации pan_descriptor_indexing, динамического рендеринга pan_dynamic_rendering, CSF-синхронизации pan_csf_sync_queue и предпрохода отсечения невидимых поверхностей pan_hsr_prepass.
+- **Поддержка Samsung Xclipse (AMD RDNA 2/3) и Mesa RADV:** Добавлены профили совместимости и оптимизации распределения буферов 
+adv_zero_vram, деривации шейдеров 
+adv_lower_discard_to_demote, геометрической инвариантности 
+adv_invariant_geom и унифицированной памяти 
+adv_enable_unified_heap для чипсетов Samsung Exynos 2200/2400.
+- **Оптимизации Mesa Turnip 26.3.0 для Snapdragon 8 Elite (Adreno 840 / 830 / 825):** Расширенная эвристика GMEM/sysmem, стабильное переключение размеров регистровых файлов (Wave64/Wave32), подавление артефактов UBWC и автоочистка кэша буферных объектов BO для предотвращения утечек памяти.
+- **Единая криптографическая подпись STORM SERTIFICATE:** Пакет драйвера STORM_DRIVER_10.0.0.zip подписан эталонным сертификатом STORM SERTIFICATE (SHA1: D996584B7CA0B17D2A348D321D06F1071CA46E58).
+
+### 9.0.0 (02.11.2026)
+- **Обновление Turnip до ветки 26.2.0-devel:** Поддержка ранних ревизий Adreno 830/840, исправления динамического рендеринга и расширений Vulkan 1.4 Maintenance 7/8.
+
 ### 8.0.0 (31.10.2026)
 - **Изолированная 8-уровневая архитектура движков (Engine Architecture Tiers):** Полное устранение взаимного влияния настроек между играми. Конфигурация распределена по 8 изолированным архитектурным уровням (Tier 0 — Universal Safe Baseline, Tier 1 — Dynamic 2D Font Atlas & Isometric ARPGs, Tier 2 — Nintendo LunchPack / KingSystem & Monolith Soft Open-World, Tier 3 — Unreal Engine 4/5 & HD-2D Deferred Renderers, Tier 4 — RE Engine, PlatinumGames & High-Speed Action, Tier 5 — Pure 3D First-Party High-Throughput Engines, Tier 6 — 2D, Indie, Unity & Vector/Sprite Precision, Tier 7 — Heavy AAA Open-World & Proprietary PC Ports, Tier 8 — Cross-Platform Emulators & PC Translation Layers).
 - **Восстановление безопасного глиф-базиса (< 3.0.0 Baseline):** Устранено глобальное принудительное включение `tu_allow_concurrent_binning="true"` в `<application name="all">`, вызывавшее гонки данных при динамическом инкрементальном обновлении 2D-атласа глифов (R8 / BC4) и исчезновение букв в *Diablo II: Resurrected* и *Xenoblade Chronicles X DE*. Конкурентный биннинг (`tu_allow_concurrent_binning="true"`) изолирован строго в Tier 5 для чистых трехмерных игр.
