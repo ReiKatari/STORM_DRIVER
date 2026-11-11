@@ -1,5 +1,12 @@
 # 📜 STORM DRIVER Changelog
 
+### 12.0.0 (12.11.2026)
+- **Поколенческое обновление Turnip до Vulkan 1.4.367:** Интеграция новейших сборок Turnip поколения Gen8 (V39-patched, 8,460,728 B) с нативной аппаратной поддержкой Adreno 830 (SM8750) / Adreno 840 (SM8850) Snapdragon 8 Elite, a8xx, a7xx и OneUI, а также оптимизированной сборки Turnip 27.0.0-R2-Oneui (8,362,496 B) для чипсетов Adreno 7xx/6xx.
+- **Искоренение деструктивных опций в driconf:** Полное удаление вредоносных параметров `tu_dont_care_as_load` (устранено наложение кадров, двоение и фантомные изображения / frame ghosting из-за принудительного превращения DONT_CARE в LOAD), `disable_conservative_lrz`, `tu_ignore_frag_depth_direction` и `tu_override_uncached_as_cache_coherent`.
+- **Поддержка актуального пакета dev.storm_switch:** Добавлены явные секции `<application name="STORM SWITCH" executable="dev.storm_switch">` наряду с поддержкой устаревшего идентификатора `<application name="STORM SWITCH (Legacy)" executable="org.yuzu.yuzu_emu">` для всех драйверов (Turnip, PanVK, Panfrost, RADV).
+- **Побайтовая синхронизация профилей Mesa:** Полная синхронизация конфигураций `00-storm.conf`, `drirc`, `drirc.conf` и `drirc.xml` с валидацией синтаксиса ElementTree XML и полным соблюдением Zero Em-Dash Mandate.
+- **Унифицированная подпись STORM SERTIFICATE и права POSIX:** Архив подписан цифровым сертификатом `STORM SERTIFICATE` с установкой прав POSIX 0755 для исполняемых `.so` библиотек и 0644 для конфигурационных файлов и метаданных.
+
 ### 11.0.0 (11.11.2026)
 - **Обновление Turnip до Mesa 26.3.0-devel Rutabaga (git-b00479181d):** Интеграция новейшей кодовой базы с расширенной поддержкой архитектуры Adreno 8xx (Adreno 810, 829, 830, 830v1, 840, 850, X1-45, X1-85, X2-85, X2-90) и Adreno 7xx (704, 710, 720, 722, 730, 740, 750).
 - **Исправление геометрии дворца в Mario + Rabbids: Kingdom Battle (010067300059A000):** Удалены деструктивные глобальные оверрайды tu_ignore_frag_depth_direction и tu_dont_care_as_load, ломавшие аппаратный LRZ-буфер и геометрию стен дворца в движке Snowdrop.
