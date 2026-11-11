@@ -35,7 +35,33 @@
             <option name="tu_allow_concurrent_binning" value="false" />
             <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
             </application>
-        <application name="Tier 1: Diablo II: Resurrected" application_name_match=".*(01002A801458A000|01002a801458a000|0100916014D8C000|0100916014d8c000|0100726014352000|0100726014352000|01002A801458A800|01002a801458a800|0100726014352800|0100726014352800|0100916014D8C800|0100916014d8c800|Diablo.*II|diablo.*ii|D2R|d2r).*">
+        <application name="GameHub Rutabaga Host Process" executable_regex=".*(gamehub|rutabaga).*">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            </application>
+        <application name="Eden Switch Emulator (Adreno 8xx)" executable="dev.eden_emu.eden">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            </application>
+        <application name="Winlator PC Translation Layer (Adreno 8xx)" executable_regex=".*winlator.*">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            </application>
+        <application name="Tier 1: Diablo II: Resurrected" application_name_match=".*(01002A801458A000|01002a801458a000|0100916014D8C000|0100916014d8c000|0100726014352000|0100726014352800|01002A801458A800|01002a801458a800|0100916014D8C800|0100916014d8c800|Diablo.*II|diablo.*ii|D2R|d2r).*">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_dont_care_as_load" value="true" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_override_uncached_as_cache_coherent" value="true" />
+            <option name="tu_use_tex_coord_round_nearest_even_mode" value="true" />
+            <option name="tu_enable_fast_border_color_for_undefined_formats" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="dual_color_blend_by_location" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            </application>
+        <application name="Tier 1: Absolum" application_name_match=".*(0100A83022A22000|0100a83022a22000|Absolum|absolum).*">
             <option name="tu_allow_concurrent_binning" value="false" />
             <option name="tu_dont_care_as_load" value="true" />
             <option name="disable_conservative_lrz" value="true" />
@@ -102,11 +128,9 @@
             <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
             </application>
         <application name="Tier 2: The Legend of Zelda: Breath of the Wild" application_name_match=".*(01007EF00011E000|01007ef00011e000|01007EF00011E800|01007ef00011e800|Zelda.*Breath|zelda.*breath|Breath of the Wild|breath of the wild).*">
-            <option name="tu_dont_care_as_load" value="true" />
             <option name="tu_allow_concurrent_binning" value="false" />
             <option name="disable_conservative_lrz" value="true" />
             <option name="tu_enable_d24s8_border_color_workaround" value="true" />
-            <option name="tu_ignore_frag_depth_direction" value="true" />
             <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
             </application>
         <application name="Tier 2: The Legend of Zelda: Tears of the Kingdom" application_name_match=".*(0100F2C0115B6000|0100f2c0115b6000|0100F2C0115B6800|0100f2c0115b6800|Zelda.*Tears|zelda.*tears|Tears of the Kingdom|tears of the kingdom).*">
@@ -131,6 +155,12 @@
             <option name="disable_conservative_lrz" value="true" />
             <option name="tu_enable_d24s8_border_color_workaround" value="true" />
             <option name="tu_ignore_frag_depth_direction" value="true" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            </application>
+        <application name="Tier 2: Unravel Two" application_name_match=".*(010065000BA10000|010065000ba10000|Unravel.*Two|unravel.*two|Unravel 2|unravel 2).*">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="disable_conservative_lrz" value="true" />
+            <option name="tu_enable_d24s8_border_color_workaround" value="true" />
             <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
             </application>
         <application name="Tier 3: Shin Megami Tensei V and Vengeance" application_name_match=".*(010063B012DC6000|010063b012dc6000|0100B8701AFE2000|0100b8701afe2000|Shin Megami Tensei.*V|shin megami tensei.*v|SMT.*V|smt.*v).*">
@@ -238,6 +268,13 @@
             <option name="tu_dont_care_as_load" value="true" />
             <option name="tu_override_uncached_as_cache_coherent" value="true" />
             <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
+            </application>
+                <application name="Tier 5: Mario + Rabbids: Kingdom Battle" application_name_match=".*(010067300059A000|010067300059a000|010067300059B000|010067300059b000|Mario.*Rabbids.*Kingdom|mario.*rabbids.*kingdom|Kingdom Battle|kingdom battle).*">
+            <option name="tu_allow_concurrent_binning" value="false" />
+            <option name="tu_dont_care_as_load" value="false" />
+            <option name="tu_ignore_frag_depth_direction" value="false" />
+            <option name="disable_conservative_lrz" value="false" />
             <option name="tu_allow_oob_indirect_ubo_loads" value="true" />
             </application>
         <application name="Tier 5: Super Mario Odyssey" application_name_match=".*(0100000000010000|Super Mario Odyssey|super mario odyssey|Mario Odyssey|mario odyssey).*">

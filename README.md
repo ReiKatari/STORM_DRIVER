@@ -6,7 +6,7 @@
 
 ## **О проекте**
 
-**STORM DRIVER** — это специализированный оптимизированный графический драйвер Vulkan, разработанный для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (включая Snapdragon 8 Elite Gen 5 `SM8850` / Adreno 840 Oryon v2, Snapdragon 8 Elite `SM8750` / Adreno 830, линейку Adreno 710/720/722 и 730–750, а также Adreno 6xx) и **ARM Mali / Immortalis** (Bifrost, Valhall).
+**STORM DRIVER** - это специализированный оптимизированный графический драйвер Vulkan, разработанный для мобильных графических процессоров **Qualcomm Adreno 6xx, 7xx, 8xx** (включая Snapdragon 8 Elite Gen 5 `SM8850` / Adreno 840 Oryon v2, Snapdragon 8 Elite `SM8750` / Adreno 830, линейку Adreno 710/720/722 и 730-750, а также Adreno 6xx) и **ARM Mali / Immortalis** (Bifrost, Valhall).
 
 Драйвер ориентирован на обеспечение высочайшей производительности, стабильности кадровой частоты, предотвращение троттлинга и перегрева, устранение утечек видеопамяти при длительных игровых сессиях, а также на ликвидацию графических артефактов в играх и эмуляторах на Android и Linux.
 
@@ -15,7 +15,7 @@
 ## **Технологический стек**
 
 - **Языки и компиляторы**: C, C++20, Python, Meson, Ninja, Android NDK (API 35+)
-- **Графический API**: Vulkan 1.3 / 1.4 API Specifications, WSI, Android SurfaceFlinger LTPO 1–120Hz
+- **Графический API**: Vulkan 1.3 / 1.4 API Specifications, WSI, Android SurfaceFlinger LTPO 1-120Hz
 - **Архитектуры GPU**: Qualcomm Adreno (A6xx, A7xx, A830 / A840 Snapdragon 8 Elite), ARM Mali (Bifrost, Valhall, Immortalis)
 - **Компилятор шейдеров**: IR3 Shader Compiler с глобальным планированием и ZSTD-сжатием дискового кэша
 
@@ -26,12 +26,12 @@
 - **Поддержка Adreno 840 (SM8850 Snapdragon 8 Elite Gen 5 Oryon v2) и Adreno 830**: аппаратная калибровка регистров `reg_size_vec4 = 96`, макро-тайлинг 24 МБ GMEM, поддержка 16 слайсов L2-кэша и Wave64 Occupancy.
 - **Интеграция наработок Vauzi-17 для Adreno 710/720/722**: строгое выравнивание шага GMEM-тайлов (64/128-byte stride alignment), устраняющее полосы, градиентный шум и расслоение текстур.
 - **Автоматическая защита от утечек памяти при длительных сессиях (4PDA #33080 Fix)**: интеллектуальный тайм-аут LRU-кэша буферных объектов (`tu_bo_cache_max_age_ms = 180000`), реклейм субаллокатора памяти и автоматическая очистка неиспользуемых пулов дескрипторов каждые 180 секунд без статтеров.
-- **Изолированная 8-уровневая архитектура движков (Engine Architecture Tiers)**: строгое разграничение параметров конвейера, тайлинга и барьеров для различных графических движков (Tier 0–8), исключающее взаимное влияние настроек между играми.
+- **Изолированная 8-уровневая архитектура движков (Engine Architecture Tiers)**: строгое разграничение параметров конвейера, тайлинга и барьеров для различных графических движков (Tier 0-8), исключающее взаимное влияние настроек между играми.
 - **Аппаратная защита 2D-атласа шрифтов в Diablo II: Resurrected и Xenoblade Chronicles X**: устранение гонки данных concurrent binning, ликвидация просадок FPS и сохранение целостности глифов шрифтов и спрайтов.
 - **Защита вершинных буферов в Xenoblade Chronicles X: Definitive Edition**: внедрение `vertex_buffer_oob_guard` и `robust_buffer_access2`, устраняющее краши при использовании модов и фанатских локализаций.
 - **Поддержка спецификаций Vulkan 1.4**: задействованы современные расширения Khronos, включая динамический локальный рендеринг и прямое копирование изображений с хоста.
 - **Samsung OneUI UBWC 5.0 Framebuffer Lossless Guard**: предотвращение артефактов на внешних swapchain-буферах в устройствах Galaxy.
-- **Eco-Cool DVFS и LTPO 1–120Hz Frame Pacing**: микро-сон кольцевого буфера KGSL при простое между кадрами для снижения нагрева аккумулятора.
+- **Eco-Cool DVFS и LTPO 1-120Hz Frame Pacing**: микро-сон кольцевого буфера KGSL при простое между кадрами для снижения нагрева аккумулятора.
 - **Аппаратное отсечение геометрии для Mali**: Early Z-Cull и Forward Pixel Kill для чипов Dimensity и Exynos.
 - **Оптимизированные профили для популярных игр**: The Legend of Zelda: Tears of the Kingdom, Breath of the Wild, Metroid Prime Remastered, Xenoblade Chronicles, Red Dead Redemption, Bayonetta 3 и десятков других проектов.
 
